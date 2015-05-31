@@ -5,21 +5,22 @@ $base = new BD;
 $conexion = $base->Conectar();
 
  ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>ALTA CLIENTE - MONITOREADOR - ADMINISTRADOR</title>
     </head>
     <body>
 
-        <h3>ALTA CLIENTE - MONITOREADOR - ADMINISTRADOR</h3>
+        <h2>ALTA CLIENTE - MONITOREADOR - ADMINISTRADOR </h2>
         	
         <form action="Alta-Administrador.php" method="POST">
 
-	        <label for="tipoAlta">SELECCIONAR TIPO DE ALTA</label>
-			<input id="tipoAlta" name="tipoAlta" type="radio" value="1" required/ >Administrador
-			<input id="tipoAlta" name="tipoAlta" type="radio" value="2" required/ >Monitoreador
-			<input id="tipoAlta" name="tipoAlta" type="radio" value="3" required/ >Cliente
+	        <label>Seleccionar tipo de alta</label>
+			<input id="adm" name="tipoAlta" type="radio" value="1" required/><label for="adm">Administrador</label>
+			<input id="mon" name="tipoAlta" type="radio" value="2" required/><label for="mon">Monitoreador</label>
+			<input id="cli" name="tipoAlta" type="radio" value="3" required/><label for="cli">Cliente</label>
 			<br>
 			<br>
 			
@@ -29,7 +30,7 @@ $conexion = $base->Conectar();
 			 ?>
 			 
 			<label for="nro_doc">Número Documento:</label>
-			<input type="text" name="nro_doc"> 
+			<input type="text" id="nro_doc"name="nro_doc"> 
 			<br>
 			<br>
 			
@@ -95,9 +96,9 @@ $conexion = $base->Conectar();
 			<br>
 			<br>
 
-			<label for="sexo">Sexo</label>
-			<input id="sexo" name="sexo" type="radio" value="F" required/ >Femenino
-			<input id="sexo" name="sexo" type="radio" value="M" required/ >Masculino
+			<label>Sexo</label>
+			<input id="fem" name="sexo" type="radio" value="F" required/><label for="fem">Femenino</label>
+			<input id="mas" name="sexo" type="radio" value="M" required/><label for="mas">Masculino</label>
 			<br>
 			<br>
 
@@ -114,14 +115,15 @@ $conexion = $base->Conectar();
 			<br>
 			<br>
 			
-			<label for="disponibilidad">Disponible para monitorear: </label>
-			<input id="disponibilidad" name="disponibilidad" type="radio" value="1" required/ >Si
-			<input id="disponibilidad" name="disponibilidad" type="radio" value="0" required/ >No		
+			<label for="disponibilidad">Disponible para monitorear:</label>
+			<input id="si" name="disponibilidad" type="radio" value="1" required/><label for="si">Si</label>
+			<input id="no" name="disponibilidad" type="radio" value="0" required/><label for="no">No</label>		
 			<br>
 			<br>
 
 			<input type="submit" value="Enviar">
 		</form>
+		
 			<?php 
 
 				 function LlenarCombos ($campo_cod, $campo_descr, $tabla, $name)
