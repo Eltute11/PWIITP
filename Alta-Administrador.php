@@ -81,7 +81,7 @@ else
 
 
 // Cerrar la conexión
-mysql_close($link);
+//mysql_close($link);
 
 //PRINT "<br>Registros insertados: ". mysql_affected_rows(); // mysql_affected_rows(); devuelve la cantidad de filas afectadas. EN EL ULTIMO UPDATE,DELETE,INSET
 
