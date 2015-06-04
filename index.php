@@ -1,18 +1,14 @@
 <?php 
 	// Si se envio error='x' 
 	if (isset($_GET['error'])) {
-		if ($_GET['error'] == 1) {
+		if ($_GET['error'] == 'campos_vacios') {
 			echo "Los dos campos tienen que estar llenos, no puede haber campos vacios";
 		}else{
-			if ($_GET['error'] == 2) {
+			if ($_GET['error'] == 'datos_incorrectos') {
 				echo "El usuario y/o contraseña son incorrecto";
 			}else{
-				if ($_GET['error'] == 3) {
-				echo "No debes saltearte el formulario";
-				}else{
-					if ($_GET['error'] == 4) {
-						echo "No debes acceder sin iniciar sesion";
-					}
+				if ($_GET['error'] == 'loguearse') {
+				echo "No debes acceder sin iniciar sesion";
 				}
 			}
 		}

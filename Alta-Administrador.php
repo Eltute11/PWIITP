@@ -1,6 +1,6 @@
 <?php 
 
-include ("conexionBDD.php");
+include ("clases.php");
 
 $base = new BD;
 $conexion = $base->Conectar();
@@ -30,7 +30,7 @@ else
  //Validar que se acepte solo para monitoreadores. Admin y clientes -> NULL
 
 //OBTENER MAXIMO ID_PERSPONA PARA EL TIPO DE PERSONA INGRESADO
-
+/*
 $query  = "SELECT IFNULL(MAX(id_persona),0) + 1 as 'id_personaMax' FROM PERSONAS where cod_tipper = $tipoAlta";
 $result = mysql_query($query);
 
@@ -39,16 +39,16 @@ while($line = mysql_fetch_array($result)) {
     		$id_persona = $line[0]; //line es el registro, 0 es el numero de columna. 0 es la primera y unica en este caso
 }
 
+*/
 
-
-$query = "INSERT INTO PERSONAS (cod_tipper,         id_persona,         cod_tipdoc,         
+$query = "INSERT INTO PERSONAS (cod_tipper,       /* id_persona, */        cod_tipdoc,         
 								nro_doc,            nombres,            apellidos,          
 								fecha_nac,          cod_pais,           cod_prov,           
 								cod_loc,            direccion,          num_direccion,
 								sexo,               telefono_1,         telefono_2,         
 								direccion_email,    disponibilidad)
 
-						VALUES ($tipoAlta,      $id_persona,    $tipo_doc,     
+						VALUES ($tipoAlta,   /* $id_persona, */ $tipo_doc,     
 								$nro_doc,      '$nombres',     '$apellidos',     
 							   '$fecha_nac',    $pais,          $provincia,     
 								$localidad,    '$direccion',    $num_direc,
@@ -77,8 +77,6 @@ if (mysql_affected_rows() == 1)
 	echo "<h3>El $tipoRol $nombres $apellidos se dio de Alta exitosamente.</h3>";	        
 else
 	echo "<h3>Ha ocurrido un problema al querer dar de alta al $tipoRol $nombres $apellidos:<br><br>" . mysql_error()."</h3>";
-
-
 
 // Cerrar la conexión
 //mysql_close($link);

@@ -1,0 +1,3 @@
+Cosas que modificar:
+1- Cuando hay algun campo vacio, no se crea el registro de usuario exitosamente.
+Por ej. si no se especifica numero tel.2 hay error.
