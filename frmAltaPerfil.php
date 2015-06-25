@@ -1,6 +1,6 @@
 <?php 
 session_start();
-session_destroy();
+// session_destroy();
 /*  
 		if(!isset($_SESSION['usuario'])){
 			session_destroy();
@@ -37,6 +37,8 @@ if (isset($_GET['nError'])) {
 				break;		
 		case 3: $solo_letras =  "<span style='color: red;'> *Solo letras</span>";		
 				break;	
+		case 6: $perfil_existente =  "<span style='color: red;'> <h3>El perfil que esta intentando dar de alta ya existe </h3></span>";		
+		break;		
 	}
 }
 else{
@@ -58,7 +60,14 @@ else{
         <h2>ALTA PERFIL</h2>
         	
         <form action="aplicarAltaPerfil.php" method="POST">
-			
+		<?php 
+	 	 
+	 	 if ($nError == 6) {
+	 	 	echo $perfil_existente;
+	 	 	echo "<br>";
+	 	 }
+
+	 	?>
 			<label>Seleccionar tipo de alta:</label>
 			<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 1) echo "checked"; ?> /><label for="adm">Administrador</label>
 			<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 2) echo "checked"; ?> /><label for="mon">Monitoreador</label>

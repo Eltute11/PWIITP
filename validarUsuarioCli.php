@@ -70,7 +70,7 @@ else{
 		
 		$val->val_campo_numerico('regUsuarioCliente.php',$_POST['nro_doc'], 'nro_doc');
 
-		$val->val_cliente('regUsuarioCliente.php',$tipo_doc,$nro_doc,'nro_doc');
+		$val->val_cliente_inexistente ('regUsuarioCliente.php',$tipo_doc,$nro_doc,'nro_doc');
 	}
 
 

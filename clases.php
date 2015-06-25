@@ -193,35 +193,67 @@ class validacion{
 
 
 
-	public function val_campo_numerico ($pagina,$var_campo_numerico, $nombre_campo){
+	public function val_campo_numerico ($pagina,$var_campo_numerico, $nombre_campo,$es_ultimo){
 		$this->var_campo_numerico = $var_campo_numerico;
 		$this->nombre_campo=$nombre_campo;
 		$this->pagina = $pagina;
+		$this->es_ultimo = $es_ultimo;
+
+
+		if (!isset( $_SESSION['nError'])){
+			$_SESSION['nError'] = 0;
+		}
+
 		if (!is_numeric($this->var_campo_numerico)) {
-			$nError = 2;
-			header("location: $this->pagina?nError=$nError&error-val=$nombre_campo");
-			exit();
+
+			$_SESSION['nError'] = 2;
+			if (!isset($_SESSION['sCamposVal'])){
+				 $_SESSION['sCamposVal'] ="-$this->nombre_campo-";
+			}	
+			 	 else{
+			 	 	$_SESSION['sCamposVal'] = $_SESSION['sCamposVal'].$this->nombre_campo.'-';
+			 	 }	
+			 }
+		if ($this->es_ultimo == 1 && $_SESSION['nError'] == 2){
+				$sCamposVal =$_SESSION['sCamposVal']; 
+				$nError = 2;
+				header("location: $this->pagina?nError=$nError&error-val=$sCamposVal");
+				exit();
 			}
-		else {
-			$nError = 0;
-		}	
 
-	}	
+	}
 
-	public function val_campo_letras ($pagina,$var_campo_letras, $nombre_campo){
+
+	public function val_campo_letras ($pagina,$var_campo_letras, $nombre_campo,$es_ultimo){
 		$this->var_campo_letras = $var_campo_letras;
 		$this->nombre_campo=$nombre_campo;
 		$this->pagina = $pagina;
-		if (!preg_match("/^[a-zA-Z ]*$/",$this->var_campo_letras)) {
-			$nError = 3;
-			header("location: $this->pagina?nError=$nError&error-val=$nombre_campo");
-			exit();
-			}
-		else {
-			$nError = 0;
-		}	
+		$this->es_ultimo = $es_ultimo;
 
-	}	
+
+		if (!isset( $_SESSION['nError'])){
+			$_SESSION['nError'] = 0;
+		}
+
+		if (!preg_match("/^[a-zA-Z ]*$/",$this->var_campo_letras)) {
+
+			$_SESSION['nError'] = 3;
+			if (!isset($_SESSION['sCamposVal'])){
+				 $_SESSION['sCamposVal'] ="-$this->nombre_campo-";
+			}	
+			 	 else{
+			 	 	$_SESSION['sCamposVal'] = $_SESSION['sCamposVal'].$this->nombre_campo.'-';
+			 	 }	
+			 }
+		if ($this->es_ultimo == 1 && $_SESSION['nError'] == 3){
+				$sCamposVal =$_SESSION['sCamposVal']; 
+				$nError = 3;
+				header("location: $this->pagina?nError=$nError&error-val=$sCamposVal");
+				exit();
+			}
+
+	}
+
 
 
 	public function val_usuario ($pagina,$usuario, $nombre_campo){
@@ -235,15 +267,8 @@ class validacion{
 		$rQuery = mysql_query($sMySQL);
 
 		if($rQuery == FALSE) { 
-    		die(mysql_error()); // 
+    		die(mysql_error()); 
 		}
-		
-		/*$filas = mysql_num_rows($rQuery);
-		
-
-		if 	($filas == 1){
-			$existe = 1;
-		}*/
 		
 		while($line = mysql_fetch_array($rQuery)) {
 				$existe = $line[0];
@@ -257,7 +282,7 @@ class validacion{
 		}
  	}
 
-	public function val_cliente ($pagina,$cod_tipdoc, $nro_doc, $nombre_campo){
+	public function val_cliente_inexistente ($pagina,$cod_tipdoc, $nro_doc, $nombre_campo){
 		$this->pagina = $pagina;
 		$this->cod_tipdoc = $cod_tipdoc;
 		$this->nro_doc = $nro_doc;
@@ -282,27 +307,29 @@ class validacion{
 		}
 
 	}
-		public function val_perfil ($pagina, $tipo_rol, $cod_tipdoc, $nro_doc, $nombre_campo){
+		public function val_perfil_existente ($pagina, $tipo_rol, $cod_tipdoc, $nro_doc){
 		$this->pagina = $pagina;
 		$this->tipo_rol =  $tipo_rol;
 		$this->cod_tipdoc = $cod_tipdoc;
 		$this->nro_doc = $nro_doc;
-		$this->nombre_campo =$nombre_campo;
-
-		$sMySQL = "SELECT id_perfil FROM PERFILES WHERE cod_tiporol = $this->tipo_rol  AND cod_tipdoc = $this->cod_tipdoc AND nro_doc = $this->nro_doc";
-
+	
+		$base = new BD;
+		$conexion = $base->Conectar();
+		
+		$sMySQL = "SELECT id_perfil FROM PERFILES WHERE cod_tiporol = $this->tipo_rol  AND cod_tipdoc = $this->cod_tipdoc AND nro_doc = $this->nro_doc; ";
+		
+		
 		$rQuery = mysql_query($sMySQL);
 		
-		$existe = 0; // 0 NO EXISTE
 
 		while($line = mysql_fetch_array($rQuery)) {
-				$_SESSION['id_perfil'] = $line[0];
-				$existe = 1;
+				$id_perfil = $line[0];
+				// $existe = 1;
 			}
-		 	
-		if ($existe == 0){
+
+		if (isset($id_perfil)){
 			$nError = 6;
-			header("location: $this->pagina?nError=$nError&error-val=$nombre_campo");
+			header("location: $this->pagina?nError=$nError");
 			exit();
 		}
 	
