@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS Seguralandia;
-CREATE DATABASE Seguralandia;
-USE Seguralandia;
+DROP DATABASE IF EXISTS Seguridadlandia;
+CREATE DATABASE Seguridadlandia;
+USE Seguridadlandia;
 
 
 CREATE TABLE TIPOS_DOCUMENTOS 
@@ -11,6 +11,8 @@ CREATE TABLE TIPOS_DOCUMENTOS
 );
 
 INSERT INTO TIPOS_DOCUMENTOS VALUES (1, 'DNI');
+INSERT INTO TIPOS_DOCUMENTOS VALUES (2, 'L.E');
+INSERT INTO TIPOS_DOCUMENTOS VALUES (3, 'L.C');
 
 
 CREATE TABLE PAISES (
@@ -20,6 +22,10 @@ CREATE TABLE PAISES (
 )  AUTO_INCREMENT=1;
 
 INSERT INTO PAISES (descr_pais) VALUES ('Argentina');
+INSERT INTO PAISES (descr_pais) VALUES ('Chile');
+INSERT INTO PAISES (descr_pais) VALUES ('Uruguay');
+
+
 
 CREATE TABLE PROVINCIAS
 (
@@ -33,7 +39,10 @@ CREATE TABLE PROVINCIAS
 
 INSERT INTO PROVINCIAS (descr_prov, cod_pais) VALUES ('Buenos Aires',1);
 INSERT INTO PROVINCIAS (descr_prov, cod_pais) VALUES ('Cordoba',1);
-
+INSERT INTO PROVINCIAS (descr_prov, cod_pais) VALUES ('Santigo',2);
+INSERT INTO PROVINCIAS (descr_prov, cod_pais) VALUES ('Melipilla',2);
+INSERT INTO PROVINCIAS (descr_prov, cod_pais) VALUES ('Montevideo',3);
+INSERT INTO PROVINCIAS (descr_prov, cod_pais) VALUES ('Punta del Este',3);
 
 CREATE TABLE LOCALIDADES
 (
@@ -49,6 +58,7 @@ CREATE TABLE LOCALIDADES
 
 INSERT INTO LOCALIDADES (descr_loc,cod_prov) VALUES ('San Antonio de Padua',1);
 INSERT INTO LOCALIDADES (descr_loc,cod_prov) VALUES ('Castelar',1);
+INSERT INTO LOCALIDADES (descr_loc,cod_prov) VALUES ('Ituzaingo',1);
 
 
 CREATE TABLE TIPOS_ROLES
@@ -72,7 +82,7 @@ CREATE TABLE PERFILES
 	nro_doc			 NUMERIC (11) NOT NULL,
 	nombres			 VARCHAR (30) NOT NULL,
 	apellidos		 VARCHAR (30) NOT NULL,
-	fecha_nac		 DATETIME	  NOT NULL,
+	fecha_nac		 DATE	  NOT NULL,
 	cod_pais		 INT NOT NULL,
 	cod_prov		 INT NOT NULL,
 	cod_loc			 INT NOT NULL,
@@ -92,6 +102,23 @@ CREATE TABLE PERFILES
 	FOREIGN KEY (cod_loc)    REFERENCES LOCALIDADES(cod_loc)
 )AUTO_INCREMENT=1 ;	
 
+
+INSERT INTO PERFILES ( cod_tiporol,       id_perfil,         cod_tipdoc,        
+					   nro_doc,           nombres,           apellidos,         
+					   fecha_nac,         cod_pais,          cod_prov,          
+					   cod_loc,           direccion,         num_direccion,     
+					   sexo,              telefono_1,        telefono_2,        
+					   direccion_email)
+
+			 VALUES ( 1,                            1,                            1,                            
+					  35951529,                     'Juan Ignacio',               'Urcola',                     
+					  '19921014',                   1,                            1,                            
+					  1,                            'Scalabrini Ortiz',           525,                          
+					  'M',                          1133443344,                   NULL,                         
+					  'juanig.urcola@gmail.com');
+                      
+                      
+
 -- CUANDO EL CLIENTE SE DÉ DE ALTA COMO USUARIO, SE ENVIARA 3 POR DEFECTO EN cod_tiporol.
 -- CUANDO EL ADMINTRADOR DE DE ALTA A UN MONITOREADOR O A OTRO ADMINISTAOR, SE ENVIARA 2 Y 3 CORRESPONDIETNMENTE. 
 
@@ -108,6 +135,8 @@ CREATE TABLE USUARIOS
 	FOREIGN KEY (cod_tiporol,id_perfil) REFERENCES PERFILES (cod_tiporol,id_perfil)
 
 );
+
+INSERT INTO USUARIOS (cod_tiporol,id_perfil, usuario, password) VALUES	 (1,1,'jurcola','123');
 
 CREATE TABLE CAMARAS
  (  
