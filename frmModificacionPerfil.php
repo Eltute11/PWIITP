@@ -2,11 +2,11 @@
 session_start();
 //session_destroy();
 
-/*	if(!isset($_SESSION['usuario'])){
+	if(!isset($_SESSION['usuario'])){
 		session_destroy();
 		header('location: index.php?error=loguearse');
 		
-	}*/
+	}
 include_once ("clases.php");
 include_once ("funciones.php");
 

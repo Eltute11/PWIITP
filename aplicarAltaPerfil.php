@@ -173,7 +173,7 @@
 
 	if (mysql_affected_rows() == 1) {
 		echo "<h3>El $tipo_rol_desc $nombres $apellidos se dio de Alta exitosamente.</h3>";	        
-		session_destroy();
+		//session_destroy();
 		}
 	else
 		echo "<h3>Ha ocurrido un problema al querer dar de alta al $tipo_rol_desc $nombres $apellidos:<br><br>" . mysql_error()."</h3>";

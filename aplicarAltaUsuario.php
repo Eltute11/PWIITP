@@ -50,7 +50,7 @@ session_start();
 
 	if (mysql_affected_rows() == 1) {
 		echo "<h3>El usuario $newUser se dio de Alta exitosamente.</h3>";	        
-		session_destroy();
+		//session_destroy();
 		}
 	else
 		echo "<h3>Ha ocurrido un problema al querer dar de alta al usuario $newUser :<br><br>" . mysql_error()."</h3>";
