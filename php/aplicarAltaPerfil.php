@@ -77,35 +77,35 @@
 	  4 - 1 si es el ultimo campo a validar. 0 en caso contrario.
 	*/
 
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$tipo_rol,'tipo_rol',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$tipo_doc,'tipo_doc',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$nombres,'nombres',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$apellidos, 'apellidos',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$fecha_nac, 'fecha_nac',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$pais, 'pais',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$provincia, 'provincia',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$localidad, 'localidad',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$direccion, 'direccion',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$num_direc, 'num_direc',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$telefono1,'telefono1',0);
-	$val->val_campo_obligatorio('frmAltaPerfil.php',$sexo,'sexo',1);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$tipo_rol,'tipo_rol',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$tipo_doc,'tipo_doc',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$nombres,'nombres',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$apellidos, 'apellidos',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$fecha_nac, 'fecha_nac',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$pais, 'pais',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$provincia, 'provincia',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$localidad, 'localidad',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$direccion, 'direccion',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$num_direc, 'num_direc',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$telefono1,'telefono1',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$sexo,'sexo',1);
 	
 	if (trim($telefono2) != ''){
-		$val->val_campo_numerico('frmAltaPerfil.php',$telefono2,'telefono2');
+		$val->val_campo_numerico('../frmAltaPerfil.php',$telefono2,'telefono2');
 	}
-	$val->val_campo_numerico('frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
-	$val->val_campo_numerico('frmAltaPerfil.php',$num_direc, 'num_direc',0);
-	$val->val_campo_numerico('frmAltaPerfil.php',$telefono1,'telefono1',1);
+	$val->val_campo_numerico('../frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
+	$val->val_campo_numerico('../frmAltaPerfil.php',$num_direc, 'num_direc',0);
+	$val->val_campo_numerico('../frmAltaPerfil.php',$telefono1,'telefono1',1);
 	
 	if (trim($direccion) != ''){
-		$val->val_campo_letras('frmAltaPerfil.php',$direccion, 'direccion',0);
+		$val->val_campo_letras('../frmAltaPerfil.php',$direccion, 'direccion',0);
 	}
 	
-	$val->val_campo_letras('frmAltaPerfil.php',$nombres,'nombres',0);
-	$val->val_campo_letras('frmAltaPerfil.php',$apellidos, 'apellidos',1);
+	$val->val_campo_letras('../frmAltaPerfil.php',$nombres,'nombres',0);
+	$val->val_campo_letras('../frmAltaPerfil.php',$apellidos, 'apellidos',1);
 	
-	$val-> val_perfil_existente ('frmAltaPerfil.php', $tipo_rol, $tipo_doc, $nro_doc);
+	$val-> val_perfil_existente ('../frmAltaPerfil.php', $tipo_rol, $tipo_doc, $nro_doc);
 
 
 	// CONEXION A BASE DE DATOS
@@ -183,7 +183,7 @@
 
 
  ?>
-	<a href="frmAltaPerfil.php"><h3>Volver</h3></a>
+	<a href="../frmAltaPerfil.php"><h3>Volver</h3></a>
 
 </body>
 </html>

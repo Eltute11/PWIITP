@@ -11,8 +11,8 @@ session_start();
 
 
 
-include_once ("clases.php");
-include_once ("funciones.php");
+include_once ("php/clases.php");
+include_once ("php/funciones.php");
 
 
 $base = new BD;
@@ -59,7 +59,7 @@ else{
 
         <h2>ALTA PERFIL</h2>
         	
-        <form action="aplicarAltaPerfil.php" method="POST">
+        <form action="php/aplicarAltaPerfil.php" method="POST">
 		<?php 
 	 	 
 	 	 if ($nError == 6) {

@@ -7,8 +7,8 @@ session_start();
 		header('location: index.php?error=loguearse');
 		
 	}
-include_once ("clases.php");
-include_once ("funciones.php");
+include_once ("php/clases.php");
+include_once ("php/funciones.php");
 
 $base = new BD;
 $conexion = $base->Conectar();
@@ -138,7 +138,7 @@ else{
 
 
 	    ?>
-	    <form action='aplicarModificacionPerfil.php' method='POST'>
+	    <form action='php/aplicarModificacionPerfil.php' method='POST'>
 	    <!-- ID de Perfil -> para luego tomarlo en el UPDATE -->
 	    
 	   <input type="hidden" name="id_perfil" value=<?php echo $id_perfil ?>> 

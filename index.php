@@ -11,7 +11,7 @@
 
 <div>
 	<?php 
-		include_once('frmLogin.html');
+		include_once('frmLogin.php');
 	 ?>
 	 <a href="regUsuarioCliente.php">Registrarte</a>
 

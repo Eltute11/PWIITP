@@ -129,7 +129,7 @@ class acceso{
    			} 			
    
 		   switch ($existe) {
-		      case 1: header('location: administrador.php');//Redirecciona la pagina
+		      case 1: header('location: ../administrador.php');//Redirecciona la pagina
 		      		  break;	
 		      case 2: header('location: monitoreador.php');//Redirecciona la pagina
 		      		  break;	
@@ -139,7 +139,7 @@ class acceso{
  		}
 
  		else{	
- 				header('location: index.php?error=datos_incorrectos');
+ 				header('location: ../index.php?error=datos_incorrectos');
  				exit ();
 		  				;
 		}

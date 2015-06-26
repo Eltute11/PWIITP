@@ -4,7 +4,7 @@ session_start();
 
 		if(!isset($_SESSION['usuario'])){
 			session_destroy();
-			header('location: index.php?error=loguearse');
+			header('location: ../index.php?error=loguearse');
 			#echo '<h1>Sesion: ',$_SESSION['usuario'],'</h1>';
 			
 		}
@@ -124,61 +124,61 @@ session_start();
 	
 
 	if (isset($_POST['nuevo_tipo_doc'])) {
-		$val->val_campo_obligatorio('frmModificacionPerfil.php',$nuevo_tipo_doc,'nuevo_tipo_doc',0); // Dejar asi.	
+		$val->val_campo_obligatorio('../frmModificacionPerfil.php',$nuevo_tipo_doc,'nuevo_tipo_doc',0); // Dejar asi.	
 
 	}
 	else{
-		$val->val_campo_obligatorio('frmModificacionPerfil.php',$tipo_doc,'tipo_doc',0); // Dejar asi.	
+		$val->val_campo_obligatorio('../frmModificacionPerfil.php',$tipo_doc,'tipo_doc',0); // Dejar asi.	
 	}	
 	
 	if (isset($_POST['nuevo_tipo_doc'])) {
-		$val->val_campo_obligatorio('frmModificacionPerfil.php',$nuevo_nro_doc,'nuevo_nro_doc',0); // Dejar asi.	
+		$val->val_campo_obligatorio('../frmModificacionPerfil.php',$nuevo_nro_doc,'nuevo_nro_doc',0); // Dejar asi.	
 
 	}
 	else{
-		$val->val_campo_obligatorio('frmModificacionPerfil.php',$nro_doc,'nro_doc',0); // Dejar asi.	
+		$val->val_campo_obligatorio('../frmModificacionPerfil.php',$nro_doc,'nro_doc',0); // Dejar asi.	
 	}	
 
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$nombres,'nombres',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$apellidos, 'apellidos',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$fecha_nac, 'fecha_nac',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$pais, 'pais',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$provincia, 'provincia',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$localidad, 'localidad',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$direccion, 'direccion',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$num_direc, 'num_direc',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$telefono1,'telefono1',0);
-	$val->val_campo_obligatorio('frmModificacionPerfil.php',$sexo,'sexo',1);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$nombres,'nombres',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$apellidos, 'apellidos',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$fecha_nac, 'fecha_nac',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$pais, 'pais',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$provincia, 'provincia',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$localidad, 'localidad',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$direccion, 'direccion',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$num_direc, 'num_direc',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$telefono1,'telefono1',0);
+	$val->val_campo_obligatorio('../frmModificacionPerfil.php',$sexo,'sexo',1);
 	
 
 	if (trim($telefono2) != '' && $telefono2 != "NULL"){
-		$val->val_campo_numerico('frmModificacionPerfil.php',$telefono2,'telefono2');
+		$val->val_campo_numerico('../frmModificacionPerfil.php',$telefono2,'telefono2');
 	}
 
 	if (isset($_POST['nuevo_tipo_doc'])) {
-		$val->val_campo_numerico('frmModificacionPerfil.php',$nuevo_nro_doc, 'nuevo_tipo_doc',0);
+		$val->val_campo_numerico('../frmModificacionPerfil.php',$nuevo_nro_doc, 'nuevo_tipo_doc',0);
 	}
 	else{	
-		$val->val_campo_numerico('frmModificacionPerfil.php',$nro_doc, 'nro_doc',0);
+		$val->val_campo_numerico('../frmModificacionPerfil.php',$nro_doc, 'nro_doc',0);
 	}
-	$val->val_campo_numerico('frmModificacionPerfil.php',$num_direc, 'num_direc',0);
-	$val->val_campo_numerico('frmModificacionPerfil.php',$telefono1,'telefono1',1);
+	$val->val_campo_numerico('../frmModificacionPerfil.php',$num_direc, 'num_direc',0);
+	$val->val_campo_numerico('../frmModificacionPerfil.php',$telefono1,'telefono1',1);
 	
 	if (trim($direccion) != ''){
-		$val->val_campo_letras('frmModificacionPerfil.php',$direccion, 'direccion',0);
+		$val->val_campo_letras('../frmModificacionPerfil.php',$direccion, 'direccion',0);
 	}
 	
-	$val->val_campo_letras('frmModificacionPerfil.php',$nombres,'nombres',0);
-	$val->val_campo_letras('frmModificacionPerfil.php',$apellidos, 'apellidos',1);
+	$val->val_campo_letras('../frmModificacionPerfil.php',$nombres,'nombres',0);
+	$val->val_campo_letras('../frmModificacionPerfil.php',$apellidos, 'apellidos',1);
 	
 	
 	if (isset($_POST['nuevo_nro_doc'])){
 		if ($_SESSION['nro_doc'] != $_POST['nuevo_nro_doc']) {
-			$val-> val_perfil_existente ('frmModificacionPerfil.php', $_SESSION['tipo_rol'], $_POST['nuevo_tipo_doc'], $_POST['nuevo_nro_doc']);
+			$val-> val_perfil_existente ('../frmModificacionPerfil.php', $_SESSION['tipo_rol'], $_POST['nuevo_tipo_doc'], $_POST['nuevo_nro_doc']);
 		}
 	}
 	elseif($_SESSION['nro_doc'] != $_POST['nro_doc']) {		
-		$val-> val_perfil_existente ('frmModificacionPerfil.php', $_SESSION['tipo_rol'], $_POST['tipo_doc'], $_POST['nro_doc']);
+		$val-> val_perfil_existente ('../frmModificacionPerfil.php', $_SESSION['tipo_rol'], $_POST['tipo_doc'], $_POST['nro_doc']);
 	}
 
 	/*FALTA MAIL*/
@@ -238,7 +238,7 @@ session_start();
 
 
  ?>
-	<a href="frmModificacionPerfil.php"><h3>Volver</h3></a>
+	<a href="../frmModificacionPerfil.php"><h3>Volver</h3></a>
 
 </body>
 </html>

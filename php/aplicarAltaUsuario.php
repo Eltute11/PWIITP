@@ -33,13 +33,13 @@ session_start();
     
 	$val = new validacion;
 
-	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['newUser'],'newUser');
+	$val->val_campo_obligatorio('../validarUsuarioCli.php',$_POST['newUser'],'newUser');
 	
-	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass'], 'pass');
+	$val->val_campo_obligatorio('../validarUsuarioCli.php',$_POST['pass'], 'pass');
 	
-	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass2'], 'pass2');
+	$val->val_campo_obligatorio('../validarUsuarioCli.php',$_POST['pass2'], 'pass2');
 
-	$val->val_usuario('validarUsuarioCli.php', $newUser, 'newUser');
+	$val->val_usuario('../validarUsuarioCli.php', $newUser, 'newUser');
 
 	
 	$sMySQL = "INSERT INTO USUARIOS (cod_tiporol, id_perfil, usuario, password)

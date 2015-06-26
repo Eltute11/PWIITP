@@ -4,7 +4,7 @@ $pass = $_POST['pass'];
 
 if (isset($user) && isset($pass)) { // Si estan definidas
 	if (empty($user) || empty(pass)) {  // Si estan vacias
-		header('location: index.php?error=campos_vacios');
+		header('location: ../index.php?error=campos_vacios');
 		exit();
 	}else{
 	/*	$user = $_POST['user'];
@@ -25,7 +25,7 @@ if (isset($user) && isset($pass)) { // Si estan definidas
 }else{
 	// No estan definidas
  	// Esto pasa cuando intentamos acceder a la URL sin antes habernos logeado
- 	header('location: index.php?error=loguearse');
+ 	header('location: ../index.php?error=loguearse');
 }
 ?>
 

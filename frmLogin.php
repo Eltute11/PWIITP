@@ -12,7 +12,7 @@
 	unset($_GET['error']); //Borramos de memoria para optimizar PHP
 ?>
 	<br>
-<form action="login.php" method="POST">
+<form action="php/login.php" method="POST">
 	<label for="user">Usuario: </label><input type="text" name="user">
 	<label for="pass">Contraseña: </label><input type="password" name="pass"><br>
 	<label>Deseo recordar mis datos <input type="checkbox" name="sesion" value="1"></label>

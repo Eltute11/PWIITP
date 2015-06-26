@@ -7,8 +7,8 @@ if(!isset($_SESSION['usuario'])){
 			header('location: index.php?error=loguearse');
 			
 }
-include_once ("clases.php");
-include_once ("funciones.php");
+include_once ("php/clases.php");
+include_once ("php/funciones.php");
 
 $base = new BD;
 $conexion = $base->Conectar();
