@@ -15,12 +15,12 @@ $conexion = $base->Conectar();
 	
 <?php
 session_start();	
-
+	
 	$newUser  = $_POST['newUser'];
 	$_SESSION['newUser']=$newUser;
 
-	$pass = $_POST['pass'];
-	$_SESSION['pass']=$pass;
+	$pass1 = $_POST['pass1'];
+	$_SESSION['pass1']=$pass1;
 
 	$pass2 = $_POST['pass2'];
 	$_SESSION['pass2']=$pass2;	
@@ -33,24 +33,27 @@ session_start();
     
 	$val = new validacion;
 
-	$val->val_campo_obligatorio('../validarUsuarioCli.php',$_POST['newUser'],'newUser');
+	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['newUser'],'newUser',0);
 	
-	$val->val_campo_obligatorio('../validarUsuarioCli.php',$_POST['pass'], 'pass');
+	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass1'], 'pass1', 0);
 	
-	$val->val_campo_obligatorio('../validarUsuarioCli.php',$_POST['pass2'], 'pass2');
+	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass2'], 'pass2',1);
 
-	$val->val_usuario('../validarUsuarioCli.php', $newUser, 'newUser');
+	$val->val_usuario('validarUsuarioCli.php', $newUser, 'newUser');
 
+	$val->val_passwords('validarUsuarioCli.php',$pass1, $pass2);	
+
+	$passEncrip = md5($pass1);
 	
 	$sMySQL = "INSERT INTO USUARIOS (cod_tiporol, id_perfil, usuario, password)
-			  VALUES ( $cod_tiporol ,$id_perfil , '$newUser', $pass)";
+			  VALUES ( $cod_tiporol ,$id_perfil , '$newUser', '$passEncrip')";
 
 	$rQuery = mysql_query($sMySQL);
 
 
 	if (mysql_affected_rows() == 1) {
 		echo "<h3>El usuario $newUser se dio de Alta exitosamente.</h3>";	        
-		//session_destroy();
+		session_destroy();
 		}
 	else
 		echo "<h3>Ha ocurrido un problema al querer dar de alta al usuario $newUser :<br><br>" . mysql_error()."</h3>";

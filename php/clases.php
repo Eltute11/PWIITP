@@ -273,11 +273,10 @@ class validacion{
 		while($line = mysql_fetch_array($rQuery)) {
 				$existe = $line[0];
 			}
-		
-		
+				
 		if ($existe == 1){ //1- EXISTE Y NO TIENE QUE DEJAR DAR DE ALTA
 			$nError = 4;
-			header("location: $this->pagina?nError=$nError&error-val=$this->nombre_campo");
+			header("location: $this->pagina?nError=$nError&error-val=-$this->nombre_campo");
 			exit();
 		}
  	}
@@ -289,20 +288,20 @@ class validacion{
 		$this->nombre_campo =$nombre_campo;
 
 		$sMySQL = "SELECT id_perfil FROM PERFILES WHERE cod_tiporol = 3 AND cod_tipdoc = $this->cod_tipdoc AND nro_doc = $this->nro_doc";
+		
+		
 
 		$rQuery = mysql_query($sMySQL);
-		
-		$existe = 0; // 0 NO EXISTE
-
 
 		while($line = mysql_fetch_array($rQuery)) {
 				$_SESSION['id_perfil'] = $line[0];
-				$existe = 1;
+				$id_perfil = $_SESSION['id_perfil'];
 			}
-		 	
-		if ($existe == 0){
+
+		
+		if (!isset($id_perfil)){
 			$nError = 5;
-			header("location: $this->pagina?nError=$nError&error-val=$nombre_campo");
+			header("location: $this->pagina?nError=$nError&error-val=-$nombre_campo");
 			exit();
 		}
 
@@ -335,7 +334,19 @@ class validacion{
 	
 		}
 
+		public function val_passwords ($pagina, $pass1, $pass2){
+		$this->pagina = $pagina;
+		$this->pass1 = $pass1;
+		$this->pass2 = $pass2;
 
+		if ($this->pass1 != $this->pass2){
+			$nError = 7;
+			header("location: $this->pagina?nError=$nError");
+			exit();
+		}
+
+
+		}
 
 
 }

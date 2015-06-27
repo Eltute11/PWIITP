@@ -1,14 +1,13 @@
 <?php 
 session_start();
-// session_destroy();
-
-		if(!isset($_SESSION['usuario'])){
+session_destroy();
+/*		if(!isset($_SESSION['usuario'])){
 			session_destroy();
 			header('location: index.php?error=loguearse');
 			
 		}
 
-
+*/
 
 
 include_once ("php/clases.php");
@@ -37,8 +36,12 @@ if (isset($_GET['nError'])) {
 				break;		
 		case 3: $solo_letras =  "<span style='color: red;'> *Solo letras</span>";		
 				break;	
+		case 4: $usuario_existente = "<span style='color: red;'> *El usuario ya existe </span>";	
+				break;				
 		case 6: $perfil_existente =  "<span style='color: red;'> <h3>El perfil que esta intentando dar de alta ya existe </h3></span>";		
-		break;		
+				break;
+		case 7: $pass_error =  "<span style='color: red;'>*Las contraseñas no coinciden</span>";		
+				break;				
 	}
 }
 else{
@@ -252,9 +255,54 @@ else{
 			<br>
 			<br>
 			
-			<br>
-			<br>
+			<!-- ====================================================================== -->
 
+			<label for="newUser">Usuario</label>
+		    <input type="text" name="newUser" value=<?php validar_var_session('newUser') ?>> 
+		    <?php 
+			    if (strpos($error_val,'newUser')){
+				 	switch ($nError) {
+				 		case 1: echo "$campo_obligatorio";
+				 				break;
+				 		case 4: echo "$usuario_existente";
+				 				break;	
+				 	}
+				 }
+	    	?>
+
+		  		<br>
+			<br>
+			
+			<label for="pass">Contraseña:</label>
+		    <input type="password" name="pass1" value=<?php validar_var_session('pass1') ?>>
+		     <?php 
+		    	if ($nError == 1 && strpos($error_val,'pass1')) {
+					echo "$campo_obligatorio";
+				}
+		     ?>
+
+		    <br>
+		    <br>
+		    
+		    <label for="pass2">Confirmar Contraseña: </label>
+			<input type="password" name="pass2" value=<?php validar_var_session('pass2') ?>>
+		    <?php 
+			    if (strpos($error_val,'newUser') || $nError == 7 ){
+				 	switch ($nError) {
+				 		case 1: echo "$campo_obligatorio";
+				 				break;
+				 		case 7: echo "$pass_error";
+				 				break;	
+				 	}
+				 }
+	    	?>
+
+		    <br>
+		    <br>
+
+
+		    <!-- ========================================================================================== -->
+		    <!-- ========================================================================================== -->
 			<input type="submit" value="Enviar">
 			<input id="resetButton" name="reset" type="reset">
 		</form>

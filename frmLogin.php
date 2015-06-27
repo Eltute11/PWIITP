@@ -13,8 +13,12 @@
 ?>
 	<br>
 <form action="php/login.php" method="POST">
-	<label for="user">Usuario: </label><input type="text" name="user">
+	
+	<label for="user">Usuario: </label> <input type="text" name="user">
+	
 	<label for="pass">Contraseña: </label><input type="password" name="pass"><br>
+	
 	<label>Deseo recordar mis datos <input type="checkbox" name="sesion" value="1"></label>
+	
 	<input type="submit" value="Login">
 </form>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +12,7 @@
 	<?php 
 		include_once('frmLogin.php');
 	 ?>
-	 <a href="regUsuarioCliente.php">Registrarte</a>
+	 <a href="php/regUsuarioCliente.php">Registrarte</a>
 
 </div>	
 	

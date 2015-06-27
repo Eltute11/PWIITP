@@ -1,6 +1,8 @@
 <?php 
 
 session_start();
+// session_destroy();
+
 include_once ("clases.php");
 include_once ("funciones.php");
 
@@ -8,10 +10,14 @@ $base = new BD;
 $conexion = $base->Conectar();
 
 if (isset($_GET['error-val'])){
-	$campo = $_GET['error-val'];
-}else{
-	$campo ='';
+	$error_val = $_GET['error-val'];
 }
+else
+{
+	$error_val ='';
+
+}
+
 
 if (isset($_GET['nError'])) {
 	$nError = $_GET['nError'];
@@ -43,27 +49,26 @@ else{
 	<?php 
 		$formulario = new formulario;
 		$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
-	 	if ($nError == 1 && $campo == 'tipo_doc') {
-			echo "$campo_obligatorio";
-		}
+	 	if ($nError == 1 && strpos($error_val,'tipo_doc')) {
+					echo "$campo_obligatorio";
+				}
 	?>
 
 	
 	<label for="nro_doc">Número Documento:</label>
 	<input type="text" id="nro_doc"name="nro_doc" value=<?php validar_var_session('nro_doc') ?>>
 	<?php 
-	 	if ($campo == 'nro_doc')	{
-	 	switch ($nError) {
-	 		case 1: echo "$campo_obligatorio";
-	 				break;
-	 		case 2: echo "$solo_numeros";
-	 				break;	
-	 		case 5: echo "$cliente_inexistente";
-	 				break;			
-	 	}
-	 }
-
-	?>		
+		if (strpos($error_val,'nro_doc')){
+		 	switch ($nError) {
+		 		case 1: echo "$campo_obligatorio";
+		 				break;
+		 		case 2: echo "$solo_numeros";
+		 				break;	
+		 		case 5: echo "$cliente_inexistente";
+		 				break;		
+		 	}
+		 }
+	?>	
 
 	 <input type="submit" value="Enviar">
 	</form>
