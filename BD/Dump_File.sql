@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-06-2015 a las 06:17:26
+-- Tiempo de generación: 27-06-2015 a las 23:34:50
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `alarmas_hogar` (
 `cod_alarma` int(11) NOT NULL,
-  `cod_tiporol` decimal(2,0) NOT NULL DEFAULT '3',
   `id_cliente` decimal(10,0) NOT NULL,
+  `cod_tiporol` decimal(2,0) NOT NULL DEFAULT '3',
   `cod_desbloqueo` decimal(10,0) NOT NULL,
   `estado` decimal(1,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -108,8 +108,8 @@ INSERT INTO `paises` (`cod_pais`, `descr_pais`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `perfiles` (
-  `cod_tiporol` decimal(2,0) NOT NULL,
   `id_perfil` decimal(10,0) NOT NULL,
+  `cod_tiporol` decimal(2,0) NOT NULL,
   `cod_tipdoc` decimal(2,0) NOT NULL,
   `nro_doc` decimal(11,0) NOT NULL,
   `nombres` varchar(30) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
 -- Volcado de datos para la tabla `perfiles`
 --
 
-INSERT INTO `perfiles` (`cod_tiporol`, `id_perfil`, `cod_tipdoc`, `nro_doc`, `nombres`, `apellidos`, `fecha_nac`, `cod_pais`, `cod_prov`, `cod_loc`, `direccion`, `num_direccion`, `sexo`, `telefono_1`, `telefono_2`, `direccion_email`) VALUES
+INSERT INTO `perfiles` (`id_perfil`, `cod_tiporol`, `cod_tipdoc`, `nro_doc`, `nombres`, `apellidos`, `fecha_nac`, `cod_pais`, `cod_prov`, `cod_loc`, `direccion`, `num_direccion`, `sexo`, `telefono_1`, `telefono_2`, `direccion_email`) VALUES
 ('1', '1', '1', '35951529', 'Juan Ignacio', 'Urcola', '1992-10-14', 1, 1, 1, 'Scalabrini Ortiz', '525', 'M', '1133443344', NULL, 'juanig.urcola@gmail.com');
 
 -- --------------------------------------------------------
@@ -231,8 +231,8 @@ INSERT INTO `tipos_roles` (`cod_tiporol`, `descr_tipper`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `cod_tiporol` decimal(2,0) NOT NULL,
   `id_perfil` decimal(10,0) NOT NULL,
+  `cod_tiporol` decimal(2,0) NOT NULL,
   `usuario` varchar(30) NOT NULL,
   `password` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -241,8 +241,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`cod_tiporol`, `id_perfil`, `usuario`, `password`) VALUES
-('1', '1', 'jurcola', '123');
+INSERT INTO `usuarios` (`id_perfil`, `cod_tiporol`, `usuario`, `password`) VALUES
+('1', '1', 'jurcola', '202cb962ac59075b964b07152d234b70');
 
 --
 -- Índices para tablas volcadas

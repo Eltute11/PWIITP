@@ -76,8 +76,8 @@ INSERT INTO TIPOS_ROLES VALUES (3,'Clientes');
 
 CREATE TABLE PERFILES 
 (  
-	cod_tiporol      NUMERIC(2) NOT NULL,
 	id_perfil		 NUMERIC (10) NOT NULL,
+    cod_tiporol      NUMERIC(2) NOT NULL,
 	cod_tipdoc		 NUMERIC (2)  NOT NULL,
 	nro_doc			 NUMERIC (11) NOT NULL,
 	nombres			 VARCHAR (30) NOT NULL,
@@ -126,8 +126,8 @@ INSERT INTO PERFILES ( cod_tiporol,       id_perfil,         cod_tipdoc,
 
 CREATE TABLE USUARIOS 
 (
-	cod_tiporol NUMERIC(2) NOT NULL,
 	id_perfil NUMERIC(10) NOT NULL,
+    cod_tiporol NUMERIC(2) NOT NULL,
 	usuario    VARCHAR (30) NOT NULL,
 	password   VARCHAR (40) NOT NULL,
 	
@@ -136,7 +136,7 @@ CREATE TABLE USUARIOS
 
 );
 
-INSERT INTO USUARIOS (cod_tiporol,id_perfil, usuario, password) VALUES	 (1,1,'jurcola','123');
+INSERT INTO USUARIOS (cod_tiporol,id_perfil, usuario, password) VALUES	 (1,1,'jurcola','202cb962ac59075b964b07152d234b70');
 
 CREATE TABLE CAMARAS
  (  
@@ -174,8 +174,8 @@ INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Comunicador 3G
 CREATE TABLE ALARMAS_HOGAR 
  (  
 	cod_alarma		 INT AUTO_INCREMENT, 
+    id_cliente		 NUMERIC (10) NOT NULL, -- POR MEDIO DE ESTE CAMPO y cod_tiporol = 3, SE OBTIENEN TODOS LOS DATOS DEL CLIENTE DE LA TABLA PERFILES.
     cod_tiporol		 NUMERIC (2)  NOT NULL DEFAULT 3,
-	id_cliente		 NUMERIC (10) NOT NULL, -- POR MEDIO DE ESTE CAMPO y cod_tiporol = 3, SE OBTIENEN TODOS LOS DATOS DEL CLIENTE DE LA TABLA PERFILES.
 	cod_desbloqueo   NUMERIC (10) NOT NULL, 
 	estado			 NUMERIC (1)  NOT NULL, -- 1:ACTIVADA 0:DESACTIVADA
 
