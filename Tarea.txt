@@ -1,0 +1,3 @@
+hacer unset en formularios
+crear graficos
+crear formulario de baja de perfil

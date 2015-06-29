@@ -19,8 +19,13 @@ session_start();
 	$newUser  = $_POST['newUser'];
 	$_SESSION['newUser']=$newUser;
 
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaUsuario.php
+	$pass1  = $_POST['pass1 '];
+	$_SESSION['pass1 ']=$pass1 ;
+=======
 	$pass1 = $_POST['pass1'];
 	$_SESSION['pass1']=$pass1;
+>>>>>>> origin/master:php/aplicarAltaUsuario.php
 
 	$pass2 = $_POST['pass2'];
 	$_SESSION['pass2']=$pass2;	
@@ -35,6 +40,18 @@ session_start();
 
 	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['newUser'],'newUser',0);
 	
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaUsuario.php
+	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass1'], 'pass1',0);
+	
+	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass2'], 'pass2');
+
+	$val->val_usuario('validarUsuarioCli.php', $newUser, 'newUser');
+
+	$val->val_passwords('validarUsuarioCli.php',$pass1, $pass2);
+	
+	$sMySQL = "INSERT INTO USUARIOS (cod_tiporol, id_perfil, usuario, password)
+			  VALUES ( $cod_tiporol ,$id_perfil , '$newUser', $passEncrip)";
+=======
 	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass1'], 'pass1', 0);
 	
 	$val->val_campo_obligatorio('validarUsuarioCli.php',$_POST['pass2'], 'pass2',1);
@@ -47,6 +64,7 @@ session_start();
 	
 	$sMySQL = "INSERT INTO USUARIOS (cod_tiporol, id_perfil, usuario, password)
 			  VALUES ( $cod_tiporol ,$id_perfil , '$newUser', '$passEncrip')";
+>>>>>>> origin/master:php/aplicarAltaUsuario.php
 
 	$rQuery = mysql_query($sMySQL);
 

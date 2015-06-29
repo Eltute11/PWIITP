@@ -47,7 +47,7 @@ class formulario{
 
 			$rQuery =  mysql_query ($sMySQL);
 
-			echo "<select name='$this->name' id='$this->name'>";
+			echo "<select name='$this->name' id='$this->name' class='form-control'>";
 			echo  "<option></option>";				
 				while ($resultado = mysql_fetch_array($rQuery)) {
 					if (isset($_SESSION["$name"])){ //Este tratamiento se agrego para que si selecciono un valor, y por alguna validacion no se dio de alta el perfil, guarde el valor seleccionado en el combo.
@@ -80,7 +80,7 @@ class formulario{
 
 	   $rQuery = mysql_query($sMySQL);
 
-	   echo "<select name='$this->name' id='$this->name'>";
+	   echo "<select name='$this->name' id='$this->name' class='form-control'>";
 			echo  "<option></option>";				
 				while ($resultado = mysql_fetch_array($rQuery)) {
 						if ( $this->valor== $resultado[$cod] ){
@@ -129,7 +129,7 @@ class acceso{
    			} 			
    
 		   switch ($existe) {
-		      case 1: header('location: ../administrador.php');//Redirecciona la pagina
+		      case 1: header('location: ../profile.php');//Redirecciona la pagina
 		      		  break;	
 		      case 2: header('location: monitoreador.php');//Redirecciona la pagina
 		      		  break;	
@@ -289,16 +289,23 @@ class validacion{
 
 		$sMySQL = "SELECT id_perfil FROM PERFILES WHERE cod_tiporol = 3 AND cod_tipdoc = $this->cod_tipdoc AND nro_doc = $this->nro_doc";
 		
+<<<<<<< HEAD:seguridadlandia/php/clases.php
+=======
 		
 
 		$rQuery = mysql_query($sMySQL);
 
+>>>>>>> origin/master:php/clases.php
 		while($line = mysql_fetch_array($rQuery)) {
 				$_SESSION['id_perfil'] = $line[0];
 				$id_perfil = $_SESSION['id_perfil'];
 			}
+<<<<<<< HEAD:seguridadlandia/php/clases.php
+		 	
+=======
 
 		
+>>>>>>> origin/master:php/clases.php
 		if (!isset($id_perfil)){
 			$nError = 5;
 			header("location: $this->pagina?nError=$nError&error-val=-$nombre_campo");
@@ -338,6 +345,19 @@ class validacion{
 		$this->pagina = $pagina;
 		$this->pass1 = $pass1;
 		$this->pass2 = $pass2;
+<<<<<<< HEAD:seguridadlandia/php/clases.php
+ 
+		if ($this->pass1 != $this->pass2){
+			$nError = 7;
+			header("location: $this->pagina?nError=$nError");
+			exit();
+		}
+
+
+		}
+
+=======
+>>>>>>> origin/master:php/clases.php
 
 		if ($this->pass1 != $this->pass2){
 			$nError = 7;

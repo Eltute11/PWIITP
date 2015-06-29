@@ -26,8 +26,8 @@
 	$cod_tipdoc  = $_POST['tipo_doc'];
 	$_SESSION['tipo_doc']=$cod_tipdoc;
 
-	$nro_doc = $_POST['nro_doc'];
-	$_SESSION['nro_doc']=$nro_doc;
+	$cod_tipdoc   = $_POST['nro_doc'];
+	$_SESSION['nro_doc']=$cod_tipdoc;
 
 	$nombres   = $_POST['nombres'];
 	$_SESSION['nombres']=$nombres;
@@ -73,7 +73,10 @@
 
 	$pass2 = $_POST['pass2'];
 	$_SESSION['pass2']=$pass2;
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+=======
 
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 
 	include ("clases.php");
 	
@@ -86,7 +89,11 @@
 	  4 - 1 si es el ultimo campo a validar. 0 en caso contrario.
 	*/
 
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+	$val->val_perfil_existente ('../frmAltaPerfil.php', $cod_tiporol, $cod_tipdoc, $nro_doc); 
+=======
 	$val-> val_perfil_existente ('../frmAltaPerfil.php', $cod_tiporol, $cod_tipdoc, $nro_doc); 
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$cod_tiporol,'tipo_rol',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$cod_tipdoc,'tipo_doc',0);
@@ -104,7 +111,11 @@
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['newUser'],'newUser',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass1'], 'pass1', 0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass2'], 'pass2',1);
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+	
+=======
 
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 	if (trim($telefono2) != ''){
 		$val->val_campo_numerico('../frmAltaPerfil.php',$telefono2,'telefono2');
 	}
@@ -120,6 +131,10 @@
 	$val->val_campo_letras('../frmAltaPerfil.php',$apellidos, 'apellidos',1);
 	
 	$val->val_usuario('../frmAltaPerfil.php', $newUser, 'newUser');
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+	$val->val_passwords('../frmAltaPerfil.php',$pass1, $pass2);
+=======
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 
 	$val->val_passwords('../frmAltaPerfil.php',$pass1, $pass2);	
 
@@ -130,11 +145,20 @@
  	// Si estos valores no se ingresaron, se setea nulos ya que los acepta en las tabla.
 
 	if (trim($telefono2) ==''){
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+	$telefono2 = "NULL";
+=======
 		$telefono2 = "NULL";
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 	}
 
 	if (trim($email) ==''){
 		$email = "NULL";
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+	}else{
+		$email = "'$email'"; //Agrego este tratamiento para que pueda enviarlo como string con '' o NULL sin ''
+=======
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 	}
 	else{
 		$email = "'$email'"; //Agrego este tratamiento para que pueda enviarlo como string con '' o NULL sin ''
@@ -146,9 +170,6 @@
  	
 /*	$val = new validacion;
 	$validar = $val->validar_check($tipo_rol);*/
-
-	
-
 
 	$query  = "SELECT IFNULL(MAX(id_perfil),0) +1 FROM PERFILES";
 	$result = mysql_query($query);
@@ -167,12 +188,21 @@
 									sexo,               telefono_1,         telefono_2,         
 									direccion_email )
 
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+							VALUES ($cod_tiporol ,  $id_perfil,   $cod_tipdoc,     
+									$nro_doc,      '$nombres',     '$apellidos',     
+								   '$fecha_nac',    $pais,          $provincia,     
+									$localidad,    '$direccion',    $num_direc,
+									'$sexo'	,       $telefono1,     $telefono2,     
+									'$email'  );	" or die(mysql_error());
+=======
 							VALUES ($cod_tiporol,    $id_perfil,     $cod_tipdoc,     
 									$nro_doc,       '$nombres',     '$apellidos',     
 								   '$fecha_nac',     $pais,          $provincia,     
 									$localidad,     '$direccion',    $num_direc,
 								   '$sexo'	,        $telefono1,     $telefono2,     
 								    $email  );	" or die(mysql_error());
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 
 	mysql_query($query);
 
@@ -198,8 +228,12 @@
 	else
 		echo "<h3>Ha ocurrido un problema al querer dar de alta al $tipo_rol_desc $nombres $apellidos:<br><br>" . mysql_error()."</h3>";
 
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+	//PRINT "<br>Registros insertados: ". mysql_affected_rows(); // mysql_affected_rows(); devuelve la cantidad de filas afectadas. EN EL ULTIMO UPDATE,DELETE,INSET
+=======
 		//PRINT "<br>Registros insertados: ". mysql_affected_rows(); // mysql_affected_rows(); devuelve la cantidad de filas afectadas. EN EL ULTIMO UPDATE,DELETE,INSET
 
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 	$passEncrip = md5($pass1);
 	
 	$sMySQL = "INSERT INTO USUARIOS (cod_tiporol, id_perfil, usuario, password)
@@ -207,6 +241,8 @@
 
 	$rQuery = mysql_query($sMySQL);
 
+<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
+=======
 
 	if (mysql_affected_rows() == 1) {
 		echo "<h3>El usuario $newUser se dio de Alta exitosamente.</h3>";	        
@@ -217,7 +253,14 @@
 
 
 
+>>>>>>> origin/master:php/aplicarAltaPerfil.php
 
+	if (mysql_affected_rows() == 1) {
+		echo "<h3>El usuario $newUser se dio de Alta exitosamente.</h3>";	        
+		session_destroy();
+		}
+	else
+		echo "<h3>Ha ocurrido un problema al querer dar de alta al usuario $newUser :<br><br>" . mysql_error()."</h3>";	
 
 
  ?>
