@@ -37,7 +37,7 @@ if (isset($_GET['nError'])) {
 				break;	
 		case 6: $perfil_existente =  "<span style='color: red;'> <h3>El perfil que esta intentando dar de alta ya existe </h3></span>";		
 				break;
-		case 7: $pass_error =  "<span style='color: red;'>*Las contraseñas no coinciden</span>";		
+		case 8: $pass_error =  "<span style='color: red;'>*Las contraseñas no coinciden</span>";		
 				break;		
 	}
 }
@@ -383,7 +383,8 @@ include_once ('aside.php');
        	
 
 
-		<div class="col-sm-2" style="padding-bottom: 15px;"><a class="btn btn-primary" href="profile.php">Volver</a></div>
+		<!-- <div class="col-sm-2" style="padding-bottom: 15px;"><a class="btn btn-primary" href="profile.php">Volver</a></div> -->
+		<div class="col-sm-2" style="padding-bottom: 15px;"><a class="btn btn-primary" href="administrador.php">Volver</a></div>
 		
 	</div>
 </div>

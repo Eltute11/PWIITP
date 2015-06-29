@@ -129,7 +129,8 @@ class acceso{
    			} 			
    
 		   switch ($existe) {
-		      case 1: header('location: ../profile.php');//Redirecciona la pagina
+		      // case 1: header('location: ../profile.php');//Redirecciona la pagina
+		   		case 1: header('location: ../administrador.php');//Redirecciona la pagina
 		      		  break;	
 		      case 2: header('location: monitoreador.php');//Redirecciona la pagina
 		      		  break;	
@@ -273,7 +274,8 @@ class validacion{
 		while($line = mysql_fetch_array($rQuery)) {
 				$existe = $line[0];
 			}
-				
+		
+		
 		if ($existe == 1){ //1- EXISTE Y NO TIENE QUE DEJAR DAR DE ALTA
 			$nError = 4;
 			header("location: $this->pagina?nError=$nError&error-val=-$this->nombre_campo");
@@ -288,24 +290,14 @@ class validacion{
 		$this->nombre_campo =$nombre_campo;
 
 		$sMySQL = "SELECT id_perfil FROM PERFILES WHERE cod_tiporol = 3 AND cod_tipdoc = $this->cod_tipdoc AND nro_doc = $this->nro_doc";
-		
-<<<<<<< HEAD:seguridadlandia/php/clases.php
-=======
-		
 
 		$rQuery = mysql_query($sMySQL);
-
->>>>>>> origin/master:php/clases.php
+		
 		while($line = mysql_fetch_array($rQuery)) {
 				$_SESSION['id_perfil'] = $line[0];
 				$id_perfil = $_SESSION['id_perfil'];
 			}
-<<<<<<< HEAD:seguridadlandia/php/clases.php
 		 	
-=======
-
-		
->>>>>>> origin/master:php/clases.php
 		if (!isset($id_perfil)){
 			$nError = 5;
 			header("location: $this->pagina?nError=$nError&error-val=-$nombre_campo");
@@ -322,12 +314,16 @@ class validacion{
 		$base = new BD;
 		$conexion = $base->Conectar();
 		
-		$sMySQL = "SELECT id_perfil FROM PERFILES WHERE cod_tiporol = $this->tipo_rol  AND cod_tipdoc = $this->cod_tipdoc AND nro_doc = $this->nro_doc; ";
+		$sMySQL = "SELECT id_perfil 
+			   FROM PERFILES 
+			   WHERE cod_tiporol = $this->tipo_rol  
+			   	 AND cod_tipdoc = $this->cod_tipdoc 
+			   	 AND nro_doc = $this->nro_doc; ";
 		
 		
 		$rQuery = mysql_query($sMySQL);
 		
-
+		
 		while($line = mysql_fetch_array($rQuery)) {
 				$id_perfil = $line[0];
 				// $existe = 1;
@@ -341,14 +337,47 @@ class validacion{
 	
 		}
 
+		public function val_perfil_inexistente ($pagina, $tipo_rol, $cod_tipdoc, $nro_doc){
+		$this->pagina = $pagina;
+		$this->tipo_rol =  $tipo_rol;
+		$this->cod_tipdoc = $cod_tipdoc;
+		$this->nro_doc = $nro_doc;
+	
+		$base = new BD;
+		$conexion = $base->Conectar();
+		
+		$sMySQL = "SELECT id_perfil 
+				   FROM PERFILES 
+				   WHERE cod_tiporol = $this->tipo_rol  
+				   	 AND cod_tipdoc = $this->cod_tipdoc 
+				   	 AND nro_doc = $this->nro_doc; ";
+		
+		
+		$rQuery = mysql_query($sMySQL);
+		
+		
+		while($line = mysql_fetch_array($rQuery)) {
+				$id_perfil = $line[0];
+				// $existe = 1;
+			}
+
+		if (!isset($id_perfil)){
+			$nError = 7;
+			header("location: $this->pagina?nError=$nError");
+			exit();
+		}
+	
+		}
+
+		
+
 		public function val_passwords ($pagina, $pass1, $pass2){
 		$this->pagina = $pagina;
 		$this->pass1 = $pass1;
 		$this->pass2 = $pass2;
-<<<<<<< HEAD:seguridadlandia/php/clases.php
  
 		if ($this->pass1 != $this->pass2){
-			$nError = 7;
+			$nError = 8;
 			header("location: $this->pagina?nError=$nError");
 			exit();
 		}
@@ -356,17 +385,7 @@ class validacion{
 
 		}
 
-=======
->>>>>>> origin/master:php/clases.php
 
-		if ($this->pass1 != $this->pass2){
-			$nError = 7;
-			header("location: $this->pagina?nError=$nError");
-			exit();
-		}
-
-
-		}
 
 
 }

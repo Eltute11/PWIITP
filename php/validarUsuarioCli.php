@@ -10,22 +10,13 @@ $base = new BD;
 $conexion = $base->Conectar();
 
 if (isset($_GET['error-val'])){
-<<<<<<< HEAD:seguridadlandia/php/validarUsuarioCli.php
 	$error_val  = $_GET['error-val'];
 }
 else
 {
 	$error_val  ='';
 }
-=======
-	$error_val = $_GET['error-val'];
-}
-else
-{
-	$error_val ='';
->>>>>>> origin/master:php/validarUsuarioCli.php
 
-}
 
 
 if (isset($_GET['nError'])) {
@@ -33,25 +24,16 @@ if (isset($_GET['nError'])) {
 	switch ($nError) {
 		case 1: $campo_obligatorio = "<span style='color: red;'> *Campo obligatorio </span>";
 				break;
-<<<<<<< HEAD:seguridadlandia/php/validarUsuarioCli.php
 		case 4: $usuario_existente = "<span style='color: red;'> *El usuario ya existe </span>";
 				break;
-		case 7: $pass_error =  "<span style='color: red;'>*Las contraseñas no coinciden</span>";		
+		case 8: $pass_error =  "<span style='color: red;'>*Las contraseñas no coinciden</span>";		
 				break;
-=======
-		case 4: $usuario_existente = "<span style='color: red;'> *El usuario ya existe </span>";	
-				break;
-		case 7: $pass_error =  "<span style='color: red;'>*Las contraseñas no coinciden</span>";		
-				break;	
->>>>>>> origin/master:php/validarUsuarioCli.php
 	}
 }
 else{
 	$nError = 0;
+	
 }
-
-
-
 
 
 if (!isset($_SESSION['valido_cli'])){  # ESTE TRATAMIENTO SE APLICA PARA EL CASO EN QUE SI EL CLIENTE YA FUE VALIDADO,
@@ -77,14 +59,6 @@ else{
 	if (isset($_SESSION['sCamposVal'])) {
 		unset($_SESSION['sCamposVal']);
 	}
-<<<<<<< HEAD:seguridadlandia/php/validarUsuarioCli.php
-=======
-
-	if (isset($_SESSION['nError'])) {
-		unset($_SESSION['nError']);
-	}
-	
->>>>>>> origin/master:php/validarUsuarioCli.php
 
 	if (isset($_SESSION['nError'])) {
 		unset($_SESSION['nError']);
@@ -116,36 +90,24 @@ else{
 	    <label for="newUser">Usuario</label>
 	    <input type="text" name="newUser" value=<?php validar_var_session('newUser') ?>> 
 	    <?php 
-<<<<<<< HEAD:seguridadlandia/php/validarUsuarioCli.php
 	    	if (strpos($error_val,'newUser')){
 	    		switch ($nError) {
-=======
-		    if (strpos($error_val,'newUser')){
-			 	switch ($nError) {
->>>>>>> origin/master:php/validarUsuarioCli.php
 			 		case 1: echo "$campo_obligatorio";
 			 				break;
 			 		case 4: echo "$usuario_existente";
 			 				break;	
-			 	}
-			 }
-    	?>
-
-	  		<br>
+	    		}
+	    	}	
+	     ?>
+		<br>
 		<br>
 		
 		<label for="pass">Contraseña:</label>
 	    <input type="password" name="pass1" value=<?php validar_var_session('pass1') ?>>
 	     <?php 
-<<<<<<< HEAD:seguridadlandia/php/validarUsuarioCli.php
 	    	if ($nError == 1 && strpos($error_val,'pass1') {
 			echo "$campo_obligatorio";
 		}
-=======
-	    	if ($nError == 1 && strpos($error_val,'pass1')) {
-				echo "$campo_obligatorio";
-			}
->>>>>>> origin/master:php/validarUsuarioCli.php
 	     ?>
 
 	    <br>
@@ -154,11 +116,7 @@ else{
 	    <label for="pass2">Repetir Contraseña: </label>
 	    <input type="password" name="pass2" value=<?php validar_var_session('pass2') ?>>
 	     <?php 
-<<<<<<< HEAD:seguridadlandia/php/validarUsuarioCli.php
 	    	if (strpos($error_val,'pass2') || $nError == 7 ){
-=======
-		    if (strpos($error_val,'pass2') || $nError == 7 ){
->>>>>>> origin/master:php/validarUsuarioCli.php
 			 	switch ($nError) {
 			 		case 1: echo "$campo_obligatorio";
 			 				break;
@@ -166,11 +124,7 @@ else{
 			 				break;	
 			 	}
 			 }
-<<<<<<< HEAD:seguridadlandia/php/validarUsuarioCli.php
 	     ?>
-=======
-	    ?>
->>>>>>> origin/master:php/validarUsuarioCli.php
 
 	    <br>
 	    <br>

@@ -10,7 +10,8 @@
                 <span>Navigation</span>
               </li>
               <li>
-                <a href='profile.php' class="auto">      
+                <!--<a href='profile.php' class="auto"> -->     
+                  <a href='administrador.php' class="auto">      
                   <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
                   <span class="font-bold">Dashboard</span>
                 </a>
@@ -50,7 +51,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="frmConsultarBaja.php"> <!-- frmBajaPerfil.html -->
                       <i class="icon-user-unfollow"></i>
                       <span>Baja</span>
                     </a>
@@ -143,7 +144,8 @@
                 <span>Your Stuff</span>
               </li>  
               <li>
-                <a href="profile.php">
+                <!-- <a href="profile.php"> -->
+                  <a href="administrador.php"> 
                   <i class="icon-user icon text-success-lter"></i>
                   <span>Profile</span>
                 </a>

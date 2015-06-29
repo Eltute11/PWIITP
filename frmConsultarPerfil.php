@@ -30,7 +30,7 @@ if (isset($_GET['nError'])) {
 				break;		
 		case 3: $solo_letras =  "<span class='help-block m-b-none' style='color: red;'> *Solo letras</span>";		
 				break;	
-		case 6: $perfil_existente =  "<span style='color: red;'> <h3>El perfil que esta intentando dar de alta ya existe </h3></span>";		
+		case 7: $perfil_inexistente =  "<span style='color: red;'> <h3>Perfil inexistente</h3></span>";		
 		break;		
 	}
 }
@@ -53,68 +53,68 @@ include_once ('aside.php');
 		    <div class="panel-body">
 			<form action='frmModificacionPerfil.php' class="form-horizontal" method='POST'>
 		 	<?php 
-		 	 if ($nError == 6) {
+		 	 if ($nError == 7) {
 		 	 	echo $perfil_inexistente;
 		 	 	echo "<br>";
 		 	 }
 		 	?>
 
-	 			<div class="form-group">
-		          <label class="col-sm-2 control-label">Tipo de alta:</label>
-		          <div class="col-sm-10 radio">
-		            <label class="i-checks i-checks-sm" for="adm">
-		            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 1) echo "checked"; ?>>
-		            	<i></i>Administrador
-		            </label>
-		            <label class="i-checks i-checks-sm" for="mon">
-		            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 2) echo "checked"; ?>>
-		            	<i></i>Monitoreador
-		            </label>
-		            <label class="i-checks i-checks-sm" for="cli">
-		            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 3) echo "checked"; ?>>
-		            	<i></i>Cliente
-					 </label>
-						<?php 
-						if ($nError == 1 && strpos($error_val,'tipo_rol')) {
-							echo "$campo_obligatorio";
-						}
-						?>
-												 
-					 </div>
+ 			<div class="form-group">
+	          <label class="col-sm-2 control-label">Tipo de alta:</label>
+	          <div class="col-sm-10 radio">
+	            <label class="i-checks i-checks-sm" for="adm">
+	            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 1) echo "checked"; ?>>
+	            	<i></i>Administrador
+	            </label>
+	            <label class="i-checks i-checks-sm" for="mon">
+	            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 2) echo "checked"; ?>>
+	            	<i></i>Monitoreador
+	            </label>
+	            <label class="i-checks i-checks-sm" for="cli">
+	            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 3) echo "checked"; ?>>
+	            	<i></i>Cliente
+				 </label>
+					<?php 
+					if ($nError == 1 && strpos($error_val,'tipo_rol')) {
+						echo "$campo_obligatorio";
+					}
+					?>
+											 
 				 </div>
-		
+			 </div>
+	
+			<div class="line line-dashed b-b line-lg pull-in"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="tipo_doc">Tipo de Documento:</label>
+						<div class="col-sm-10">
+								<?php 
+									$formulario = new formulario;
+									$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
+								 
+									if ($nError == 1 && strpos($error_val,'tipo_doc')) {
+										echo "$campo_obligatorio";
+									}
+								?>
+						</div>	
+				</div>
+								
 				<div class="line line-dashed b-b line-lg pull-in"></div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="tipo_doc">Tipo de Documento:</label>
-							<div class="col-sm-10">
-											<?php 
-												$formulario = new formulario;
-												$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
-											 
-												if ($nError == 1 && strpos($error_val,'tipo_doc')) {
-													echo "$campo_obligatorio";
-												}
-											?>
-										 </div>	
-					</div>
-									
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-						<div class="form-group">
-							<label for="nro_doc" class="col-sm-2 control-label">Número Documento:</label>
-							<div class="col-sm-10">
-								<input type="text" id="nro_doc"name="nro_doc" class='form-control' value=<?php validar_var_session('nro_doc') ?>>
-									<?php 
-										if (strpos($error_val,'nro_doc')){
-										 	switch ($nError) {
-								 				case 1: echo "$campo_obligatorio";
-												break;
-												case 2: echo "$solo_numeros";
-												break;	
-											}
-										 }
-									 ?>
-								</div>
-						 </div>
+						<label for="nro_doc" class="col-sm-2 control-label">Número Documento:</label>
+						<div class="col-sm-10">
+							<input type="text" id="nro_doc"name="nro_doc" class='form-control' value=<?php validar_var_session('nro_doc') ?>>
+								<?php 
+									if (strpos($error_val,'nro_doc')){
+									 	switch ($nError) {
+							 				case 1: echo "$campo_obligatorio";
+											break;
+											case 2: echo "$solo_numeros";
+											break;	
+										}
+									 }
+								 ?>
+							</div>
+					 </div>
 
 
 		<input type="hidden" name="valido_perfil" value="1"> 
@@ -125,7 +125,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<div class="col-sm-4 col-sm-offset-2">
 					<input type="submit" value="Consultar datos" class="btn btn-info">
-					<a class="btn btn-default" href="profile.php">Volver</a>
+					<a class="btn btn-default" href="administrador.php">Volver</a>
 		 		 </div>
 			</div>
 

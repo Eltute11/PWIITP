@@ -30,14 +30,15 @@ if (isset($_GET['nError'])) {
 				break;		
 		case 3: $solo_letras =  "<span class='help-block m-b-none' style='color: red;'> *Solo letras</span>";		
 				break;	
-		case 6: $perfil_existente =  "<span style='color: red;'> <h3>El perfil que esta intentando dar de alta ya existe </h3></span>";		
+		case 6: $perfil_existente =  "<span style='color: red;'> <h3>Ya existe perfil con el mismo numero y tipo de documento</h3></span>";		
 		break;					
 	}
 }
 else{
 	$nError = 0;
+	
 }
-
+ 
  ?>
 		<?php
 
@@ -72,8 +73,7 @@ else{
 			$val->val_campo_obligatorio('frmConsultarPerfil.php',$_POST['tipo_rol'],'tipo_rol',0);
 			$val->val_campo_obligatorio('frmConsultarPerfil.php',$_POST['tipo_doc'],'tipo_doc',0);
 			$val->val_campo_obligatorio('frmConsultarPerfil.php',$_POST['nro_doc'], 'nro_doc',1);
-		} 
-
+		}
 		if (isset($_SESSION['tipo_doc'])){
 			$tipo_doc = $_SESSION['tipo_doc'];	
 		}	
@@ -90,6 +90,9 @@ else{
 			$nuevo_nro_doc = $_SESSION['nuevo_nro_doc'];
 		}
 		
+		
+
+
 		$cMySQL = "SELECT cod_tiporol,        cod_tipdoc,         nro_doc,            
 						  nombres,            apellidos,          fecha_nac,          
 						  cod_pais,           cod_prov,           cod_loc,            
@@ -106,8 +109,9 @@ else{
 
 		$resultado = mysql_num_rows($query);
 
+		// VALIDO SI EL CLIENTE EXISTE; SI NO EXISTE ENVIO ERROR 7.
 		if ($resultado == 0){
-			header('location: frmConsultarPerfil.php?nError=6');
+			header('location: frmConsultarPerfil.php?nError=7');
 		}
 
 
