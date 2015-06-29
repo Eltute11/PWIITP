@@ -73,10 +73,6 @@
 
 	$pass2 = $_POST['pass2'];
 	$_SESSION['pass2']=$pass2;
-<<<<<<< HEAD:seguridadlandia/php/aplicarAltaPerfil.php
-=======
-
->>>>>>> origin/master:php/aplicarAltaPerfil.php
 
 	include ("clases.php");
 	
