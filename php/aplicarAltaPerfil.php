@@ -19,60 +19,61 @@
 		unset($_SESSION['nError']);
 	}
 	
+	//$formulario = $_POST['alta']; // COMO RECIBIR NOMBRE DE FORMULARIO POR PHP
 
 	$cod_tiporol  = $_POST['tipo_rol'];
-	$_SESSION['tipo_rol']=$cod_tiporol;
+	$_SESSION['alta']['tipo_rol']=$cod_tiporol;
 
 	$cod_tipdoc  = $_POST['tipo_doc'];
-	$_SESSION['tipo_doc']=$cod_tipdoc;
+	$_SESSION['alta']['tipo_doc']=$cod_tipdoc;
 
 	$nro_doc = $_POST['nro_doc'];
-	$_SESSION['nro_doc']=$nro_doc;
+	$_SESSION['alta']['nro_doc']=$nro_doc;
 
 	$nombres   = $_POST['nombres'];
-	$_SESSION['nombres']=$nombres;
+	$_SESSION['alta']['nombres']=$nombres;
 
 	$apellidos = $_POST['apellidos'];
-	$_SESSION['apellidos']=$apellidos;
+	$_SESSION['alta']['apellidos']=$apellidos;
 
 	$fecha_nac = $_POST['fecha_nac'];
-	$_SESSION['fecha_nac']=$fecha_nac;
+	$_SESSION['alta']['fecha_nac']=$fecha_nac;
 
 	$pais = $_POST['pais'];
-	$_SESSION['pais']=$pais;
+	$_SESSION['alta']['pais']=$pais;
 
 	$provincia = $_POST['provincia'];
-	$_SESSION['provincia']=$provincia;
+	$_SESSION['alta']['provincia']=$provincia;
 
 	$localidad = $_POST['localidad'];
-	$_SESSION['localidad']=$localidad;
+	$_SESSION['alta']['localidad']=$localidad;
 
 	$direccion = $_POST['direccion'];
-	$_SESSION['direccion']=$direccion;
+	$_SESSION['alta']['direccion']=$direccion;
 
 	$num_direc = $_POST['num_direc']; 
-	$_SESSION['num_direc']=$num_direc;
+	$_SESSION['alta']['num_direc']=$num_direc;
 
 	$sexo = $_POST['sexo'];
-	$_SESSION['sexo']=$sexo;
+	$_SESSION['alta']['sexo']=$sexo;
 
 	$telefono1 = $_POST['telefono1'];
-	$_SESSION['telefono1']=$telefono1;
+	$_SESSION['alta']['telefono1']=$telefono1;
 
 	$telefono2 = $_POST['telefono2'];
-	$_SESSION['telefono2']=$telefono2;
+	$_SESSION['alta']['telefono2']=$telefono2;
 
 	$email 	   = $_POST['email']; 
-	$_SESSION['email']=$email;
+	$_SESSION['alta']['email']=$email;
 
 	$newUser  = $_POST['newUser'];
-	$_SESSION['newUser']=$newUser;
+	$_SESSION['alta']['newUser']=$newUser;
 
 	$pass1 = $_POST['pass1'];
-	$_SESSION['pass1']=$pass1;
+	$_SESSION['alta']['pass1']=$pass1;
 
 	$pass2 = $_POST['pass2'];
-	$_SESSION['pass2']=$pass2;
+	$_SESSION['alta']['pass2']=$pass2;
 
 	include ("clases.php");
 	
@@ -100,12 +101,15 @@
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$num_direc, 'num_direc',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$telefono1,'telefono1',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$sexo,'sexo',0);
-	$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['newUser'],'newUser',0);
-	$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass1'], 'pass1', 0);
-	$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass2'], 'pass2',1);
-	
+
+	//if ($cod_tiporol == 3) {
+		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['newUser'],'newUser',0);
+		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass1'], 'pass1', 0);
+		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass2'], 'pass2',1);
+	//}
+		
 	if (trim($telefono2) != ''){
-		$val->val_campo_numerico('../frmAltaPerfil.php',$telefono2,'telefono2');
+		$val->val_campo_numerico('../frmAltaPerfil.php',$telefono2,'telefono2',0);
 	}
 	$val->val_campo_numerico('../frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
 	$val->val_campo_numerico('../frmAltaPerfil.php',$num_direc, 'num_direc',0);

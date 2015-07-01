@@ -61,7 +61,7 @@ include_once ('aside.php');
 		       		<div class="panel panel-default">
 		       			<!-- Formulario -->
 		       			<div class="panel-body">
-		       				<form action="php/aplicarAltaPerfil.php" class="form-horizontal" method="POST">
+		       				<form action="php/aplicarAltaPerfil.php" class="form-horizontal" id="alta" name="alta" method="POST">
 								<?php 
 							 	 if ($nError == 6) {
 							 	 	echo $perfil_existente;
@@ -72,30 +72,30 @@ include_once ('aside.php');
 						          <label class="col-sm-2 control-label">Tipo de alta:</label>
 						          <div class="col-sm-10 radio">
 						            <label class="i-checks i-checks-sm" for="adm">
-						            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 1) echo "checked"; ?>>
+						            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION['alta']["tipo_rol"]) && $_SESSION['alta']["tipo_rol"] == 1) echo "checked"; ?>>
 						            	<i></i>Administrador
 						            </label>
 						            <label class="i-checks i-checks-sm" for="mon">
-						            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 2) echo "checked"; ?>>
+						            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION['alta']["tipo_rol"]) && $_SESSION['alta']["tipo_rol"] == 2) echo "checked"; ?>>
 						            	<i></i>Monitoreador
 						            </label>
 						            <label class="i-checks i-checks-sm" for="cli">
-						            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 3) echo "checked"; ?>>
+						            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION['alta']["tipo_rol"]) && $_SESSION['alta']["tipo_rol"] == 3) echo "checked"; ?>>
 						            	<i></i>Cliente
 						            </label>
 												
-													<?php 
-														if ($nError == 1 && strpos($error_val,'tipo_rol')) {
-															echo "$campo_obligatorio";
-														}
-														?>
+										<?php 
+											if ($nError == 1 && strpos($error_val,'tipo_rol')) {
+												echo "$campo_obligatorio";
+											}
+										?>
 												 
 						           </div>
 						     </div>
 								 
 								 <div class="line line-dashed b-b line-lg pull-in"></div>
 								 <div class="form-group">
-						      		<label class="col-sm-2 control-label" for="tipo_doc">Tipo de Documento:</label>
+						      		<label class="col-sm-2 control-label" for="tipo_doc">Tipo de Documento: </label>
 										<div class="col-sm-10">
 											<?php 
 												$formulario = new formulario;
@@ -112,7 +112,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label for="nro_doc" class="col-sm-2 control-label">Número Documento:</label>
 											<div class="col-sm-10">
-												<input type="text" id="nro_doc"name="nro_doc" class='form-control' value=<?php validar_var_session('nro_doc') ?>>
+												<input type="text" id="nro_doc" name="nro_doc" class='form-control' value=<?php validar_var_session('alta','nro_doc') ?>>
 												<?php 
 												if (strpos($error_val,'nro_doc')){
 												 	switch ($nError) {
@@ -130,7 +130,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="nombres">Nombres:</label>
 											<div class="col-sm-10">
-												<input type="text" name="nombres" id="nombres" class='form-control' value=<?php validar_var_session('nombres') ?>> 
+												<input type="text" name="nombres" id="nombres" class='form-control' value=<?php validar_var_session('alta','nombres') ?>> 
 													<?php 
 													 	if (strpos($error_val,'nombres')){
 													 	switch ($nError) {
@@ -148,7 +148,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="apellidos">Apellidos:</label>
 											<div class="col-sm-10">
-												<input type="text" name="apellidos" id="apellidos" class='form-control' value=<?php validar_var_session('apellidos') ?>> 
+												<input type="text" name="apellidos" id="apellidos" class='form-control' value=<?php validar_var_session('alta','apellidos') ?>> 
 													<?php 
 													 	if (strpos($error_val,'apellidos')){
 													 	switch ($nError) {
@@ -166,7 +166,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="fecha_nac">Fecha de nacimiento:</label>
 											<div class="col-sm-10"> 
-												<input id="fecha_nac" name="fecha_nac" class='form-control' type="date" value=<?php validar_var_session('fecha_nac') ?> >
+												<input id="fecha_nac" name="fecha_nac" class='form-control' type="date" value=<?php validar_var_session('alta','fecha_nac') ?> >
 											    <?php 
 													if ($nError == 1 && strpos($error_val,'fecha_nac')){
 														echo "$campo_obligatorio";
@@ -224,7 +224,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" <label for="direccion">Dirección: </label>
 											<div class="col-sm-10">
-												<input class='form-control' type="text" name="direccion" id="direccion" value=<?php validar_var_session('direccion') ?>>
+												<input class='form-control' type="text" name="direccion" id="direccion" value=<?php validar_var_session('alta','direccion') ?>>
 													<?php 
 													 	if (strpos($error_val,'direccion')){
 													 	switch ($nError) {
@@ -242,7 +242,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="num_direc">Numero:</label>
 											<div class="col-sm-10">
-												<input class='form-control' type="text" name="num_direc" id="num_direc" value=<?php validar_var_session('num_direc') ?>>
+												<input class='form-control' type="text" name="num_direc" id="num_direc" value=<?php validar_var_session('alta','num_direc') ?>>
 													<?php 
 													 	if (strpos($error_val,'num_direc')){
 													 	switch ($nError) {
@@ -261,10 +261,10 @@ include_once ('aside.php');
 						      <label class="col-sm-2 control-label">Sexo:</label>
 						      <div class="col-sm-10 radio">
 						      	<label for="fem" class="i-checks i-checks-sm">
-										<input id="fem" name="sexo" type="radio" value="F" <?php if (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == 'F') echo "checked"; ?> />
+										<input id="fem" name="sexo" type="radio" value="F" <?php if (isset($_SESSION['alta']["sexo"]) && $_SESSION['alta']["sexo"] == 'F') echo "checked"; ?> />
 										<i></i>Femenino </label>
 										<label for="mas" class="i-checks i-checks-sm">
-										<input id="mas" name="sexo" type="radio" value="M" <?php if (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == 'M') echo "checked"; ?>/>
+										<input id="mas" name="sexo" type="radio" value="M" <?php if (isset($_SESSION['alta']["sexo"]) && $_SESSION['alta']["sexo"] == 'M') echo "checked"; ?>/>
 										<i></i>Masculino</label>
 										<?php 
 										if ($nError == 1 && strpos($error_val,'sexo')){
@@ -278,7 +278,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" label for="telefono1">Teléfono 1:</label>
 											<div class="col-sm-10">
-												<input class='form-control' type="text" name="telefono1" id="telefono1" value=<?php validar_var_session('telefono1') ?>>
+												<input class='form-control' type="text" name="telefono1" id="telefono1" value=<?php validar_var_session('alta','telefono1') ?>>
 													<?php 
 													 	if (strpos($error_val,'telefono1')){
 													 	switch ($nError) {
@@ -296,7 +296,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" label for="telefono2">Teléfono 2:</label>
 											<div class="col-sm-10">
-												<input class='form-control' type="text" name="telefono2" id="telefono2" value=<?php validar_var_session('telefono2') ?>>
+												<input class='form-control' type="text" name="telefono2" id="telefono2" value=<?php validar_var_session('alta','telefono2') ?>>
 													<?php 
 													 	if (strpos($error_val,'telefono2')){
 													 	switch ($nError) {
@@ -312,7 +312,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="email">Dirección E-mail:</label>
 											<div class="col-sm-10">
-												<input class='form-control' type="text" name="email" id="email" value=<?php validar_var_session('email') ?>>
+												<input class='form-control' type="text" name="email" id="email" value=<?php validar_var_session('alta','email') ?>>
 											</div>
 									 </div>
 
@@ -322,7 +322,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" label for="newUser">Usuario:</label>
 											<div class="col-sm-10">
-											    <input type="text" class='form-control' id="newUser" name="newUser" value=<?php validar_var_session('newUser') ?>> 
+											    <input type="text" class='form-control' id="newUser" name="newUser" value=<?php validar_var_session('alta','newUser') ?>> 
 											    <?php 
 												    if (strpos($error_val,'newUser')){
 													 	switch ($nError) {
@@ -340,7 +340,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" label for="pass">Contraseña:</label>
 											<div class="col-sm-10">
-											    <input type="password" id="pass" class='form-control' name="pass1" value=<?php validar_var_session('pass1') ?>>
+											    <input type="password" id="pass" class='form-control' name="pass1" value=<?php validar_var_session('alta','pass1') ?>>
 											     <?php 
 											    	if ($nError == 1 && strpos($error_val,'pass1')) {
 														echo "$campo_obligatorio";
@@ -353,7 +353,7 @@ include_once ('aside.php');
 									<div class="form-group">
 										<label class="col-sm-2 control-label" label for="pass2">Confirmar Contraseña:</label>
 											<div class="col-sm-10">
-												<input type="password" id="pass2" class='form-control' name="pass2" value=<?php validar_var_session('pass2') ?>>
+												<input type="password" id="pass2" class='form-control' name="pass2" value=<?php validar_var_session('alta','pass2') ?>>
 											    <?php 
 												    if (strpos($error_val,'newUser') || $nError == 7 ){
 													 	switch ($nError) {

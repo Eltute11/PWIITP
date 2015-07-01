@@ -39,8 +39,6 @@ else{
 	
 }
  
- ?>
-		<?php
 
 		 if ($nError == 6) {
 	 	 	echo $perfil_existente;
@@ -57,15 +55,15 @@ else{
 		}
 		
 		if (isset($_POST['tipo_rol'])){
-				$_SESSION['tipo_rol']=$_POST['tipo_rol'];
+				$_SESSION['consultar']['tipo_rol']=$_POST['tipo_rol'];
 		}
 
 		if (isset($_POST['tipo_doc'])){
-				$_SESSION['tipo_doc']=$_POST['tipo_doc'];
+				$_SESSION['consultar']['tipo_doc']=$_POST['tipo_doc'];
 		}
 
 		if (isset($_POST['nro_doc'])){
-				$_SESSION['nro_doc']=$_POST['nro_doc'];
+				$_SESSION['consultar']['nro_doc']=$_POST['nro_doc'];
 		}
 	
 		if (isset($_POST['valido_perfil'])){		
@@ -74,20 +72,20 @@ else{
 			$val->val_campo_obligatorio('frmConsultarPerfil.php',$_POST['tipo_doc'],'tipo_doc',0);
 			$val->val_campo_obligatorio('frmConsultarPerfil.php',$_POST['nro_doc'], 'nro_doc',1);
 		}
-		if (isset($_SESSION['tipo_doc'])){
-			$tipo_doc = $_SESSION['tipo_doc'];	
+		if (isset($_SESSION['consultar']['tipo_doc'])){
+			$tipo_doc = $_SESSION['consultar']['tipo_doc'];	
 		}	
 
-		if (isset($_SESSION['nro_doc'])){
-			$nro_doc = $_SESSION['nro_doc'];	
+		if (isset($_SESSION['consultar']['nro_doc'])){
+			$nro_doc = $_SESSION['consultar']['nro_doc'];	
 		}	
 
-		if (isset($_SESSION['tipo_rol'])){
-			$tipo_rol = $_SESSION['tipo_rol'];	
+		if (isset($_SESSION['consultar']['tipo_rol'])){
+			$tipo_rol = $_SESSION['consultar']['tipo_rol'];	
 		}	
 
-		if (isset($_SESSION['nuevo_nro_doc'])) {
-			$nuevo_nro_doc = $_SESSION['nuevo_nro_doc'];
+		if (isset($_SESSION['consultar']['nuevo_nro_doc'])) {
+			$nuevo_nro_doc = $_SESSION['consultar']['nuevo_nro_doc'];
 		}
 		
 		
@@ -159,15 +157,15 @@ include_once ('aside.php');
 					    <label class="col-sm-2 control-label">Tipo de rol:</label>
 					    <div class="col-sm-10 radio">
 					        <label class="i-checks i-checks-sm" for="adm">
-					       	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 1) echo "checked"; ?>>
+					       	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION['consultar']["tipo_rol"]) && $_SESSION['consultar']["tipo_rol"] == 1) echo "checked"; ?>>
 					       	<i></i>Administrador
 					        </label>
 					        <label class="i-checks i-checks-sm" for="mon">
-					       	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 2) echo "checked"; ?>>
+					       	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION['consultar']["tipo_rol"]) && $_SESSION['consultar']["tipo_rol"] == 2) echo "checked"; ?>>
 					      	<i></i>Monitoreador
 					        </label>
 					        <label class="i-checks i-checks-sm" for="cli">
-					      	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 3) echo "checked"; ?>>
+					      	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION['consultar']["tipo_rol"]) && $_SESSION['consultar']["tipo_rol"] == 3) echo "checked"; ?>>
 					       	<i></i>Cliente
 					        </label>
 							<?php 
@@ -186,12 +184,11 @@ include_once ('aside.php');
 						if (isset($_POST['resultado_busqueda'])) {
 						$formulario = new formulario;
 						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
-						if ($nError == 1 && strpos($error_val,'tipo_doc')) {
-									echo "$campo_obligatorio";
-								}
+							if ($nError == 1 && strpos($error_val,'tipo_doc')) {
+										echo "$campo_obligatorio";
+							}
 					  	}
 					  	else{
-
 					  	$formulario = new formulario;
 						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','nuevo_tipo_doc');
 						if ($nError == 1 && strpos($error_val,'nuevo_tipo_doc')) {
@@ -317,14 +314,17 @@ include_once ('aside.php');
 							echo "$campo_obligatorio";
 						}
 					}
-
 					else {
-
-						$formulario = new formulario;
+						/*$formulario = new formulario;
+						$ObtenerTipodoc-> ObtenerDatosBD ('cod_pais','descr_pais','PAISES','pais',$_SESSION['modificar']['cod_pais']);
+					   	if ($nError == 1 && strpos($error_val,'pais')) {
+							echo "$campo_obligatorio";
+						}*/
+						/*$formulario = new formulario;
 						$formulario->LlenarCombos('cod_pais','descr_pais','PAISES','pais');
 						if ($nError == 1 && strpos($error_val,'pais')){
 							echo "$campo_obligatorio";
-						}
+						}*/
 					}	
 
 					?>
