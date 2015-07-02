@@ -37,21 +37,21 @@ class formulario{
 	protected $tabla;
 	protected $name;
 
-	public function LlenarCombos ($cod, $descr, $table, $name){
+	public function LlenarCombos ($cod, $descr, $table, $name,$form){
 			$this->campo_cod = $cod;
 			$this->campo_descr = $descr;
 			$this->tabla = $table;
 			$this->name = $name;
-
+			$this->form = $form;
+			
 			$sMySQL = "SELECT $this->campo_cod, $this->campo_descr FROM $this->tabla ORDER BY $this->campo_descr ASC";
-
 			$rQuery =  mysql_query ($sMySQL);
-
+			
 			echo "<select name='$this->name' id='$this->name' class='form-control'>";
 			echo  "<option></option>";				
 				while ($resultado = mysql_fetch_array($rQuery)) {
-					if (isset($_SESSION["$name"])){ //Este tratamiento se agrego para que si selecciono un valor, y por alguna validacion no se dio de alta el perfil, guarde el valor seleccionado en el combo.
-						if ($_SESSION["$name"] == $resultado[$cod] ){
+					if (isset($_SESSION["$this->form"]["$this->name"])){ //Este tratamiento se agrego para que si selecciono un valor, y por alguna validacion no se dio de alta el perfil, guarde el valor seleccionado en el combo.
+						if ($_SESSION["$this->form"]["$this->name"] == $resultado[$cod] ){
 							echo "<option value= $resultado[$cod] selected> $resultado[$descr]</option>";
 						}	
 						else{

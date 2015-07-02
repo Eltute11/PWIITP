@@ -99,9 +99,8 @@ include_once ('aside.php');
 										<div class="col-sm-10">
 											<?php 
 												$formulario = new formulario;
-												$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
-											 
-												if ($nError == 1 && strpos($error_val,'tipo_doc')) {
+												$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','alta');
+											    if ($nError == 1 && strpos($error_val,'tipo_doc')) {
 													echo "$campo_obligatorio";
 												}
 											?>
@@ -181,7 +180,7 @@ include_once ('aside.php');
 											<div class="col-sm-10">   
 												<?php 
 													$formulario = new formulario;
-													$formulario->LlenarCombos('cod_pais','descr_pais','PAISES','pais');
+													$formulario->LlenarCombos('cod_pais','descr_pais','PAISES','pais','alta');
 											     
 											    	if ($nError == 1 && strpos($error_val,'pais')){
 														echo "$campo_obligatorio";
@@ -196,7 +195,7 @@ include_once ('aside.php');
 											<div class="col-sm-10"> 
 											    <?php 
 													$formulario = new formulario;
-													$formulario->LlenarCombos('cod_prov','descr_prov','PROVINCIAS','provincia');
+													$formulario->LlenarCombos('cod_prov','descr_prov','PROVINCIAS','provincia','alta');
 										     		
 										     		if ($nError == 1 && strpos($error_val,'pais')){
 															echo "$campo_obligatorio";
@@ -211,7 +210,7 @@ include_once ('aside.php');
 											<div class="col-sm-10"> 
 											    <?php 
 											    	$formulario = new formulario;
-											    	$formulario->LlenarCombos('cod_loc','descr_loc','LOCALIDADES','localidad');
+											    	$formulario->LlenarCombos('cod_loc','descr_loc','LOCALIDADES','localidad','alta');
 											    
 													if ($nError == 1 && strpos($error_val,'localidad')) {
 															echo "$campo_obligatorio";
