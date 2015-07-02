@@ -183,14 +183,14 @@ include_once ('aside.php');
 						<?php
 						if (isset($_POST['resultado_busqueda'])) {
 						$formulario = new formulario;
-						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
+						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','modificar');
 							if ($nError == 1 && strpos($error_val,'tipo_doc')) {
 										echo "$campo_obligatorio";
 							}
 					  	}
 					  	else{
 					  	$formulario = new formulario;
-						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','nuevo_tipo_doc');
+						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','nuevo_tipo_doc','modificar');
 						if ($nError == 1 && strpos($error_val,'nuevo_tipo_doc')) {
 									echo "$campo_obligatorio";
 								}
@@ -315,16 +315,11 @@ include_once ('aside.php');
 						}
 					}
 					else {
-						/*$formulario = new formulario;
-						$ObtenerTipodoc-> ObtenerDatosBD ('cod_pais','descr_pais','PAISES','pais',$_SESSION['modificar']['cod_pais']);
-					   	if ($nError == 1 && strpos($error_val,'pais')) {
-							echo "$campo_obligatorio";
-						}*/
-						/*$formulario = new formulario;
-						$formulario->LlenarCombos('cod_pais','descr_pais','PAISES','pais');
+						$formulario = new formulario;
+						$formulario->LlenarCombos('cod_pais','descr_pais','PAISES','pais','modificar');
 						if ($nError == 1 && strpos($error_val,'pais')){
 							echo "$campo_obligatorio";
-						}*/
+						}
 					}	
 
 					?>
@@ -347,7 +342,7 @@ include_once ('aside.php');
 					}
 					else{
 					    $formulario = new formulario;
-						$formulario->LlenarCombos('cod_prov','descr_prov','PROVINCIAS','provincia');
+						$formulario->LlenarCombos('cod_prov','descr_prov','PROVINCIAS','provincia','modificar');
 					    if ($nError == 1 && strpos($error_val,'provincia')){
 										echo "$campo_obligatorio";
 									}
@@ -371,7 +366,7 @@ include_once ('aside.php');
 					}
 					else{
 					    $formulario = new formulario;
-						$formulario->LlenarCombos('cod_loc','descr_loc','LOCALIDADES','localidad');
+						$formulario->LlenarCombos('cod_loc','descr_loc','LOCALIDADES','localidad','modificar');
 					    if ($nError == 1 && strpos($error_val,'localidad')) {
 							echo "$campo_obligatorio";
 						}

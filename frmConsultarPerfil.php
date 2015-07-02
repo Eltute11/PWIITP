@@ -89,7 +89,7 @@ include_once ('aside.php');
 						<div class="col-sm-10">
 								<?php 
 									$formulario = new formulario;
-									$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
+									$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','consultar');
 								 
 									if ($nError == 1 && strpos($error_val,'tipo_doc')) {
 										echo "$campo_obligatorio";
