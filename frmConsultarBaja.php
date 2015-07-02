@@ -1,26 +1,22 @@
 <?php 
-
 session_start();
-include_once('header.php');
-include_once ('aside.php'); 
 
 if(!isset($_SESSION['usuario'])){
 	session_destroy();
 	header('location: index.php?error=loguearse');
 	
 }
-
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
 
-// if(!isset($_SESSION['usuario'])){
+// if(!isset($_SESSION['baja']['usuario'])){
 // 			session_destroy();
 // 			header('location: index.php?error=loguearse');
 			
 // }
 
-// if (isset($_SESSION['nro_doc'])){
-// 	$var = $_SESSION['nro_doc'];
+// if (isset($_SESSION['baja']['nro_doc'])){
+// 	$var = $_SESSION['baja']['nro_doc'];
 // 	exit ($var);
 // }
 // else{
@@ -58,6 +54,9 @@ else{
 
 	
 }
+
+include_once('header.php');
+include_once ('aside.php'); 
 ?>
 <!-- Main -->
  <div id="content" class="app-content" role="main">
@@ -82,15 +81,15 @@ else{
 	          <label class="col-sm-2 control-label">Tipo de perfil:</label>
 	          <div class="col-sm-10 radio">
 		            <label class="i-checks i-checks-sm" for="adm">
-		            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 1) echo "checked"; ?>>
+		            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION['baja']["tipo_rol"]) && $_SESSION['baja']["tipo_rol"] == 1) echo "checked"; ?>>
 		            	<i></i>Administrador
 		            </label>
 		            <label class="i-checks i-checks-sm" for="mon">
-		            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 2) echo "checked"; ?>>
+		            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION['baja']["tipo_rol"]) && $_SESSION['baja']["tipo_rol"] == 2) echo "checked"; ?>>
 		            	<i></i>Monitoreador
 		            </label>
 		            <label class="i-checks i-checks-sm" for="cli">
-		            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION["tipo_rol"]) && $_SESSION["tipo_rol"] == 3) echo "checked"; ?>>
+		            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION['baja']["tipo_rol"]) && $_SESSION['baja']["tipo_rol"] == 3) echo "checked"; ?>>
 		            	<i></i>Cliente
 					 </label>
 					<?php 
@@ -108,7 +107,7 @@ else{
 						<div class="col-sm-10">
 						<?php 
 							$formulario = new formulario;
-							$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc');
+							$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','baja');
 						 
 							if ($nError == 1 && strpos($error_val,'tipo_doc')) {
 								echo "$campo_obligatorio";
@@ -121,7 +120,7 @@ else{
 					<div class="form-group">
 						<label for="nro_doc" class="col-sm-2 control-label">Número Documento:</label>
 						<div class="col-sm-10">
-							<input type="text" id="nro_doc"name="nro_doc" class='form-control' value=<?php validar_var_session('nro_doc') ?>>
+							<input type="text" id="nro_doc"name="nro_doc" class='form-control' value=<?php validar_var_session('baja','nro_doc') ?>>
 								<?php 
 									if (strpos($error_val,'nro_doc')){
 									 	switch ($nError) {
