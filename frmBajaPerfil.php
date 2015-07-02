@@ -6,6 +6,10 @@ session_start();
 			
  }
 
+unset($_SESSION['alta']);
+unset($_SESSION['consultar']);
+unset($_SESSION['modificacion']);
+
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
 

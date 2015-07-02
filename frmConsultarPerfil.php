@@ -6,6 +6,10 @@ if(!isset($_SESSION['usuario'])){
 	header('location: index.php?error=loguearse');
 			
 }
+unset($_SESSION['alta']);
+unset($_SESSION['baja']);
+unset($_SESSION['modificacion']);
+
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
 

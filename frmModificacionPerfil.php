@@ -6,6 +6,10 @@ session_start();
 		header('location: index.php?error=loguearse');
 		
 	}
+
+unset($_SESSION['alta']);
+unset($_SESSION['baja']);
+
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
 
@@ -183,14 +187,14 @@ include_once ('aside.php');
 						<?php
 						if (isset($_POST['resultado_busqueda'])) {
 						$formulario = new formulario;
-						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','modificar');
+						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','consultar');
 							if ($nError == 1 && strpos($error_val,'tipo_doc')) {
 										echo "$campo_obligatorio";
 							}
 					  	}
 					  	else{
 					  	$formulario = new formulario;
-						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','nuevo_tipo_doc','modificar');
+						$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','nuevo_tipo_doc','consultar');
 						if ($nError == 1 && strpos($error_val,'nuevo_tipo_doc')) {
 									echo "$campo_obligatorio";
 								}

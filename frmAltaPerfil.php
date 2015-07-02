@@ -7,6 +7,10 @@ session_start();
 			
 		}
 
+unset($_SESSION['baja']);
+unset($_SESSION['consultar']);
+unset($_SESSION['modificacion']);
+
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
 
