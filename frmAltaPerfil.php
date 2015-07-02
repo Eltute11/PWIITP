@@ -316,7 +316,7 @@ include_once ('aside.php');
 									 </div>
 
 								 <!-- =====================  ALTA USUARIO	================================== -->
-
+								<div id="usuario">
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 									<div class="form-group">
 										<label class="col-sm-2 control-label" label for="newUser">Usuario:</label>
@@ -347,7 +347,7 @@ include_once ('aside.php');
 											     ?>
 											     </div>
 									 </div>
-								
+									
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 									<div class="form-group">
 										<label class="col-sm-2 control-label" label for="pass2">Confirmar Contraseña:</label>
@@ -365,6 +365,7 @@ include_once ('aside.php');
 										    	?>
 												</div>
 									 </div>
+									</div> <!-- Usuario -->
 
 
 								<div class="line line-dashed b-b line-lg pull-in"></div>
