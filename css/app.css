@@ -1239,11 +1239,16 @@ html {
   overflow: hidden;
   line-height: 40px;
   text-align: center;
+  font-size: 14px;
 }
 
 .navi ul.nav li a > i:before {
   position: relative;
   z-index: 2;
+}
+
+.navi ul.nav li a > i:hover {
+  font-size: 18px !important;
 }
 
 @media (min-width: 768px) {

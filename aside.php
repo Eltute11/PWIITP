@@ -38,12 +38,7 @@
                   <i class="glyphicon glyphicon-th"></i>
                   <span>ABM</span>
                 </a>
-                <ul class="nav nav-sub dk">
-                  <li class="nav-sub-header">
-                    <a href>
-                      <span>Layout</span>
-                    </a>
-                  </li>
+                <ul class="nav nav-sub dk" id="ABM">
                   <li>
                     <a href="frmAltaPerfil.php">
                       <i class="icon-user-follow"></i>
@@ -151,9 +146,10 @@
                 </a>
               </li>
               <li>
-                <a href>
-                  <i class="icon-question icon"></i>
-                  <span>Documents</span>
+                <!-- <a href="profile.php"> -->
+                  <a href="php/cerrarSesion.php"> 
+                  <i class="icon-logout icon text-success-lter"></i>
+                  <span>Cerrar Sesion</span>
                 </a>
               </li>
             </ul>
