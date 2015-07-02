@@ -206,7 +206,7 @@ include_once ('aside.php');
 					<div class="col-sm-10">
 					   	<?php 
 					   	if (isset($_POST['resultado_busqueda'])) {
-					   		echo "<input type='text' id='nro_doc'name='nro_doc' class='form-control' value=  $nro_doc>";
+					   		echo "<input type='text' id='nro_doc'name='nro_doc' class='form-control' value=$nro_doc>";
 					 	}
 					 	else{	
 					 		if (isset($_SESSION['nuevo_nro_doc'])){
@@ -243,7 +243,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="nombres">Nombres:</label>
 				<div class="col-sm-10">
-					<input type="text" name="nombres" class='form-control' id="nombres" value=<?php  $resultado = validar_var_session('nombres'); 
+					<input type="text" name="nombres" class='form-control' id="nombres" value=<?php  $resultado = validar_var_session('modificar','nombres'); 
 					if ($resultado == -1){ 
 						echo $nombres;
 					}  ?>> 
@@ -266,7 +266,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="apellidos">Apellido:</label>
 				<div class="col-sm-10">
-					<input type="text" name="apellidos"  class='form-control' id="apellidos" value=<?php  $resultado = validar_var_session('apellidos'); 
+					<input type="text" name="apellidos"  class='form-control' id="apellidos" value=<?php  $resultado = validar_var_session('modificar','apellidos'); 
 						if ($resultado == -1){ 
 							echo $apellidos;
 						}?>> 
@@ -288,7 +288,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="fecha_nac">Fecha de nacimiento:</label>
 				<div class="col-sm-10">
-					<input type="date" name="fecha_nac" class='form-control' id="fecha_nac" value=<?php  $resultado = validar_var_session('fecha_nac'); 
+					<input type="date" name="fecha_nac" class='form-control' id="fecha_nac" value=<?php  $resultado = validar_var_session('modificar','fecha_nac'); 
 					if ($resultado == -1){ 
 						echo $fecha_nac;
 					}  ?>> 
@@ -385,7 +385,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="direccion">Direccion:</label>
 				<div class="col-sm-10">
-				    <input type='text' id='direccion' class='form-control' name='direccion' value=<?php  $resultado = validar_var_session('direccion'); 
+				    <input type='text' id='direccion' class='form-control' name='direccion' value=<?php  $resultado = validar_var_session('modificar','direccion'); 
 						if ($resultado == -1){ 
 						echo $direccion;
 						}  ?>> 
@@ -407,7 +407,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="num_direc">Altura:</label>
 				<div class="col-sm-10">
-					<input type='text' name='num_direc' class='form-control' id='num_direc' value=<?php  $resultado = validar_var_session('num_direc'); 
+					<input type='text' name='num_direc' class='form-control' id='num_direc' value=<?php  $resultado = validar_var_session('modificar','num_direc'); 
 					if ($resultado == -1){ 
 					echo $num_direccion;
 					}  ?>> 
@@ -450,7 +450,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="telefono1">Telefono 1:</label>
 				<div class="col-sm-10">
-					<input type='text' name='telefono1' class='form-control' id='telefono1' value=<?php  $resultado = validar_var_session('telefono1'); 
+					<input type='text' name='telefono1' class='form-control' id='telefono1' value=<?php  $resultado = validar_var_session('modificar','telefono1'); 
 					if ($resultado == -1){ 
 					echo $telefono_1;
 					}  ?>> 
@@ -474,7 +474,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="telefono2">Telefono 2:</label>
 				<div class="col-sm-10">
-					<input type='text' name='telefono2' class='form-control' id='telefono2' value=<?php  $resultado = validar_var_session('telefono2'); 
+					<input type='text' name='telefono2' class='form-control' id='telefono2' value=<?php  $resultado = validar_var_session('modificar','telefono2'); 
 					if ($resultado == -1){ 
 					echo $telefono_2;
 					}  ?>> 
@@ -494,7 +494,7 @@ include_once ('aside.php');
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="email">Direccion E-mail:</label>
 				<div class="col-sm-10">
-					<input type='text' name='email' class='form-control' id='email' value=<?php  $resultado = validar_var_session('email'); 
+					<input type='text' name='email' class='form-control' id='email' value=<?php  $resultado = validar_var_session('modificar','email'); 
 					if ($resultado == -1){ 
 					echo $direccion_email;
 					}  

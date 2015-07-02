@@ -33,81 +33,81 @@ session_start();
 	}
 
 	$id_perfil  = $_POST['id_perfil'];
-	$_SESSION['id_perfil']=$id_perfil;
+	$_SESSION['modificar']['id_perfil']=$id_perfil;
 
-	$tipo_rol   = $_SESSION['tipo_rol']; //Guardo en $tipo_rol, el valor del tipo ingresado en la consulta del perfil al inicio ya que el mismo no se va a poder modificar
+	$tipo_rol   = $_SESSION['modificar']['tipo_rol']; //Guardo en $tipo_rol, el valor del tipo ingresado en la consulta del perfil al inicio ya que el mismo no se va a poder modificar
 
 	
 	if (isset($_POST['nuevo_tipo_doc'])){ 					// Se agrego tratamiento nuevo_tipo_doc y nuevo_nro_doc, para poder realizar la modificacion de los mismo 
 		$tipo_doc = "NULL";				  					// y ademas, en caso de haberse modificado y exista un rechazo por validacion, se muestren estos nuevos ingresados 
 		$nuevo_tipo_doc = $_POST['nuevo_tipo_doc']; 		// y no los obtenidos al realizar la consulta del perfil.	
-		$_SESSION['nuevo_tipo_doc']  = $nuevo_tipo_doc ;	// Tambien, por el hecho de que al existir rechazo por validacion, al volver al frmModificarPerfil, debia mantener los valores
+		$_SESSION['modificar']['nuevo_tipo_doc']  = $nuevo_tipo_doc ;	// Tambien, por el hecho de que al existir rechazo por validacion, al volver al frmModificarPerfil, debia mantener los valores
 	}														// de tipo y nro doc ingresados en la busqueda, para poder obtener el resto de los datos. Es decir, siempre busque al perfil por lo mismo valores ingresados.
 	else{
 		$nuevo_tipo_doc  = "NULL";
 		$tipo_doc   = $_POST['tipo_doc'];
-		$_SESSION['nuevo_tipo_doc'] = $tipo_doc;
+		$_SESSION['modificar']['nuevo_tipo_doc'] = $tipo_doc;
 	}
 
 
 	if (isset($_POST['nuevo_nro_doc'])) {
 		$nro_doc = "NULL";
 		$nuevo_nro_doc = $_POST['nuevo_nro_doc'];
-		$_SESSION['nuevo_nro_doc']  = $nuevo_nro_doc ;		
+		$_SESSION['modificar']['nuevo_nro_doc']  = $nuevo_nro_doc ;		
 	}
 	else
 	{	$nuevo_nro_doc = "NULL";
 		$nro_doc = $_POST['nro_doc'] ;
-		$_SESSION['nuevo_nro_doc']  =  $nro_doc;
+		$_SESSION['modificar']['nuevo_nro_doc']  =  $nro_doc;
 	}	
 
 	$nombres   = $_POST['nombres'];
-	$_SESSION['nombres']=$nombres;
+	$_SESSION['modificar']['nombres']=$nombres;
 
 	$apellidos = $_POST['apellidos'];
-	$_SESSION['apellidos']=$apellidos;
+	$_SESSION['modificar']['apellidos']=$apellidos;
 
 	$fecha_nac = $_POST['fecha_nac'];
-	$_SESSION['fecha_nac']=$fecha_nac;
+	$_SESSION['modificar']['fecha_nac']=$fecha_nac;
 
 	$pais = $_POST['pais'];
-	$_SESSION['pais']=$pais;
+	$_SESSION['modificar']['pais']=$pais;
 
 	$provincia = $_POST['provincia'];
-	$_SESSION['provincia']=$provincia;
+	$_SESSION['modificar']['provincia']=$provincia;
 
 	$localidad = $_POST['localidad'];
-	$_SESSION['localidad']=$localidad;
+	$_SESSION['modificar']['localidad']=$localidad;
 
 	$direccion = $_POST['direccion'];
-	$_SESSION['direccion']=$direccion;
+	$_SESSION['modificar']['direccion']=$direccion;
 
 	$num_direc = $_POST['num_direc']; 
-	$_SESSION['num_direc']=$num_direc;
+	$_SESSION['modificar']['num_direc']=$num_direc;
 
 	$sexo = $_POST['sexo'];
-	$_SESSION['sexo']=$sexo;
+	$_SESSION['modificar']['sexo']=$sexo;
 
 	$telefono1 = $_POST['telefono1'];
-	$_SESSION['telefono1']=$telefono1;
+	$_SESSION['modificar']['telefono1']=$telefono1;
 
 	$telefono2 = $_POST['telefono2'];
 	if ( !trim($telefono2) ==''){
-		$_SESSION['telefono2']=$telefono2;
+		$_SESSION['modificar']['telefono2']=$telefono2;
 	}
 	else{
 		$telefono2 = "NULL";
-		$_SESSION['telefono2'] = '';
+		$_SESSION['modificar']['telefono2'] = '';
 	}
 
 	$email = $_POST['email'];
 	if ( !trim($email) ==''){
 		$email = "'$email'";
-		$_SESSION['email']  = $email ;	
+		$_SESSION['modificar']['email']  = $email ;	
 	}
 	else{
 		$email = "NULL";
-		$_SESSION['email'] = '';
+		$_SESSION['modificar']['email'] = '';
 	}
 
 
@@ -173,12 +173,12 @@ session_start();
 	
 	
 	if (isset($_POST['nuevo_nro_doc'])){
-		if ($_SESSION['nro_doc'] != $_POST['nuevo_nro_doc']) {
-			$val-> val_perfil_existente ('../frmModificacionPerfil.php', $_SESSION['tipo_rol'], $_POST['nuevo_tipo_doc'], $_POST['nuevo_nro_doc']);
+		if ($_SESSION['modificar']['nro_doc'] != $_POST['nuevo_nro_doc']) {
+			$val-> val_perfil_existente ('../frmModificacionPerfil.php', $_SESSION['modificar']['tipo_rol'], $_POST['nuevo_tipo_doc'], $_POST['nuevo_nro_doc']);
 		}
 	}
-	elseif($_SESSION['nro_doc'] != $_POST['nro_doc']) {		
-		$val-> val_perfil_existente ('../frmModificacionPerfil.php', $_SESSION['tipo_rol'], $_POST['tipo_doc'], $_POST['nro_doc']);
+	elseif($_SESSION['modificar']['nro_doc'] != $_POST['nro_doc']) {		
+		$val-> val_perfil_existente ('../frmModificacionPerfil.php', $_SESSION['modificar']['tipo_rol'], $_POST['tipo_doc'], $_POST['nro_doc']);
 	}
 
 	/*FALTA MAIL*/
