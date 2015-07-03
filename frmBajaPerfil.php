@@ -6,9 +6,11 @@ session_start();
 			
  }
 
-unset($_SESSION['alta']);
-unset($_SESSION['consultar']);
-unset($_SESSION['modificacion']);
+
+
+ unset($_SESSION['alta']);
+ unset($_SESSION['baja']);
+ unset($_SESSION['modificar']);
 
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
@@ -66,26 +68,12 @@ switch($tipo_rol) {
 		    break;
 }
 
+$_SESSION['baja']['tipo_rol_desc'] = $tipo_rol_desc;
+
 include_once('header.php');
 include_once ('aside.php');
 
- ?>
-
- <div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-		<!-- Titulo -->
-	   	<div class="bg-light lter b-b wrapper-md">
-	  		<h1 class="m-n font-thin h3">Baja perfil <small> Datos del <?php echo $tipo_rol_desc ?> a dar de baja</small></h1>
-		</div>
-		<div class="wrapper-md" ng-cotroller="FormDemoCtrl">		
-		    <div class="panel panel-default">
-		    <!-- Formulario -->
-		    <div class="panel-body">
-			<form action='frmBajaPerfil.php' class="form-horizontal" method='POST'>
-		
-	<?php 
-	 
-	
+ 	
 		$cMySQL = "SELECT A.nombres,      A.apellidos,      A.id_perfil,
 						  B.descr_tipdoc	    		   
 
@@ -104,7 +92,7 @@ include_once ('aside.php');
 		// 	exit();
 		// }
 
-
+	    
 	   	while ($line = mysql_fetch_array($query)){
 	   		$_SESSION['baja']['nombres'] 		= $line['nombres'];
 	        $_SESSION['baja']['apellidos'] 		= $line['apellidos'];
@@ -120,47 +108,60 @@ include_once ('aside.php');
 
 
 	    ?>
+ <div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+		<div class="bg-light lter b-b wrapper-md">
+	  		<h1 class="m-n font-thin h3">Baja perfil <small> Datos del <?php echo $tipo_rol_desc ?> a dar de baja</small></h1>
+		</div>
 
-	   <form action='php/aplicarBajaPerfil.php' method='POST'>
-	   <!-- ID de Perfil -> para luego tomarlo en el UPDATE -->
-	    
-	   <input type="hidden" name="id_perfil" value=<?php echo $id_perfil ?>> 
+		<div class="wrapper-md" ng-cotroller="FormDemoCtrl">		
+       		<div class="panel panel-default">
+       			<div class="panel-body">
 
-	    <div class="line line-dashed b-b line-lg pull-in"></div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label" for="nombres">Nombres:</label>
-				<div class="col-sm-10">
-					<input type="text" name="nombres" id="nombres" class='form-control' value=<?php echo $nombres ?>> 
-				 </div>
-		 </div>
-		<div class="line line-dashed b-b line-lg pull-in"></div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label" for="apellidos">Apellidos:</label>
-				<div class="col-sm-10">
-					<input type="text" name="apellidos" id="apellidos" class='form-control' value=<?php echo $apellidos ?>> 
-				</div>
-		 </div>
+       				<form action="php/aplicarBajaPerfil.php" class="form-horizontal" method="POST">
+					 		<div class="line line-dashed b-b line-lg pull-in"></div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="nombres">Nombres:</label>
+									<div class="col-sm-10">
+										<input type="text" name="nombres" id="nombres" class='form-control' value=<?php echo $nombres ?>> 
+									 </div>
+							 </div>
+							<div class="line line-dashed b-b line-lg pull-in"></div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="apellidos">Apellidos:</label>
+									<div class="col-sm-10">
+										<input type="text" name="apellidos" id="apellidos" class='form-control' value=<?php echo $apellidos ?>> 
+									</div>
+							 </div>
 
-		<div class="line line-dashed b-b line-lg pull-in"></div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label" for="tipo_doc">Tipo de Documento:</label>
-				<div class="col-sm-10">
-					<input type="text" name="tipo_doc" id="tipo_doc" class='form-control' value=<?php echo $descr_tipdoc ?>> 
-				</div>
-		 </div>
-		
-		<div class="line line-dashed b-b line-lg pull-in"></div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label" for="nro_doc">Número de Documento:</label>
-				<div class="col-sm-10">
-					<input type="text" name="nro_doc" id="nro_doc" class='form-control' value=<?php echo $nro_doc ?>> 
-				</div>
-		 </div>
+							<div class="line line-dashed b-b line-lg pull-in"></div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="tipo_doc">Tipo de Documento:</label>
+									<div class="col-sm-10">
+										<input type="text" name="tipo_doc" id="tipo_doc" class='form-control' value=<?php echo $descr_tipdoc ?>> 
+									</div>
+							 </div>
+							
+							<div class="line line-dashed b-b line-lg pull-in"></div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="nro_doc">Número de Documento:</label>
+									<div class="col-sm-10">
+										<input type="text" name="nro_doc" id="nro_doc" class='form-control' value=<?php echo $nro_doc ?>> 
+									</div>
+							 </div>
 
-		<input type="submit" value="Dar de baja" class="btn btn-info">
-		<br><br>
-		<a class="btn btn-default" href="administrador.php">Volver</a>
+       				
+       		
+						<input type="submit" value="Dar de baja" class="btn btn-info"> 
+						<br><br>
+						<a class="btn btn-default" href="frmConsultarBaja.php">Volver</a>
 
-		</form>
+					</form>
+				</div> 
+	       	</div>
+		</div>
+    </div>
+</div>
+<!-- / content -->
 
 <?php include'footer.php' ?>

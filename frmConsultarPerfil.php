@@ -67,15 +67,15 @@ include_once ('aside.php');
 	          <label class="col-sm-2 control-label">Tipo de alta:</label>
 	          <div class="col-sm-10 radio">
 	            <label class="i-checks i-checks-sm" for="adm">
-	            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION['consultar']["tipo_rol"]) && $_SESSION['consultar']["tipo_rol"] == 1) echo "checked"; ?>>
+	            	<input id="adm" name="tipo_rol" type="radio" value="1" <?php if (isset($_SESSION['modificar']["tipo_rol"]) && $_SESSION['modificar']["tipo_rol"] == 1) echo "checked"; ?>>
 	            	<i></i>Administrador
 	            </label>
 	            <label class="i-checks i-checks-sm" for="mon">
-	            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION['consultar']["tipo_rol"]) && $_SESSION['consultar']["tipo_rol"] == 2) echo "checked"; ?>>
+	            	<input id="mon" name="tipo_rol" type="radio" value="2" <?php if (isset($_SESSION['modificar']["tipo_rol"]) && $_SESSION['modificar']["tipo_rol"] == 2) echo "checked"; ?>>
 	            	<i></i>Monitoreador
 	            </label>
 	            <label class="i-checks i-checks-sm" for="cli">
-	            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION['consultar']["tipo_rol"]) && $_SESSION['consultar']["tipo_rol"] == 3) echo "checked"; ?>>
+	            	<input id="cli" name="tipo_rol" type="radio" value="3" <?php if (isset($_SESSION['modificar']["tipo_rol"]) && $_SESSION['modificar']["tipo_rol"] == 3) echo "checked"; ?>>
 	            	<i></i>Cliente
 				 </label>
 					<?php 
@@ -93,7 +93,7 @@ include_once ('aside.php');
 						<div class="col-sm-10">
 								<?php 
 									$formulario = new formulario;
-									$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','consultar');
+									$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','modificar');
 								 
 									if ($nError == 1 && strpos($error_val,'tipo_doc')) {
 										echo "$campo_obligatorio";
@@ -106,7 +106,7 @@ include_once ('aside.php');
 					<div class="form-group">
 						<label for="nro_doc" class="col-sm-2 control-label">Número Documento:</label>
 						<div class="col-sm-10">
-							<input type="text" id="nro_doc"name="nro_doc" class='form-control' value=<?php validar_var_session('consultar','nro_doc') ?>>
+							<input type="text" id="nro_doc"name="nro_doc" class='form-control' value=<?php validar_var_session('modificar','nro_doc') ?>>
 								<?php 
 									if (strpos($error_val,'nro_doc')){
 									 	switch ($nError) {

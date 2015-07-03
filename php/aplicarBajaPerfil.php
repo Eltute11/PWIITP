@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 //session_destroy();
 
 		if(!isset($_SESSION['usuario'])){
@@ -22,12 +23,13 @@ include ("clases.php");
 <body>
 
 	<?php 
-	$nombres = $_SESSION['nombres'];
-    $apellidos = $_SESSION['apellidos'];
-    $descr_tipdoc = $_SESSION['descr_tipdoc'];
-    $id_perfil = $_SESSION['id_perfil'];
-	$tipo_rol_desc = $_SESSION['tipo_rol_desc'];
+	$nombres = $_SESSION['baja']['nombres'];
+    $apellidos = $_SESSION['baja']['apellidos'];
+    $descr_tipdoc = $_SESSION['baja']['descr_tipdoc'];
+    $id_perfil = $_SESSION['baja']['id_perfil'];
+	$tipo_rol_desc = $_SESSION['baja']['tipo_rol_desc'];
 
+	
 	$base = new BD;
 	$conexion = $base->Conectar();
 
@@ -48,11 +50,6 @@ include ("clases.php");
 		}
 	else
 		echo "<h3>Ha ocurrido un problema al querer eliminar al $tipo_rol_desc $nombres $apellidos <br><br>" .mysql_error()."</h3>";
-
-
-
-
-
 
 
 	?>

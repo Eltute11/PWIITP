@@ -35,7 +35,7 @@ session_start();
 	$id_perfil  = $_POST['id_perfil'];
 	$_SESSION['modificar']['id_perfil']=$id_perfil;
 
-	$tipo_rol   = $_SESSION['modificar']['tipo_rol']; //Guardo en $tipo_rol, el valor del tipo ingresado en la consulta del perfil al inicio ya que el mismo no se va a poder modificar
+	$tipo_rol = $_SESSION['modificar']['tipo_rol']; //Guardo en $tipo_rol, el valor del tipo ingresado en la consulta del perfil al inicio ya que el mismo no se va a poder modificar
 
 	
 	if (isset($_POST['nuevo_tipo_doc'])){ 					// Se agrego tratamiento nuevo_tipo_doc y nuevo_nro_doc, para poder realizar la modificacion de los mismo 

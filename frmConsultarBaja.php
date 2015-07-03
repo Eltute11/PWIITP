@@ -8,29 +8,11 @@ if(!isset($_SESSION['usuario'])){
 }
 
 unset($_SESSION['alta']);
-unset($_SESSION['consultar']);
+unset($_SESSION['baja']);
 unset($_SESSION['modificacion']);
 
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
-
-// if(!isset($_SESSION['baja']['usuario'])){
-// 			session_destroy();
-// 			header('location: index.php?error=loguearse');
-			
-// }
-
-// if (isset($_SESSION['baja']['nro_doc'])){
-// 	$var = $_SESSION['baja']['nro_doc'];
-// 	exit ($var);
-// }
-// else{
-
-// 	exit ("SIN VALOR");
-// }
-
-
-
 
 $base = new BD;
 $conexion = $base->Conectar();
@@ -142,8 +124,6 @@ include_once ('aside.php');
 
 		<input type="hidden" name="valido_perfil" value="1"> 
 
-		<input type="hidden" name="resultado_busqueda" value="1"> 
-		
 		<div class="line line-dashed b-b line-lg pull-in"></div>
 			<div class="form-group">
 				<div class="col-sm-4 col-sm-offset-2">
