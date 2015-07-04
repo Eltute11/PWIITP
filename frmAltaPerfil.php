@@ -7,9 +7,9 @@ session_start();
 			
 		}
 
+
 unset($_SESSION['baja']);
-unset($_SESSION['consultar']);
-unset($_SESSION['modificacion']);
+unset($_SESSION['modificar']);
 
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
@@ -394,4 +394,4 @@ include_once ('aside.php');
 </div>
 <!-- / content -->
 
-<?php include'footer.php' ?>
+<?php include_once('footer.php') ?>

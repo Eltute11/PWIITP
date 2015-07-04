@@ -8,6 +8,12 @@
     }
 	include_once("header.php");
 	include_once("aside.php");
+
+unset($_SESSION['alta']);
+unset($_SESSION['baja']);
+unset($_SESSION['modificar']);
+
+
 ?>
 
  <!-- content -->

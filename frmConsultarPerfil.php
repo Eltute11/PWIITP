@@ -8,7 +8,7 @@ if(!isset($_SESSION['usuario'])){
 }
 unset($_SESSION['alta']);
 unset($_SESSION['baja']);
-unset($_SESSION['modificacion']);
+unset($_SESSION['modificar']);
 
 include_once ("php/clases.php");
 include_once ("php/funciones.php");
@@ -129,7 +129,8 @@ include_once ('aside.php');
 			<div class="form-group">
 				<div class="col-sm-4 col-sm-offset-2">
 					<input type="submit" value="Consultar datos" class="btn btn-info">
-					<a class="btn btn-default" href="administrador.php">Volver</a>
+					<!-- <a class="btn btn-default" href="administrador.php">Volver</a> -->
+					<a class="btn btn-primary" href="administrador.php">Volver</a>
 		 		 </div>
 			</div>
 

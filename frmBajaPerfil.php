@@ -9,7 +9,7 @@ session_start();
 
 
  unset($_SESSION['alta']);
- unset($_SESSION['baja']);
+ // unset($_SESSION['baja']); No tiene que eliminar la variables que vas a utilizaar, no se van a cargar.
  unset($_SESSION['modificar']);
 
 include_once ("php/clases.php");
