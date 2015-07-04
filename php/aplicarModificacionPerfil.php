@@ -215,23 +215,29 @@ session_start();
 	 switch($tipo_rol) 
 		 		 {	
 		 		 case 1 :
-		             $tipo_rol_desc = 'Administrador';
+		             $tipo_rol_desc = 'administrador';
 		             break;
 		         case 2 :
-		             $tipo_rol_desc = 'Monitoreador';
+		             $tipo_rol_desc = 'monitoreador';
 		             break;
 		         case 3 :
-		             $tipo_rol_desc = 'Cliente';
+		             $tipo_rol_desc = 'cliente';
 		             break;
 		        }
 
 
+	$_SESSION['tituloResultado'] = "Modificacion de perfil"; // Guardo en esta variable session el titulo que se va a mostrar en la pagina resultadoOperacion.php	        
 	if (mysql_affected_rows() == 1) {
-		echo "<h3>El $tipo_rol_desc $nombres $apellidos se actualizo exitosamente.</h3>";	        
+		// echo "<h3>El $tipo_rol_desc $nombres $apellidos se actualizo exitosamente.</h3>";	        
+		$_SESSION['msjResultadoOperacion'] = "El $tipo_rol_desc $nombres $apellidos se actualizó exitosamente.";
+		header("location: ../resultadoOperacion.php");
 		//session_destroy();
 		}
-	else
-		echo "<h3>Ha ocurrido un problema al querer actualizar al $tipo_rol_desc $nombres $apellidos  $id_perfil:<br><br>" . mysql_error()."</h3>";
+	else{
+		// echo "<h3>Ha ocurrido un problema al querer actualizar al $tipo_rol_desc $nombres $apellidos  $id_perfil:<br><br>" . mysql_error()."</h3>";
+		$_SESSION['msjResultadoOperacion'] = "Ha ocurrido un problema al querer actualizar al $tipo_rol_desc $nombres $apellidos: ".mysql_error();	
+		header("location: ../resultadoOperacion.php?errorOperacion=1&volverPagina=frmModificacionPerfil");
+	}
 
 	//PRINT "<br>Registros insertados: ". mysql_affected_rows(); // mysql_affected_rows(); devuelve la cantidad de filas afectadas. EN EL ULTIMO UPDATE,DELETE,INSET
 

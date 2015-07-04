@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Alta</title>
-</head>
-<body>
 <?php 
 	session_start();
 	
@@ -19,6 +12,13 @@
 		unset($_SESSION['nError']);
 	}
 	
+
+	if (isset($_SESSION['msjResultadoOperacion'])) {
+		unset($_SESSION['msjResultadoOperacion']);
+		unset($_SESSION['tituloResultado']);
+	}
+
+
 	//$formulario = $_POST['alta']; // COMO RECIBIR NOMBRE DE FORMULARIO POR PHP
 
 	$cod_tiporol  = $_POST['tipo_rol'];
@@ -66,15 +66,16 @@
 	$email 	   = $_POST['email']; 
 	$_SESSION['alta']['email']=$email;
 
-	$newUser  = $_POST['newUser'];
-	$_SESSION['alta']['newUser']=$newUser;
+	if ($cod_tiporol !=3) {
+		$newUser  = $_POST['newUser'];
+		$_SESSION['alta']['newUser']=$newUser;
 
-	$pass1 = $_POST['pass1'];
-	$_SESSION['alta']['pass1']=$pass1;
+		$pass1 = $_POST['pass1'];
+		$_SESSION['alta']['pass1']=$pass1;
 
-	$pass2 = $_POST['pass2'];
-	$_SESSION['alta']['pass2']=$pass2;
-
+		$pass2 = $_POST['pass2'];
+		$_SESSION['alta']['pass2']=$pass2; 
+	}
 	include ("clases.php");
 	
 	$val = new validacion;
@@ -102,16 +103,16 @@
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$telefono1,'telefono1',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$sexo,'sexo',0);
 
-	//if ($cod_tiporol == 3) {
+	if ($cod_tiporol != 3) {
 		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['newUser'],'newUser',0);
 		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass1'], 'pass1', 0);
 		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass2'], 'pass2',1);
-	//}
+	}
 		
 	if (trim($telefono2) != ''){
 		$val->val_campo_numerico('../frmAltaPerfil.php',$telefono2,'telefono2',0);
 	}
-	$val->val_campo_numerico('../frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
+	 $val->val_campo_numerico('../frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
 	$val->val_campo_numerico('../frmAltaPerfil.php',$num_direc, 'num_direc',0);
 	$val->val_campo_numerico('../frmAltaPerfil.php',$telefono1,'telefono1',1);
 	
@@ -122,8 +123,10 @@
 	$val->val_campo_letras('../frmAltaPerfil.php',$nombres,'nombres',0);
 	$val->val_campo_letras('../frmAltaPerfil.php',$apellidos, 'apellidos',1);
 	
-	$val->val_usuario('../frmAltaPerfil.php', $newUser, 'newUser');
-	$val->val_passwords('../frmAltaPerfil.php',$pass1, $pass2);
+	if ($cod_tiporol != 3) {
+		$val->val_usuario('../frmAltaPerfil.php', $newUser, 'newUser');
+		$val->val_passwords('../frmAltaPerfil.php',$pass1, $pass2);
+	}
 
 
 	// CONEXION A BASE DE DATOS
@@ -131,7 +134,7 @@
 	$conexion = $base->Conectar();
  	
  	// Si estos valores no se ingresaron, se setea nulos ya que los acepta en las tabla.
-
+	
 	if (trim($telefono2) ==''){
 	$telefono2 = "NULL";
 	}
@@ -143,9 +146,6 @@
 		$email = "'$email'"; //Agrego este tratamiento para que pueda enviarlo como string con '' o NULL sin ''
 	}
  	
-/*	$val = new validacion;
-	$validar = $val->validar_check($tipo_rol);*/
-
 	$query  = "SELECT IFNULL(MAX(id_perfil),0) +1 FROM PERFILES";
 	$result = mysql_query($query);
 
@@ -171,50 +171,64 @@
 									 $email  );	" or die(mysql_error());
 
 	
-	
 	mysql_query($query);
 
 	
 	 switch($cod_tiporol) 
 		 		 {	
 		 		 case 1 :
-		             $tipo_rol_desc = 'Administrador';
+		             $tipo_rol_desc = 'administrador';
 		             break;
 		         case 2 :
-		             $tipo_rol_desc = 'Monitoreador';
+		             $tipo_rol_desc = 'monitoreador';
 		             break;
 		         case 3 :
-		             $tipo_rol_desc = 'Cliente';
+		             $tipo_rol_desc = 'cliente';
 		             break;
 		        }
 
-
+$_SESSION['tituloResultado'] = "Alta de perfil"; // Guardo en esta variable session el titulo que se va a mostrar en la pagina resultadoOperacion.php
+		        
 	if (mysql_affected_rows() == 1) {
-		echo "<h3>El $tipo_rol_desc $nombres $apellidos se dio de Alta exitosamente.</h3>";	        
-		//session_destroy();
+		if ($cod_tiporol!=3){
+			$_SESSION['msjResultadoOperacion'] = "El $tipo_rol_desc  $nombres $apellidos ";      
 		}
-	else
-		echo "<h3>Ha ocurrido un problema al querer dar de alta al $tipo_rol_desc $nombres $apellidos:<br><br>" . mysql_error()."</h3>";
+		else{
+			$_SESSION['msjResultadoOperacion'] = "El $tipo_rol_desc $nombres $apellidos se dio de Alta exitosamente.";
+			 header("location: ../resultadoOperacion.php");
+		}	
 
+	}
+	else{
+		$_SESSION['msjResultadoOperacion'] = "Ha ocurrido un problema al querer dar de alta al $tipo_rol_desc $nombres $apellidos:<br><br>" . mysql_error();
+		header("location: ../resultadoOperacion.php?errorOperacion=1&volverPagina=frmAltaPerfil");
+	}
 	//PRINT "<br>Registros insertados: ". mysql_affected_rows(); // mysql_affected_rows(); devuelve la cantidad de filas afectadas. EN EL ULTIMO UPDATE,DELETE,INSET
-	$passEncrip = md5($pass1);
 	
-	$sMySQL = "INSERT INTO USUARIOS (cod_tiporol, id_perfil, usuario, password)
-			  VALUES ( $cod_tiporol ,$id_perfil , '$newUser', '$passEncrip')";
 
-	$rQuery = mysql_query($sMySQL);
+	if ($cod_tiporol!=3) { 
+		$passEncrip = md5($pass1);
+		
+
+		$sMySQL = "INSERT INTO USUARIOS (cod_tiporol, id_perfil, usuario, password)
+				   VALUES ( $cod_tiporol ,$id_perfil , '$newUser', '$passEncrip')";
+
+		$rQuery = mysql_query($sMySQL);
 
 
-	if (mysql_affected_rows() == 1) {
-		echo "<h3>El usuario $newUser se dio de Alta exitosamente.</h3>";	        
-		session_destroy();
+		if (mysql_affected_rows() == 1) {
+			  $_SESSION['msjResultadoOperacion'] = $_SESSION['msjResultadoOperacion']." con usuario '$newUser' se dio de alta exitosamente.";
+			  header("location: ../resultadoOperacion.php");
+			   
 		}
-	else
-		echo "<h3>Ha ocurrido un problema al querer dar de alta al usuario $newUser :<br><br>" . mysql_error()."</h3>";	
+		else{
+			$_SESSION['msjResultadoOperacion'] = "Ha ocurrido un problema al querer dar de alta al usuario $newUser :".mysql_error();	
+			header("location: ../resultadoOperacion.php?errorOperacion=1&volverPagina=frmAltaPerfil");
+		}
+	
+	}
+	 
 
 
  ?>
-	<a href="../frmAltaPerfil.php"><h3>Volver</h3></a>
-	<!-- <a href="generar.html" type="button">Generar</a> -->
-</body>
-</html>
+  

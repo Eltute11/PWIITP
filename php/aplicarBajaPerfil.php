@@ -43,14 +43,19 @@ include ("clases.php");
 	$sMySQL = "DELETE FROM PERFILES WHERE id_perfil = $id_perfil";
 	mysql_query($sMySQL);
 
+     $_SESSION['tituloResultado'] = "Baja de perfil"; // Guardo en esta variable session el titulo que se va a mostrar en la pagina resultadoOperacion.php
 
 	if (mysql_affected_rows() == 1) {
-		echo "<h3>El $tipo_rol_desc $nombres $apellidos ha sido eliminado exitosamente.</h3>";	        
+		// echo "<h3>El $tipo_rol_desc $nombres $apellidos ha sido eliminado exitosamente.</h3>";	        
+		$_SESSION['msjResultadoOperacion'] = "El $tipo_rol_desc $nombres $apellidos ha sido eliminado exitosamente.";
+		header("location: ../resultadoOperacion.php");
 		//session_destroy();
 		}
-	else
-		echo "<h3>Ha ocurrido un problema al querer eliminar al $tipo_rol_desc $nombres $apellidos <br><br>" .mysql_error()."</h3>";
-
+	else{
+		// echo "<h3>Ha ocurrido un problema al querer eliminar al $tipo_rol_desc $nombres $apellidos <br><br>" .mysql_error()."</h3>";
+		$_SESSION['msjResultadoOperacion'] = "Ha ocurrido un problema al querer eliminar al $tipo_rol_desc $nombres $apellidos: ".mysql_error();	
+		header("location: ../resultadoOperacion.php?errorOperacion=1&volverPagina=frmBajaPerfil");
+	} 	
 
 	?>
 </body>
