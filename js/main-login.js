@@ -83,6 +83,7 @@ jQuery(document).ready(function($){
 		$form_forgot_password.removeClass('is-selected');
 		$tab_login.removeClass('selected');
 		$tab_signup.addClass('selected');
+		$('select').addClass('full-width has-padding has-border');
 	}
 
 	function forgot_password_selected(){

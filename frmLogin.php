@@ -12,6 +12,22 @@ session_start();
 		}
 	}	
 	unset($_GET['error']); //Borramos de memoria para optimizar PHP
+
+include_once ("php/clases.php");
+include_once ("php/funciones.php");
+
+$base = new BD;
+$conexion = $base->Conectar();
+
+if (isset($_GET['error-val'])){
+	$error_val = $_GET['error-val'];
+}
+	else
+	{
+		$error_val ='';
+	}
+
+
 ?>
 <!-- LogIn -->
 								<nav class="main-nav">
@@ -26,7 +42,7 @@ session_start();
 											<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
 												<ul class="cd-switcher">
 													<li><a href="#0">Acceso</a></li>
-													<li><a href="#0">Registrarse</a></li>
+													<li ><a id="registrarse" href="#0">Registrarse</a></li>
 												</ul>
 
 												<div id="cd-login"> <!-- log in form -->
@@ -62,24 +78,66 @@ session_start();
 												</div> <!-- cd-login -->
 
 												<div id="cd-signup"> <!-- sign up form -->
-													<form class="cd-form">
+													<form class="cd-form" name="registrarse">
 														<p class="fieldset">
-															<label class="image-replace cd-username" for="signup-username">Username</label>
-															<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Usuario">
+															<label class="image-replace cd-username" for="tipo_doc">Tipo de Documento:</label>
+															<?php 
+																$formulario = new formulario;
+																$formulario->LlenarCombos('cod_tipdoc','descr_tipdoc','TIPOS_DOCUMENTOS','tipo_doc','registrarse');
+															 	if ($error_val == 1 && strpos($error_val,'tipo_doc')) {
+																	echo "$campo_obligatorio";
+																}
+															?>
+															<span class="cd-error-message">Error message here!</span>
+														</p>
+
+														<p class="fieldset">
+															<label for="nro_doc" class="image-replace cd-username">Número Documento:</label>
+																<input type="text" id="nro_doc" class="full-width has-padding has-border" name="nro_doc" placeholder="Número de Documento" value=<?php validar_var_session('registrarse','nro_doc') ?>>
+																<?php 
+																 	if ($error_val == 'nro_doc')	{
+																 	switch ($nError) {
+																 		case 1: echo "$campo_obligatorio";
+																 				break;
+																 		case 2: echo "$solo_numeros";
+																 				break;	
+																 		case 5: echo "$cliente_inexistente";
+																 				break;			
+																 	}
+																 }
+
+																?>	
+															<span class="cd-error-message">Error message here!</span>
+														</p>
+
+														<p class="fieldset">
+															<label class="image-replace cd-username" for="usuario">Usuario</label>
+															<input class="full-width has-padding has-border" id="usuario" type="email" placeholder="Nuevo nombre de usuario" value=<?php validar_var_session('registrarse','newUser') ?>>
+															<?php 
+														    	if ($error_val == 'newUser') {
+														    		switch ($nError) {
+																 		case 1: echo "$campo_obligatorio";
+																 				break;
+																 		case 4: echo "$usuario_existente";
+																 				break;	
+														    		}
+														    	}	
+														     ?>
 															<span class="cd-error-message">Error message here!</span>
 
 														</p>
 
 														<p class="fieldset">
-															<label class="image-replace cd-email" for="signup-email">E-mail</label>
-															<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+															<label class="image-replace cd-password" for="password1">Password</label>
+															<input class="full-width has-padding has-border" id="password1" type="text"  placeholder="Contraseña">
+															<a href="#0" class="hide-password">Hide</a>
 															<span class="cd-error-message">Error message here!</span>
 
 														</p>
 
 														<p class="fieldset">
-															<label class="image-replace cd-password" for="signup-password">Password</label>
-															<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Contraseña">
+															<label class="image-replace cd-password" for="password2">Password</label>
+															<input class="full-width has-padding has-border" id="password2" type="text"  placeholder="Repetir Contraseña">
 															<a href="#0" class="hide-password">Hide</a>
 															<span class="cd-error-message">Error message here!</span>
 
