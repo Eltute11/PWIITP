@@ -153,22 +153,23 @@ CREATE TABLE CAMARAS
 
 
 CREATE TABLE PRODUCTOS_SISTEMA
- (  cod_prod   INT NOT NULL AUTO_INCREMENT,
-    descr_prod VARCHAR (100) NOT NULL,
-	precio     DECIMAL (12,2) NOT NULL,
-	stock      NUMERIC (10) NULL,
-	
+ (  cod_prod     INT NOT NULL AUTO_INCREMENT,
+    descr_prod   VARCHAR (100) NOT NULL,
+	precio       DECIMAL (12,2) NOT NULL,
+	stock        NUMERIC (10) NULL,
+	obligatorio  NUMERIC (1) NULL,
+    permite_cant NUMERIC (1) NULL,
 	PRIMARY KEY (cod_prod)
-  )AUTO_INCREMENT=0 ;
+  )AUTO_INCREMENT=000 ;
 
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Costo de instalacion',3000,NULL);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Router centralizador de seguridad',1800,10);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Alarma blindada',3700,10);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Batería de sistema de seguridad',850,10);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Sensores de presencia',550,10);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Sensores de cierre de aperturas',750,10);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Camaras IP',1100,10);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock) VALUES ('Comunicador 3G',2500,10);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Costo de instalacion',3000,20,1,0);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Router centralizador de seguridad',1800,10,1,0);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Alarma blindada',3700,10,1,0);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Bateria de sistema de seguridad',850,10,1,0);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Sensores de presencia',550,10,1,1);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Sensores de cierre de aperturas',750,10,1,1);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Camaras IP',1100,10,0,0);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Comunicador 3G',2500,10,0,0);
 
 
 CREATE TABLE ALARMAS_HOGAR 
