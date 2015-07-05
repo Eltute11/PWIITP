@@ -255,7 +255,35 @@ class validacion{
 
 	}
 
+	public function val_campo_mail ($pagina,$mail,$nombre_campo,$es_ultimo){
+		$this->mail = $mail;
+		$this->nombre_campo=$nombre_campo;
+		$this->pagina = $pagina;
+		$this->es_ultimo = $es_ultimo;
 
+
+		if (!isset( $_SESSION['nError'])){
+			$_SESSION['nError'] = 0;
+		}
+
+		if (!filter_var($this->mail, FILTER_VALIDATE_EMAIL)) {
+
+			$_SESSION['nError'] = 9;
+			if (!isset($_SESSION['sCamposVal'])){
+				 $_SESSION['sCamposVal'] ="-$this->nombre_campo-";
+			}	
+			 	 else{
+			 	 	$_SESSION['sCamposVal'] = $_SESSION['sCamposVal'].$this->nombre_campo.'-';
+			 	 }	
+			 }
+		if ($this->es_ultimo == 1 && $_SESSION['nError'] == 9){
+				$sCamposVal =$_SESSION['sCamposVal']; 
+				$nError = 9;
+				header("location: $this->pagina?nError=$nError&error-val=$sCamposVal");
+				exit();
+			}
+
+	}
 
 	public function val_usuario ($pagina,$usuario, $nombre_campo){
 		$this->pagina = $pagina;

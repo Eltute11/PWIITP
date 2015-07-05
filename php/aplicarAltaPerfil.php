@@ -103,6 +103,10 @@
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$telefono1,'telefono1',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$sexo,'sexo',0);
 
+	if ($email != '') {
+		$val->val_campo_mail('../frmAltaPerfil.php',$mail,'email',1);
+	}
+
 	if ($cod_tiporol != 3) {
 		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['newUser'],'newUser',0);
 		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['pass1'], 'pass1', 0);
@@ -112,7 +116,8 @@
 	if (trim($telefono2) != ''){
 		$val->val_campo_numerico('../frmAltaPerfil.php',$telefono2,'telefono2',0);
 	}
-	 $val->val_campo_numerico('../frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
+
+	$val->val_campo_numerico('../frmAltaPerfil.php',$nro_doc, 'nro_doc',0);
 	$val->val_campo_numerico('../frmAltaPerfil.php',$num_direc, 'num_direc',0);
 	$val->val_campo_numerico('../frmAltaPerfil.php',$telefono1,'telefono1',1);
 	

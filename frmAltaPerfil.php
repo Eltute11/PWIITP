@@ -42,6 +42,8 @@ if (isset($_GET['nError'])) {
 		case 6: $perfil_existente =  "<span style='color: red;'> <h3>El perfil que esta intentando dar de alta ya existe </h3></span>";		
 				break;
 		case 8: $pass_error =  "<span style='color: red;'>*Las contraseñas no coinciden</span>";		
+				break;	
+		case 9: $mail_error =  "<span style='color: red;'>*Mail incorrecto</span>";		
 				break;		
 	}
 }
@@ -316,6 +318,12 @@ include_once ('aside.php');
 										<label class="col-sm-2 control-label" for="email">Dirección E-mail:</label>
 											<div class="col-sm-10">
 												<input class='form-control' type="text" name="email" id="email" value=<?php validar_var_session('alta','email') ?>>
+												<?php 
+													if ($nError == 9) {
+												 	 	echo $mail_error;
+												 	 	echo "<br>";
+												 	 } 	
+										    	?>
 											</div>
 									 </div>
 
