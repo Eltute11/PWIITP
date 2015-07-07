@@ -101,11 +101,12 @@
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$direccion, 'direccion',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$num_direc, 'num_direc',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$telefono1,'telefono1',0);
-	$val->val_campo_obligatorio('../frmAltaPerfil.php',$sexo,'sexo',0);
-
 	if ($email != '') {
-		$val->val_campo_mail('../frmAltaPerfil.php',$mail,'email',1);
+		$val->val_campo_mail('../frmAltaPerfil.php',$mail,'email',0);
 	}
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$sexo,'sexo',1);
+
+	
 
 	if ($cod_tiporol != 3) {
 		$val->val_campo_obligatorio('../frmAltaPerfil.php',$_POST['newUser'],'newUser',0);
@@ -159,8 +160,8 @@
 	    		$id_perfil = $line[0]; //line es el registro, 0 es el numero de columna. 0 es la primera y unica en este caso
 	}
 
-	
-	
+	$_SESSION['alta']['id_perfil'] = $id_perfil ; // Guardo el perfil para ser utilizado en generarPrimerFactura.php
+
 	$query = "INSERT INTO PERFILES (cod_tiporol,        id_perfil,          cod_tipdoc,         
 									nro_doc,            nombres,            apellidos,          
 									fecha_nac,          cod_pais,           cod_prov,           

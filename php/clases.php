@@ -152,7 +152,17 @@ class acceso{
 
 
 class validacion{
+	// ERROR 1: CAMPO OBLIGATORIOO
+	// ERROR 2: SOLO NUMEROS
+	// ERROR 3: SOLO LETRAS
+	// ERROR 4: USUARIO EXISTENTE
+	// ERROR 5: CLIENTE INEXISTENTE
+	// ERROR 6: PERFIL EXISTENTE
+	// ERROR 7: CLIENTE INEXISTENTE
+	// ERROR 8: LAS CONTRASEÑAS NO COINCIDEN
+	// ERROR 9: MAIL INCORRECTO
 
+	
 	protected $radio;
 	protected $combo;
 	protected $num;
