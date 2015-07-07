@@ -3,11 +3,10 @@ CREATE DATABASE Seguridadlandia;
 USE Seguridadlandia;
 
 
-CREATE TABLE TIPOS_DOCUMENTOS 
-(
-	cod_tipdoc NUMERIC(2)	 NOT NULL,
-	descr_tipdoc VARCHAR (20) NOT NULL,	
-	PRIMARY KEY (cod_tipdoc)
+CREATE TABLE TIPOS_DOCUMENTOS (
+    cod_tipdoc NUMERIC(2) NOT NULL,
+    descr_tipdoc VARCHAR(20) NOT NULL,
+    PRIMARY KEY (cod_tipdoc)
 );
 
 INSERT INTO TIPOS_DOCUMENTOS VALUES (1, 'DNI');
@@ -94,7 +93,8 @@ CREATE TABLE PERFILES
 	direccion_email  VARCHAR (40) NULL,
 	
 	UNIQUE (cod_tiporol,cod_tipdoc,nro_doc),
-    PRIMARY KEY (cod_tiporol,id_perfil),
+    -- PRIMARY KEY (cod_tiporol,id_perfil),
+    PRIMARY KEY (id_perfil),
     FOREIGN KEY (cod_tiporol) REFERENCES TIPOS_ROLES(cod_tiporol),
 	FOREIGN KEY (cod_tipdoc) REFERENCES TIPOS_DOCUMENTOS(cod_tipdoc),
 	FOREIGN KEY (cod_pais)   REFERENCES PAISES(cod_pais),
@@ -124,30 +124,30 @@ INSERT INTO PERFILES ( cod_tiporol,       id_perfil,         cod_tipdoc,
 
 
 
-CREATE TABLE USUARIOS 
-(
-	id_perfil NUMERIC(10) NOT NULL,
+CREATE TABLE USUARIOS (
+    id_perfil NUMERIC(10) NOT NULL,
     cod_tiporol NUMERIC(2) NOT NULL,
-	usuario    VARCHAR (30) NOT NULL,
-	password   VARCHAR (40) NOT NULL,
-	
-	PRIMARY KEY (usuario),
-	FOREIGN KEY (cod_tiporol,id_perfil) REFERENCES PERFILES (cod_tiporol,id_perfil)
-
+    usuario VARCHAR(30) NOT NULL,
+    password VARCHAR(40) NOT NULL,
+    PRIMARY KEY (usuario),
+    FOREIGN KEY (id_perfil)
+     REFERENCES PERFILES (id_perfil)
 );
 
 INSERT INTO USUARIOS (cod_tiporol,id_perfil, usuario, password) VALUES	 (1,1,'jurcola','202cb962ac59075b964b07152d234b70');
 
 CREATE TABLE CAMARAS
  (  
-	id_camara      INT NOT NULL AUTO_INCREMENT,
-    cod_tiporol    NUMERIC (2)  NOT NULL DEFAULT 3,
-	id_cliente     NUMERIC (10) NOT NULL,
+	id_cliente NUMERIC (10) NOT NULL,
+    id_camara      INT NOT NULL AUTO_INCREMENT,
+    -- cod_tiporol    NUMERIC (2)  NOT NULL DEFAULT 3,
+	-- id_cliente     NUMERIC (10) NOT NULL,
     descripcion    VARCHAR (30) NULL,
     disponibilidad NUMERIC(1) NOT NULL, -- 1: DISPONIBLE 0: NO DISPONIBLE.  CAMPO QUE HABILITA SI MONITOREADOR PUEDE VISUALZIAR LA MISMA O NO.
 	
 	PRIMARY KEY  (id_camara),
-    FOREIGN KEY (cod_tiporol,id_cliente) REFERENCES PERFILES (cod_tiporol,id_perfil)
+    -- FOREIGN KEY (cod_tiporol,id_cliente) REFERENCES PERFILES (cod_tiporol,id_perfil)
+    FOREIGN KEY (id_cliente) REFERENCES PERFILES (id_perfil)
  
  )AUTO_INCREMENT=1000 ;
 
@@ -168,74 +168,72 @@ INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant
 INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Bateria de sistema de seguridad',850,10,1,0);
 INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Sensores de presencia',550,10,1,1);
 INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Sensores de cierre de aperturas',750,10,1,1);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Camaras IP',1100,10,0,0);
-INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Comunicador 3G',2500,10,0,0);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Camaras IP',1100,10,0,1);
+INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant) VALUES ('Comunicador 3G',2500,10,0,1);
 
 
-CREATE TABLE ALARMAS_HOGAR 
+CREATE TABLE ALARMA_CLIENTE 
  (  
-	cod_alarma		 INT AUTO_INCREMENT, 
-    id_cliente		 NUMERIC (10) NOT NULL, -- POR MEDIO DE ESTE CAMPO y cod_tiporol = 3, SE OBTIENEN TODOS LOS DATOS DEL CLIENTE DE LA TABLA PERFILES.
-    cod_tiporol		 NUMERIC (2)  NOT NULL DEFAULT 3,
-	cod_desbloqueo   NUMERIC (10) NOT NULL, 
-	estado			 NUMERIC (1)  NOT NULL, -- 1:ACTIVADA 0:DESACTIVADA
+	id_cliente NUMERIC (10) NOT NULL,
+    cod_alarma		 INT AUTO_INCREMENT, 
+    -- id_cliente		 NUMERIC (10) NOT NULL, -- POR MEDIO DE ESTE CAMPO y cod_tiporol = 3, SE OBTIENEN TODOS LOS DATOS DEL CLIENTE DE LA TABLA PERFILES.
+    -- cod_tiporol		 NUMERIC (2)  NOT NULL DEFAULT 3,
+	cod_desbloqueo   VARCHAR(40) NOT NULL,
+	estado			 VARCHAR (1)  NOT NULL, -- E: REPOSO - A: ALARMA - B:ALARMA DISPARADA REMOTAMENTE POR EL CLIENTE - C: ALARMA DISPARADA POR EL MONITOREADOR
 
 	PRIMARY KEY (cod_alarma),
-	FOREIGN KEY (cod_tiporol,id_cliente) REFERENCES PERFILES (cod_tiporol,id_perfil)
+	-- FOREIGN KEY (cod_tiporol,id_cliente) REFERENCES PERFILES (cod_tiporol,id_perfil)
+    FOREIGN KEY (id_cliente) REFERENCES PERFILES (id_perfil)
  
  )AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE HIST_ALARMAS_HOGAR 
+
+
+CREATE TABLE HIST_ALARMA_CLIENTE
  (  
 	cod_alarma_hist	 INT NOT NULL,
 	fecha_hora		 DATETIME , -- FECHA  Y HORA QUE FUE ACTIVADA
 	real_falsa       VARCHAR (1) NOT NULL ,-- 'R' = REAL   'F'= FALSA	
 	
-	FOREIGN KEY (cod_alarma_hist) REFERENCES ALARMAS_HOGAR (cod_alarma)
+	FOREIGN KEY (cod_alarma_hist) REFERENCES ALARMA_CLIENTE (cod_alarma)
  
  );
 
-/*
 
+ -- DROP TABLE FACTURA_DET;
+ --  DROP TABLE FACTURA_CAB;
 CREATE TABLE FACTURA_CAB 
  (  
-	nro_fact		  INT AUTO_INCREMENT, 
-    cod_tiporol		  NUMERIC (2)  NOT NULL DEFAULT 3,
-	id_cliente		  NUMERIC (10) NOT NULL, -- POR MEDIO DE ESTE CAMPO y cod_tiporol = 3, SE OBTIENEN TODOS LOS DATOS DEL CLIENTE DE LA TABLA PERFILES.
-    fecha_vencimiento DATETIME NOT NULL,
-    SiNo_Mensual	  NUMERIC(1) NOT NULL, -- SI = 1 , NO = 0. QUE NO SEA MENSUAL; SIGNIFICA QUE ES LA PRIMER FACTURA GENERADA AL CONTRATAR EL SERVICIO 
-										   -- TENER EN CUENTA EL COSTO POR INSTALACION.		
-	Valor_Servicio 	   DECIMAL(10,2) NULL,
+	id_cliente		  NUMERIC (10) NOT NULL, 
+    nro_fact		  INT NOT NULL, 
+    fecha_vencimiento DATE NOT NULL,
     estado_pago       NUMERIC(1) NOT NULL, -- 1:PAGO - 0:NO PAGO
-	
+    total_fact        NUMERIC(10)  NOT NULL,
 	PRIMARY KEY (nro_fact),
-	FOREIGN KEY (cod_tiporol,id_cliente) REFERENCES PERFILES (cod_tiporol,id_perfil)
+	FOREIGN KEY (id_cliente) REFERENCES PERFILES (id_perfil)
  
  )AUTO_INCREMENT=1 ;
- 
  
  
  CREATE TABLE FACTURA_DET
  (
    nro_fact    INT NOT NULL,
-   nro_subfact INT NOT NULL,
+   nro_subfact INT AUTO_INCREMENT,
    cod_prod    INT NULL,
    cantidad    INT NULL,
    imp_total   DECIMAL(10,2) NULL, -- IMPORTE TOTAL DEL PRODUCTO EN PARTICUALR POR CANTIDAD, NO EL TOTAL DE LA FACTURA.
    
-   PRIMARY KEY (nro_fact,nro_subfact),
+   UNIQUE (nro_fact,nro_subfact),
+   PRIMARY KEY (nro_subfact),
    FOREIGN KEY (nro_fact) REFERENCES FACTURA_CAB (nro_fact),
    FOREIGN KEY (cod_prod) REFERENCES PRODUCTOS_SISTEMA (cod_prod)
    
    
- )
+ );
  
  -- ===============================================================================================================================================
  -- EN CASO DE SER LA PRIMERA AL GENERARSE LA FACTURA SE DEBERA SUMAR EL IMPORTE TOTAL DE LOS PRODUCTOS + EL VALOR_SERVICIO DE LA TABLA FACTURA
  -- EN CASO DE SER UNA FACTURA QUE NO SEA LA PRIMERA, SOLO DEBERA COBRAR EL SERVICVIO.
  -- =================================================================================================================================================
-
-*/
-
 
