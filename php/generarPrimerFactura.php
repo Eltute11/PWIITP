@@ -27,12 +27,12 @@ $cod_desbloqueo = md5('12345'); //GUARDO INSCRIPTADA LA PASSWORD POR DEFAULT DE 
 								// EL CLIENTE PDORA CAMBIARLA LUEGO. (SI NOS DA EL TIEMPO)
 
 $query="INSERT INTO ALARMA_CLIENTE (id_cliente,                cod_alarma,                  
-	cod_desbloqueo,             estado)
+									cod_desbloqueo,             estado)
 
-VALUES ($id_perfil,                  $cod_alarma,                  
+							VALUES ($id_perfil,                  $cod_alarma,                  
 								   '$cod_desbloqueo',           'E')"; //ESTADO E: REPOSO COMO DEFAULT
 
-$result= mysql_query($query) or die("Error 1: ".mysql_error());
+$result= mysql_query($query) or die(mysql_error());
 
 // if(mysql_num_rows($result)==1){
 // 	$_SESSION['msjResultadoOperacion'] 
@@ -54,12 +54,12 @@ if (isset($_SESSION['producto']['cod_prod_7'])){
 	while ($i <= $cant_total_sen_apertura ){
 
 		$query = "INSERT INTO CAMARAS (id_cliente,	    descripcion,
-			disponibilidad)	
+									   disponibilidad)	
 
-VALUES    ($id_perfil, 	'$i',
-	$disp_monitor)";
+							VALUES    ($id_perfil, 	'$i',
+									   $disp_monitor)";
 
-$result= mysql_query($query) or die("Error 2: ".mysql_error());
+$result= mysql_query($query) or die(mysql_error());
 
 	$i++; // AUMENTO I 
 }
@@ -82,27 +82,29 @@ while($line = mysql_fetch_array($result)) {
 $_SESSION['factura']['nro_fact'] = $nro_fact;
 
 $query="INSERT INTO FACTURA_CAB (id_cliente,                nro_fact,                  
-	fecha_vencimiento,         estado_pago,
-	total_fact)
+								 fecha_vencimiento,         estado_pago,
+								 total_fact)
 
-VALUES ($id_perfil,                  		$cod_alarma,                  
-	DATE_ADD(CURDATE(),INTERVAL 10 DAY),  0,
-								   $totalFactura) "; //ESTADO E: REPOSO COMO DEFAULT
+						VALUES ( $id_perfil,                  		$cod_alarma,                  
+								 DATE_ADD(CURDATE(),INTERVAL 10 DAY),  0,
+							     $totalFactura) "; //ESTADO E: REPOSO COMO DEFAULT
 
-$result= mysql_query($query) or die("Error 3: ".mysql_error());
+$result= mysql_query($query) or die(mysql_error());
 
 
 
 $sQuery="select count(cod_prod) as 'cant_total_productos' from PRODUCTOS_SISTEMA";
-$result= mysql_query($sQuery) or die("Error 4: ".mysql_error());
+$result= mysql_query($sQuery) or die(mysql_error());
+
 if(mysql_num_rows($result)==0) die("No hay registros para mostrar");
+
 while($row=mysql_fetch_array($result)){
 	$cant_total_productos = $row['cant_total_productos'];
 }
 
 
 $sQuery="select * from PRODUCTOS_SISTEMA";
-$result1= mysql_query($sQuery) or die("Error 5: ".mysql_error());
+$result1= mysql_query($sQuery) or die(mysql_error());
 
 if(mysql_num_rows($result1)==0) die("No hay registros para mostrar");
 
@@ -118,13 +120,13 @@ while($row=mysql_fetch_array($result1)){
 
 		$query="INSERT INTO FACTURA_DET (nro_fact,  nro_subfact,
 										 cod_prod,   cantidad,  
-										 imp_total)
+										 imp_total,  id_cliente )
 
 								VALUES ( $nro_fact,  $nro_subfact,
 									     $cod_prod,  $cant, 		
-							       		 $precio * $cant) "; //ESTADO E: REPOSO COMO DEFAULT
+							       		 $precio * $cant,$id_perfil ) "; //ESTADO E: REPOSO COMO DEFAULT
 
-$result2= mysql_query($query) or die("Error 6: ".mysql_error());
+$result2= mysql_query($query) or die(mysql_error());
 
 $nro_subfact++;
 
