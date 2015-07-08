@@ -189,11 +189,11 @@ CREATE TABLE ALARMA_CLIENTE
 
 
 
-
 CREATE TABLE HIST_ALARMA_CLIENTE
  (  
 	cod_alarma_hist	 INT NOT NULL,
-	fecha_hora		 DATETIME , -- FECHA  Y HORA QUE FUE ACTIVADA
+	id_cliente       INT NOT NULL,
+    fecha_hora		 DATETIME , -- FECHA  Y HORA QUE FUE ACTIVADA
 	real_falsa       VARCHAR (1) NOT NULL ,-- 'R' = REAL   'F'= FALSA	
 	
 	FOREIGN KEY (cod_alarma_hist) REFERENCES ALARMA_CLIENTE (cod_alarma)
@@ -217,15 +217,15 @@ CREATE TABLE FACTURA_CAB
  
  
  CREATE TABLE FACTURA_DET
- (
+ (	
    nro_fact    INT NOT NULL,
-   nro_subfact INT AUTO_INCREMENT,
+   nro_subfact INT NOT NULL,
+   id_cliente  INT NOT NULL,
    cod_prod    INT NULL,
    cantidad    INT NULL,
    imp_total   DECIMAL(10,2) NULL, -- IMPORTE TOTAL DEL PRODUCTO EN PARTICUALR POR CANTIDAD, NO EL TOTAL DE LA FACTURA.
    
    UNIQUE (nro_fact,nro_subfact),
-   PRIMARY KEY (nro_subfact),
    FOREIGN KEY (nro_fact) REFERENCES FACTURA_CAB (nro_fact),
    FOREIGN KEY (cod_prod) REFERENCES PRODUCTOS_SISTEMA (cod_prod)
    
