@@ -132,9 +132,9 @@ class acceso{
 		      // case 1: header('location: ../profile.php');//Redirecciona la pagina
 		   		case 1: header('location: ../administrador.php');//Redirecciona la pagina
 		      		  break;	
-		      case 2: header('location: monitoreador.php');//Redirecciona la pagina
+		      case 2: header('location: ../monitoreador.php');//Redirecciona la pagina
 		      		  break;	
-		      case 3: header('location: cliente.php');//Redirecciona la pagina
+		      case 3: header('location: ../cliente.php');//Redirecciona la pagina
 				      break;	
 		    }
  		}
