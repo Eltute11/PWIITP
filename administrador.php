@@ -6,8 +6,13 @@
       header('location: index.php?error=loguearse');
       
     }
-	include_once("header.php");
-	include_once("aside.php");
+include_once("header.php");
+include_once("aside.php");
+
+include_once('php/clases.php');
+
+$base = new BD;
+$conexion = $base->Conectar();
 
 unset($_SESSION['alta']);
 unset($_SESSION['baja']);
@@ -32,17 +37,31 @@ unset($_SESSION['modificar']);
                     <div class="m-b m-t-sm">
                       <span class="h3 text-black">
                        <?php  
-                        //@session_start();
-                          if(isset($_SESSION['usuario'])){
-                            echo 'Bienvenido seas ', $_SESSION['usuario'], ' a esta nueva sesion.';
-                          }else{
-                            #session_start(); // Si no hay sesion definida, comprobar datos de sesion #Ya esta siendo llamada arriba
-                            session_destroy();
-                            header('location: ../index.php?error=loguearse');
-                          }
+                           echo 'Bienvenido seas ', $_SESSION['usuario'], ' a esta nueva sesion.';
+
+                            $usuario = $_SESSION['usuario'];
+
+                            $query  = "SELECT A.nombres, A.apellidos,  D.descr_loc, C.descr_prov
+                                       FROM PERFILES A 
+                                       INNER JOIN USUARIOS B ON A.id_perfil = B.id_perfil
+                                       INNER JOIN PROVINCIAS C ON A.cod_prov = C.cod_prov
+                                       INNER JOIN LOCALIDADES D ON A.cod_loc = D.cod_loc
+                                       WHERE B.usuario = '$usuario'";
+                            
+                            $result = mysql_query($query);
+
+
+                            while($line = mysql_fetch_array($result)) {
+                              $nombres = $line['nombres']; 
+                              $apellidos = $line['apellidos']; 
+                              $descr_loc = $line['descr_loc']; 
+                              $descr_prov = $line['descr_prov']; 
+                            } 
+                           
+
+                           echo "<br>$nombres $apellidos <small class='m-l'>$descr_loc, $descr_prov</small>";
+                          
                         ?>
-                      Matias Araus</span>
-                      <small class="m-l">Castelar, Buenos Aires</small>
                     </div>
                    
                   </div>
