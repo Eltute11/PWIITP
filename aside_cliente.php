@@ -27,14 +27,14 @@
               <li class="line dk"></li>
       
               <li>
-                  <a href='#' class="auto">      
+                  <a href='camarasCliente.php' class="auto">      
                   <i class="icon-camcorder"></i>
                   <span>Cámaras</span>
                 </a>
               </li>
 
               <li>
-                  <a href='#' class="auto">      
+                  <a href='dispararAlarmaCliente.php' class="auto">      
                   <i class="icon-volume-2"></i>
                   <span>Disparar Alarma</span>
                 </a>
@@ -42,7 +42,7 @@
 
 
               <li>
-                  <a href='#' class="auto">      
+                  <a href='llamar911.php' class="auto">      
                   <i class="icon-call-out"></i>
                   <span>911</span>
                 </a>
@@ -51,13 +51,13 @@
 
 
               <li>
-                <a href="#">
+                <a href="codDesbloqueoQR.php">
                   <i class="icon-lock-open"></i>
                   <span>Desbloqueo QR</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="facturasCliente.php">
                   <span class="pull-right text-muted">
                     <i class="fa fa-fw fa-angle-right text"></i>
                     <i class="fa fa-fw fa-angle-down text-active"></i>

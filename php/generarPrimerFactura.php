@@ -93,7 +93,7 @@ $result= mysql_query($query) or die(mysql_error());
 
 
 
-$sQuery="select count(cod_prod) as 'cant_total_productos' from PRODUCTOS_SISTEMA";
+$sQuery="SELECT  COUNT(cod_prod) AS 'cant_total_productos' FROM PRODUCTOS_SISTEMA";
 $result= mysql_query($sQuery) or die(mysql_error());
 
 if(mysql_num_rows($result)==0) die("No hay registros para mostrar");
@@ -103,7 +103,7 @@ while($row=mysql_fetch_array($result)){
 }
 
 
-$sQuery="select * from PRODUCTOS_SISTEMA";
+$sQuery="SELECT * FROM PRODUCTOS_SISTEMA";
 $result1= mysql_query($sQuery) or die(mysql_error());
 
 if(mysql_num_rows($result1)==0) die("No hay registros para mostrar");
