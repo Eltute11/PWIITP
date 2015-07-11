@@ -1,6 +1,24 @@
 <?php
+
+
+session_start();
+
+include_once ("clases.php");
+
+if (isset($_SESSION['sCamposVal'])) {
+	unset($_SESSION['sCamposVal']);
+}
+
+if (isset($_SESSION['nError'])) {
+	unset($_SESSION['nError']);
+}
+
+
 $user = $_POST['user'];
+$_SESSION['acceso']['user'] = $user;
+
 $pass = $_POST['pass'];
+$_SESSION['acceso']['pass'] = $pass;
 
 if (isset($_POST['sesion'])) {
 	$sesion = $_POST['sesion'];
@@ -9,24 +27,21 @@ else {
 	$sesion = '';
 }
 
-if (isset($user) && isset($pass)) { // Si estan definidas
-	if (empty($user) || empty($pass)) {  // Si estan vacias
-		header('location: ../index.php?error=campos_vacios');
-		exit();
-	}else{	
-		include('clases.php');
-		$base = new BD;
-		$base->Conectar();
+$val = new validacion;
 
-		$login = new acceso();
-		$passEncrip = md5($pass); //Obtengo clave enscriptada
-		$login->login($user, $passEncrip, $sesion);
-	}
-}else{
-	// No estan definidas
- 	// Esto pasa cuando intentamos acceder a la URL sin antes habernos logeado
- 	header('location: ../index.php?error=loguearse');
-}
+$val->val_campo_obligatorio('../index.php',$_POST['user'],'user',0);
+		
+$val->val_campo_obligatorio('../index.php',$_POST['pass'], 'pass',1);
+
+$base = new BD;
+$base->Conectar();
+
+$login = new acceso();
+$passEncrip = md5($pass); //Obtengo clave enscriptada
+$login->login($user, $passEncrip, $sesion);
+
+
+
 ?>
 
 

@@ -8,7 +8,7 @@ $link = mysql_connect('localhost', 'root', '');
 mysql_select_db("seguridadlandia"); 
 
 // HISTORIAL DE ALARMAS REALES
-$mysql_R = "SELECT COUNT(real_falsa) FROM hist_alarmas_hogar WHERE cod_alarma_hist = 1 AND real_falsa = 'R';";
+$mysql_R = "SELECT COUNT(real_falsa) FROM hist_alarma_cliente WHERE cod_alarma_hist = 1 AND real_falsa = 'R';";
 $query_R = mysql_query($mysql_R);
 
 if($query_R == FALSE) { 
@@ -20,7 +20,7 @@ if($query_R == FALSE) {
 
 
 // HISTORIAL DE ALARMAS FALSAS
-$mysql_F= "SELECT COUNT(real_falsa) FROM hist_alarmas_hogar WHERE cod_alarma_hist = 1 AND real_falsa = 'F';";
+$mysql_F= "SELECT COUNT(real_falsa) FROM hist_alarma_cliente WHERE cod_alarma_hist = 1 AND real_falsa = 'F';";
 $query_F= mysql_query($mysql_F);
 
 if($query_F == FALSE) { 
