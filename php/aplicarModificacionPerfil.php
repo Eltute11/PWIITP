@@ -4,7 +4,7 @@ session_start();
 
 		if(!isset($_SESSION['usuario'])){
 			session_destroy();
-			header('location: ../index.php?error=loguearse');
+			header('location: index.php?nError=10');
 			#echo '<h1>Sesion: ',$_SESSION['usuario'],'</h1>';
 			
 		}
@@ -229,7 +229,7 @@ session_start();
 	$_SESSION['tituloResultado'] = "Modificacion de perfil"; // Guardo en esta variable session el titulo que se va a mostrar en la pagina resultadoOperacion.php	        
 	if (mysql_affected_rows() == 1) {
 		// echo "<h3>El $tipo_rol_desc $nombres $apellidos se actualizo exitosamente.</h3>";	        
-		$_SESSION['msjResultadoOperacion'] = "El $tipo_rol_desc $nombres $apellidos se actualizó exitosamente.";
+		$_SESSION['msjResultadoOperacion'] = "El $tipo_rol_desc $nombres $apellidos se actualizÃ³ exitosamente.";
 		header("location: ../resultadoOperacion.php");
 		//session_destroy();
 		}

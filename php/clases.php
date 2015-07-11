@@ -101,11 +101,6 @@ class acceso{
 	protected $pass;
 	protected $cookie;
 
-/*	public function __construct($usuario, $password){
-		$this->user = $usuario;
-		$this->pass = $password;	
-	} */
-
 	public function login($usuario, $password, $cookie){
 		$this->user = $usuario;
 		$this->pass = $password;
@@ -140,7 +135,7 @@ class acceso{
  		}
 
  		else{	
- 				header('location: ../index.php?error=datos_incorrectos');
+ 				header('location: ../index.php?nError=9&error-val=-user-pass');
  				exit ();
 		  				;
 		}

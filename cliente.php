@@ -1,9 +1,15 @@
 <?php 
   session_start();
 // session_destroy();
+
+    if (isset($_SESSION['alta_usuario_cliente']['nuevoUsuario'])){
+         $_SESSION['usuario'] = $_SESSION['alta_usuario_cliente']['nuevoUsuario']; //Se guarda en variable de session usuario, el usuario del cliente al ser creado 
+    }
+
+
     if(!isset($_SESSION['usuario'])){
       session_destroy();
-      header('location: index.php?error=loguearse');
+      header('location: index.php?nError=10');
       
     }
 	

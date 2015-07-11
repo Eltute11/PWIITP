@@ -5,7 +5,7 @@ session_start();
 
 		if(!isset($_SESSION['usuario'])){
 			session_destroy();
-			header('location: ../index.php?error=loguearse');
+			header('location: index.php?nError=10');
 			#echo '<h1>Sesion: ',$_SESSION['usuario'],'</h1>';
 			
 		}

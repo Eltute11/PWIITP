@@ -193,7 +193,7 @@
                           }else{
                             #session_start(); // Si no hay sesion definida, comprobar datos de sesion #Ya esta siendo llamada arriba
                             session_destroy();
-                            header('location: ../index.php?error=loguearse');
+                            header('location: index.php?nError=10');
                           }
                         ?>
                       Matias Araus</span>

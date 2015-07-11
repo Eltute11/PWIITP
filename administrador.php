@@ -3,7 +3,7 @@
 // session_destroy();
     if(!isset($_SESSION['usuario'])){
       session_destroy();
-      header('location: index.php?error=loguearse');
+      header('location: index.php?nError=10');
       
     }
 include_once("header.php");
