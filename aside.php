@@ -7,25 +7,6 @@
           <nav ui-nav class="navi clearfix">
             <ul class="nav">
               <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                <span>Navigation</span>
-              </li>
-              <li>
-                <!--<a href='profile.php' class="auto"> -->     
-                  <a href='administrador.php' class="auto">      
-                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                  <span class="font-bold">Dashboard</span>
-                </a>
-              </li>
-              <li>
-                <a href="mail.html">
-                  <b class="badge bg-info pull-right">9</b>
-                  <i class="glyphicon glyphicon-envelope icon text-info-lter"></i>
-                  <span class="font-bold">Email</span>
-                </a>
-              </li>
-              <li class="line dk"></li>
-
-              <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                 <span>Components</span>
               </li>
               <li>
