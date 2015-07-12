@@ -60,7 +60,7 @@
                 </ul>
               </li>
               <li>
-                <a href="frmConsultarPerfilGraficos.php">
+                <a href="ui_chart.html">
                   <i class="glyphicon glyphicon-signal"></i>
                   <span>Historiales</span>
                 </a>
