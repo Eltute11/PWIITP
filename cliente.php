@@ -45,7 +45,7 @@
 
                             $usuario = $_SESSION['usuario'];
 
-                            $query  = "SELECT A.nombres, A.apellidos,  D.descr_loc, C.descr_prov
+                            $query  = "SELECT A.nombres, A.apellidos,  D.descr_loc, C.descr_prov,A.id_perfil
                                        FROM PERFILES A 
                                        INNER JOIN USUARIOS B ON A.id_perfil = B.id_perfil
                                        INNER JOIN PROVINCIAS C ON A.cod_prov = C.cod_prov
@@ -60,6 +60,7 @@
                               $apellidos = $line['apellidos']; 
                               $descr_loc = $line['descr_loc']; 
                               $descr_prov = $line['descr_prov']; 
+                              $_SESSION['cliente']['id'] = $line['id_perfil'];
                             } 
                            
 
