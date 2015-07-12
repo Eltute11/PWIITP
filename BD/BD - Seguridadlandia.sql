@@ -180,7 +180,7 @@ INSERT INTO PRODUCTOS_SISTEMA (descr_prod, precio,stock,obligatorio,permite_cant
 
 CREATE TABLE ALARMA_CLIENTE 
  (  
-	id_cliente NUMERIC (10) NOT NULL,
+	id_cliente 		 NUMERIC (10) NOT NULL,
     cod_alarma		 INT AUTO_INCREMENT, 
     -- id_cliente		 NUMERIC (10) NOT NULL, -- POR MEDIO DE ESTE CAMPO y cod_tiporol = 3, SE OBTIENEN TODOS LOS DATOS DEL CLIENTE DE LA TABLA PERFILES.
     -- cod_tiporol		 NUMERIC (2)  NOT NULL DEFAULT 3,
@@ -197,15 +197,22 @@ CREATE TABLE ALARMA_CLIENTE
 
 CREATE TABLE HIST_ALARMA_CLIENTE
  (  
-	cod_alarma_hist	 INT NOT NULL,
+	cod_alarma_hist	 INT auto_increment,
+	cod_alarma	 	 INT NOT NULL,
 	id_cliente       INT NOT NULL,
     fecha_hora		 DATETIME , -- FECHA  Y HORA QUE FUE ACTIVADA
 	real_falsa       VARCHAR (1) NOT NULL ,-- 'R' = REAL   'F'= FALSA	
-	
-	FOREIGN KEY (cod_alarma_hist) REFERENCES ALARMA_CLIENTE (cod_alarma)
+	PRIMARY KEY (cod_alarma_hist),
+	FOREIGN KEY (cod_alarma) REFERENCES ALARMA_CLIENTE (cod_alarma)
  
  );
-
+ SELECT COUNT(*) as HIST_ALARMA_REALES FROM HIST_ALARMA_CLIENTE WHERE real_falsa = 'R' AND EXISTS(SELECT id_perfil FROM PERFILES WHERE cod_tipdoc = 1 AND nro_doc = 12345678);
+-- DROP TABLE HIST_ALARMA_CLIENTE;
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/11 11:30:00','R');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/11 17:30:00','R');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/11 23:30:00','R');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/15 11:30:00','F');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/17 11:30:00','F');
 
  -- DROP TABLE FACTURA_DET;
  --  DROP TABLE FACTURA_CAB;
@@ -221,6 +228,21 @@ CREATE TABLE FACTURA_CAB
  
  )AUTO_INCREMENT=1 ;
  
+ --  DROP TABLE FACTURA_RES;
+ CREATE TABLE FACTURA_RES
+ (  
+	id_cliente		  NUMERIC (10) NOT NULL, 
+    nro_fact		  INT NOT NULL AUTO_INCREMENT,  
+    fecha_vencimiento DATE NOT NULL,
+    estado_pago       NUMERIC(1) NOT NULL, -- 1:PAGO - 0:NO PAGO
+    total_fact        NUMERIC(10)  NOT NULL,
+	PRIMARY KEY (nro_fact),
+	FOREIGN KEY (id_cliente) REFERENCES PERFILES (id_perfil)
+ 
+ )AUTO_INCREMENT=1000 ;
+insert into factura_res (id_cliente,fecha_vencimiento,estado_pago,total_fact) values (2,'20150522',1,170);
+insert into factura_res (id_cliente,fecha_vencimiento,estado_pago,total_fact) values (2,'20150620',1,170);
+insert into factura_res (id_cliente,fecha_vencimiento,estado_pago,total_fact) values (2,'20150725',0,200);
  
  CREATE TABLE FACTURA_DET
  (	
