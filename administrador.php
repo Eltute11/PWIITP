@@ -17,6 +17,7 @@ $conexion = $base->Conectar();
 unset($_SESSION['alta']);
 unset($_SESSION['baja']);
 unset($_SESSION['modificar']);
+unset($_SESSION['producto']);
 
 
 ?>

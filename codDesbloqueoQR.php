@@ -8,7 +8,7 @@ session_start();
 		// }
 $id_cliente = $_SESSION['cliente']['id'];
 
-include ("./php/clases.php");
+include ("php/clases.php");
 // CONEXION A BASE DE DATOS
 	$base = new BD;
 	$conexion = $base->Conectar();
