@@ -6,10 +6,17 @@ session_start();
 		// 	header('location: index.php?nError=10');
 			
 		// }
-
+$id_cliente = $_SESSION['cliente']['id'];
 include_once ("php/clases.php");
-include_once ("php/funciones.php");
+// CONEXION A BASE DE DATOS
+	$base = new BD;
+	$conexion = $base->Conectar();
 
+$query = "	SELECT nro_fact, fecha_vencimiento, total_fact, estado_pago
+			FROM factura_res
+			WHERE id_cliente = $id_cliente";
+
+$result= mysql_query($query) or die(mysql_error());
 
 include_once('header.php');
 include_once ('aside_cliente.php');
@@ -36,42 +43,28 @@ include_once ('aside_cliente.php');
    							</tr>
    						</thead>
    						<tbody>
-   							<tr>
-					            <td>1</td>
-					            <td>Servicios de vigilancia</td>
-					            <td>Ene 25, 2015</td>
-					            <td>$1800</td>
-					            <td>
-					              <a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-					            </td>
-							</tr>
-							<tr style="background-color: #f7f7f7;">
-					            <td>2</td>
-					            <td>Servicios de vigilancia</td>
-					            <td>Feb 25, 2015</td>
-					            <td>$1800</td>
-					            <td>
-					              <a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-					            </td>
-							</tr>
-							<tr>
-					            <td>3</td>
-					            <td>Servicios de vigilancia</td>
-					            <td>Mar 25, 2015</td>
-					            <td>$1900</td>
-					            <td>
-					              <a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-					            </td>
-							</tr>
-							<tr style="background-color: #f7f7f7;">
-					            <td>4</td>
-					            <td>Servicios de vigilancia</td>
-					            <td>Abril 25, 2015</td>
-					            <td>$1950</td>
-					            <td>
-					              <a href="" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text-active"></i></a>
-					            </td>
-							</tr>
+   							<?php 
+   								$sinPagar = '<a href="php/resumenServicioPDF.php" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text-active"></i></a>';
+   								$pagado = '<a href="#" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i></a>';
+   								$tabla = '';
+								while($row=mysql_fetch_array($result)){
+									if($row['estado_pago'] == 0) { 
+					            		$estado_pago = $sinPagar;
+					            	}else{
+					            		$estado_pago = $pagado;
+					            	};
+
+
+									$tabla = $tabla."	<tr>
+															<td>$row[nro_fact]</td>
+												            <td>Servicios de vigilancia</td>
+												            <td>$row[fecha_vencimiento]</td>
+												            <td>$$row[total_fact]</td>
+												            <td>$estado_pago </td>
+											           	</tr>";
+									}
+									echo $tabla;
+							?>
    						</tbody>
    					</table>
    				</div>
