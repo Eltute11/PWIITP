@@ -55,6 +55,47 @@ include_once('header.php');
 include_once ('aside.php');
 
 ?>
+
+<head>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+    var geocoder;
+    var map;
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(-34.6036844, -58.381559100000004);
+      var mapOptions = {
+        zoom: 16,
+        center: latlng
+      }
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+   }
+
+  function codeAddress() {
+
+  var address = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      document.getElementById("lat").value = (results[0].geometry.location.lat());
+      document.getElementById("long").value = (results[0].geometry.location.lng());
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('DOMICILIO INEXISTENTE');
+    }
+  });
+
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>	
+
+</head>
 <!-- Main -->
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
@@ -260,7 +301,43 @@ include_once ('aside.php');
 										    		?>
 										    		</div>
 									 </div>
-								
+									
+								<div class="form-group">
+									<div style="margin-left: 17%;">
+									<div class="col-sm-5">
+										<input id="address" name="address" type="textbox" placeholder="Pais, Provincia, Localidad, Direccion Numero" class='form-control'>
+										<?php 
+										 	if (strpos($error_val,'address')){
+										 	switch ($nError) {
+										 		case 1: echo "$campo_obligatorio";
+										 				break;
+										 		}
+										 }
+							    		?>
+										<br>
+										<input type="button" value="Buscar"  class="btn btn-info" onclick="codeAddress()">
+									</div>	
+									
+
+									<div id="map-canvas" style="width:500px;height:380px;"></div> 
+									<input class='form-control' type="hidden" name="lat" id="lat">
+									<input class="form-control" type="hidden" name="long" id="long" style="margin-top: 1em;">
+
+									</div>
+
+								<!--</div> 
+									<br>
+									<br>
+									<label class="col-sm-2 control-label" label for="lat">Latitud: </label> 
+									<div class="col-sm-10"> 
+										<input class='form-control' type="text" name="lat" id="lat">
+									</div>
+									<label class="col-sm-2 control-label" label="" for="long" style="margin-top: 1em;">Longitud: </label>
+									<div class="col-sm-10"> 
+										<input class="form-control" type="text" name="long" id="long" style="margin-top: 1em;">
+									 </div> 
+									</div> -->
+
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 								<div class="form-group">
 						      <label class="col-sm-2 control-label">Sexo:</label>

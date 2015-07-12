@@ -54,6 +54,14 @@
 	$num_direc = $_POST['num_direc']; 
 	$_SESSION['alta']['num_direc']=$num_direc;
 
+	$address = $_POST['address'];
+
+	$latitud = $_POST['lat']; 
+	// $_SESSION['alta']['lat']=$latitud;
+
+	$longitud = $_POST['long']; 
+	// $_SESSION['alta']['long']=$longitud;
+
 	$sexo = $_POST['sexo'];
 	$_SESSION['alta']['sexo']=$sexo;
 
@@ -100,6 +108,7 @@
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$localidad, 'localidad',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$direccion, 'direccion',0);
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$num_direc, 'num_direc',0);
+	$val->val_campo_obligatorio('../frmAltaPerfil.php',$address, 'address',0);	
 	$val->val_campo_obligatorio('../frmAltaPerfil.php',$telefono1,'telefono1',0);
 	if ($email != '') {
 		$val->val_campo_mail('../frmAltaPerfil.php',$mail,'email',0);
@@ -162,19 +171,19 @@
 
 	$_SESSION['alta']['id_perfil'] = $id_perfil ; // Guardo el perfil para ser utilizado en generarPrimerFactura.php
 
-	$query = "INSERT INTO PERFILES (cod_tiporol,        id_perfil,          cod_tipdoc,         
-									nro_doc,            nombres,            apellidos,          
-									fecha_nac,          cod_pais,           cod_prov,           
-									cod_loc,            direccion,          num_direccion,
-									sexo,               telefono_1,         telefono_2,         
-									direccion_email )
+	$query = "INSERT INTO PERFILES (cod_tiporol,          id_perfil,            cod_tipdoc,           
+									nro_doc,              nombres,              apellidos,            
+									fecha_nac,            cod_pais,             cod_prov,             
+									cod_loc,              direccion,            num_direccion,        
+									latitud,              longitud,             sexo,                 
+									telefono_1,           telefono_2,           direccion_email )
 
-							VALUES ($cod_tiporol ,  $id_perfil,   $cod_tipdoc,     
-									$nro_doc,      '$nombres',     '$apellidos',     
-								   '$fecha_nac',    $pais,          $provincia,     
-									$localidad,    '$direccion',    $num_direc,
-									'$sexo'	,       $telefono1,     $telefono2,     
-									 $email  );	" or die(mysql_error());
+							VALUES ($cod_tiporol,    $id_perfil,      $cod_tipdoc,     
+									$nro_doc,       '$nombres',      '$apellidos',    
+								   '$fecha_nac',     $pais,           $provincia,      
+									$localidad,     '$direccion',     $num_direc,      
+								   '$latitud',      '$longitud',     '$sexo'	,       
+									$telefono1,      $telefono2,      $email  );	" or die(mysql_error());
 
 	
 	mysql_query($query);

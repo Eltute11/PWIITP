@@ -1,3 +1,4 @@
+
 DROP DATABASE IF EXISTS Seguridadlandia;
 CREATE DATABASE Seguridadlandia;
 USE Seguridadlandia;
@@ -87,6 +88,8 @@ CREATE TABLE PERFILES
 	cod_loc			 INT NOT NULL,
 	direccion		 VARCHAR (30) NOT NULL,
     num_direccion	 NUMERIC (6)  NOT NULL,
+    latitud 		 VARCHAR (40) NULL,
+    longitud 		 VARCHAR (40) NULL,
 	sexo			 VARCHAR (1)  NOT NULL,
 	telefono_1		 NUMERIC (15) NOT NULL,	
 	telefono_2		 NUMERIC (15) NULL,
@@ -117,7 +120,10 @@ INSERT INTO PERFILES ( cod_tiporol,       id_perfil,         cod_tipdoc,
 					  'M',                          1133443344,                   NULL,                         
 					  'juanig.urcola@gmail.com');
                       
-                      
+
+-- CLIENTE
+   
+   
 
 -- CUANDO EL CLIENTE SE DÉ DE ALTA COMO USUARIO, SE ENVIARA 3 POR DEFECTO EN cod_tiporol.
 -- CUANDO EL ADMINTRADOR DE DE ALTA A UN MONITOREADOR O A OTRO ADMINISTAOR, SE ENVIARA 2 Y 3 CORRESPONDIETNMENTE. 
