@@ -210,9 +210,15 @@ CREATE TABLE HIST_ALARMA_CLIENTE
 -- DROP TABLE HIST_ALARMA_CLIENTE;
 insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/11 11:30:00','R');
 insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/11 17:30:00','R');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (2,3,'2015-07/11 17:30:00','R');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (3,4,'2015-07/11 17:30:00','R');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (3,4,'2015-07/12 21:30:00','R');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (3,4,'2015-07/14 01:30:00','F');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (3,4,'2015-07/16 21:30:00','F');
 insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/11 23:30:00','R');
 insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/15 11:30:00','F');
 insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (1,5,'2015-07/17 11:30:00','F');
+insert into HIST_ALARMA_CLIENTE(cod_alarma,id_cliente,fecha_hora,real_falsa) values (4,1,'2015-07/17 11:30:00','F');
 
  -- DROP TABLE FACTURA_DET;
  --  DROP TABLE FACTURA_CAB;

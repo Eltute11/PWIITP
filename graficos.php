@@ -1,7 +1,7 @@
 <?php 
-/*session_start();
+session_start();
 //session_destroy();
-if(!isset($_SESSION['usuario'])){
+/*if(!isset($_SESSION['usuario'])){
 	session_destroy();
 	header('location: index.php?nError=10');
 			
@@ -9,8 +9,6 @@ if(!isset($_SESSION['usuario'])){
 
 include_once('header.php');
 include_once ('aside.php');
-
-
  ?>
 
  <div id="content" class="app-content" role="main">
@@ -19,30 +17,59 @@ include_once ('aside.php');
 	   	<div class="bg-light lter b-b wrapper-md">
 	  		<h1 class="m-n font-thin h3">Estadisticas</h1>
 		</div>
-
-		<?php 
-
-		include ("php/clases.php");
-		// CONEXION A BASE DE DATOS
-		$base = new BD;
-		$conexion = $base->Conectar();
-
-		$query = "	SELECT B.descr_loc, COUNT(*) cantidad
-					FROM PERFILES A
-					INNER JOIN LOCALIDADES B ON A.cod_loc = B.cod_loc	
-					-- WHERE cod_tiporol = 3
-					GROUP BY A.cod_loc";
-
-		$result = mysqli_query($query);
-	/*		while($line = mysql_fetch_array($result)) {
-				$localidad = $line[0]; //line es el registro, 0 es el numero de columna. 0 es la primera
-				$cantidad = $line[1];
-			}	*/
-
-		$row = mysqli_fetch_array($result,MYSQLI_NUM);
-		printf ("%s (%s)\n",$row[0],$row[1]);
-
-		 ?>
-
+		<div class="wrapper-md">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<!-- Titulo del grafico -->
+						<div class="panel-heading font-bold">Clientes por zona</div>
+						<div class="panel-body">
+							<div class="col-sm-12">
+								<img src="php/GraficodeBarraLoc.php" alt="grafico de barra localdad">
+								<a href="php/PDF.php?grafico=GraficodeBarraLoc.php"><button class="btn m-b-xs w-xs btn-info">Descargar</button></a>
+							</div>
+							<div class="col-sm-12">
+								<img src="php/GraficodeTortaLoc.php" alt="grafico de torta localdad">
+								<a href="php/PDF.php?grafico=GraficodeTortaLoc.php"><button class="btn m-b-xs w-xs btn-info">Descargar</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<!-- Titulo del grafico -->
+						<div class="panel-heading font-bold">Cantidad de alarmas disparadas</div>
+							<div class="col-sm-12">
+								<img src="php/GraficodeBarraAlarmTotal.php" alt="grafico de barra total">
+								<a href="php/PDF.php?grafico=GraficodeBarraAlarmTotal.php"><button class="btn m-b-xs w-xs btn-info">Descargar</button></a>
+							</div>
+							<div class="col-sm-12">
+								<img src="php/GraficodeTortaAlarmTotal.php" alt="grafico de torta total">
+								<a href="php/PDF.php?grafico=GraficodeTortaAlarmTotal.php"><button class="btn m-b-xs w-xs btn-info">Descargar</button></a>
+							</div>	
+						<div class="panel-body">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<!-- Titulo del grafico -->
+						<div class="panel-heading font-bold">Cantidad de alarmas disparadas por fecha</div>
+							<div class="col-sm-12">
+								<img src="php/GraficodeLinea.php" alt="grafico de linea total">
+								<a href="php/PDF.php?grafico=GraficodeLinea.php"><button class="btn m-b-xs w-xs btn-info">Descargar</button></a>
+							</div>
+						<div class="panel-body">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
 	</div>
  </div>
+
+<?php include_once('footer.php'); ?>
