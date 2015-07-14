@@ -52,7 +52,7 @@ include_once ('aside_monitoreador.php');
 
 		var marker=new google.maps.Marker({
 		  position:myLatlng,
-		  icon:'img/marker_green.png'
+		  icon:'img/marker_E.png'
 		  });
 
 
@@ -67,7 +67,25 @@ include_once ('aside_monitoreador.php');
 		marker.setMap(map);
 		}
 
+		if (data[i].estado=='A') {
+		var myLatlng=new google.maps.LatLng(data[i].latitud,data[i].longitud);
 
+		var marker=new google.maps.Marker({
+		  position:myLatlng,
+		  icon:'img/marker_A.png'
+		  });
+
+
+		google.maps.event.addListener(marker,'click', (function(marker,informationString,infowindow){ 
+        return function() {
+           infowindow.setContent(informationString);
+           infowindow.open(map,marker);
+        };
+		})(marker,informationString,infowindow)); 	     
+ 
+
+		marker.setMap(map);
+		}
 
 		if (data[i].estado=='C') {
 
@@ -80,7 +98,8 @@ include_once ('aside_monitoreador.php');
 		var marker=new google.maps.Marker({
 		  position:myLatlng,
 		  map: map,
-		  icon:'img/marker_red.png'
+		  icon:'img/marker_C.png',
+		  animation:google.maps.Animation.BOUNCE
 		  });
 
 		google.maps.event.addListener(marker,'click', (function(marker,informationString,infowindow){ 
@@ -94,6 +113,39 @@ include_once ('aside_monitoreador.php');
 		marker.setMap(map);	
 
 		}	
+
+
+
+		if (data[i].estado=='M') {
+
+		informationString = informationString+"<a href='tel:911' style='color: rgb(17, 19, 194);font-weight: bold;''>LLAMAR 911</a>";
+
+		
+		
+		var myLatlng=new google.maps.LatLng(data[i].latitud,data[i].longitud);
+
+		var marker=new google.maps.Marker({
+		  position:myLatlng,
+		  map: map,
+		  icon:'img/marker_M.png',
+		  animation:google.maps.Animation.BOUNCE
+		  });
+
+		google.maps.event.addListener(marker,'click', (function(marker,informationString,infowindow){ 
+        return function() {
+           infowindow.setContent(informationString);
+           infowindow.open(map,marker);
+        };
+		})(marker,informationString,infowindow)); 	     
+ 
+		   
+		marker.setMap(map);	
+
+		}	
+
+	
+	
+	
 	
 	}
 

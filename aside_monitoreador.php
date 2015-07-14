@@ -27,7 +27,7 @@
               <li class="line dk"></li>
       
               <li>
-                  <a href='camarasCliente.php' class="auto">      
+                  <a href='monitoreo_camaras.php' class="auto">      
                   <i class="icon-camcorder"></i>
                   <span>Monitoreo</span>
                 </a>
@@ -39,7 +39,6 @@
                   <span>Estado de alarmas</span>
                 </a>
               </li>
-
             </ul>
           </nav>
           <!-- nav -->
