@@ -12,11 +12,18 @@ include_once ("php/clases.php");
 	$base = new BD;
 	$conexion = $base->Conectar();
 
-$query = "	SELECT nro_fact, fecha_vencimiento, total_fact, estado_pago
+$queryF = "	SELECT nro_fact, fecha_vencimiento, total_fact, estado_pago
+			FROM factura_cab
+			WHERE id_cliente = $id_cliente";
+
+$resultF= mysql_query($queryF) or die(mysql_error());
+
+
+$queryR = "	SELECT nro_fact, fecha_vencimiento, total_fact, estado_pago
 			FROM factura_res
 			WHERE id_cliente = $id_cliente";
 
-$result= mysql_query($query) or die(mysql_error());
+$resultR= mysql_query($queryR) or die(mysql_error());
 
 include_once('header.php');
 include_once ('aside_cliente.php');
@@ -46,8 +53,27 @@ include_once ('aside_cliente.php');
    							<?php 
    								$sinPagar = '<a href="php/resumenServicioPDF.php" class="active" ui-toggle-class=""><button class="btn btn-danger btn-xs">Pagar</button></a>';
    								$pagado = '<a href="#" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i></a>';
-   								$tabla = '';
-								while($row=mysql_fetch_array($result)){
+   								$tablaF = '';
+								while($row=mysql_fetch_array($resultF)){
+									$nro_fact = $row['nro_fact'];
+									$sinPagarF = '<a href='."php/pdfFactura.php?id_cliente=$id_cliente&nro_fact=$nro_fact".' class="active" ui-toggle-class=""><button class="btn btn-danger btn-xs">Pagar</button></a>';
+									if($row['estado_pago'] == 0) { 
+					            		$estado_pago = $sinPagarF;
+					            	}else{
+					            		$estado_pago = $pagado;
+					            	};
+
+									$tablaF = $tablaF."	<tr>
+															<td>$row[nro_fact]</td>
+												            <td>Productos + instalacion de servicios de vigilancia</td>
+												            <td>$row[fecha_vencimiento]</td>
+												            <td>$$row[total_fact]</td>
+												            <td>$estado_pago </td>
+											           	</tr>";
+									}
+
+   								$tablaR = '';
+								while($row=mysql_fetch_array($resultR)){
 									if($row['estado_pago'] == 0) { 
 					            		$estado_pago = $sinPagar;
 					            	}else{
@@ -55,7 +81,7 @@ include_once ('aside_cliente.php');
 					            	};
 
 
-									$tabla = $tabla."	<tr>
+									$tablaR = $tablaR."	<tr>
 															<td>$row[nro_fact]</td>
 												            <td>Servicios de vigilancia</td>
 												            <td>$row[fecha_vencimiento]</td>
@@ -63,7 +89,8 @@ include_once ('aside_cliente.php');
 												            <td>$estado_pago </td>
 											           	</tr>";
 									}
-									echo $tabla;
+									echo $tablaF;
+									echo $tablaR;
 							?>
    						</tbody>
    					</table>

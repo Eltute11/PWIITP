@@ -6,10 +6,16 @@ include_once('clases.php');
 $base = new BD;
 $conexion = $base->Conectar();
 
-$id_perfil = $_SESSION['alta']['id_perfil'];
-$nro_fact = $_SESSION['factura']['nro_fact'];
+if (isset($_SESSION['alta']['id_perfil']) && isset($_SESSION['factura']['nro_fact'])) {
+	$id_perfil = $_SESSION['alta']['id_perfil'];
+	$nro_fact = $_SESSION['factura']['nro_fact'];
+}
 
-
+if (isset($_GET['id_cliente']) && isset($_GET['nro_fact'])) {
+	$id_perfil = $_GET['id_cliente'];
+	$nro_fact = $_GET['nro_fact'];
+}
+//exit($id_perfil.$nro_fact);
 // ========================= DATOS PERSONALES DEL CLIENTE ========================= 
 
 $query= "SELECT B.descr_tipdoc,    A.nro_doc,         A.nombres,         
@@ -105,9 +111,9 @@ while($row=mysql_fetch_array($result))
  $deatelle = $deatelle."<tr>
  							 <td> $row[cod_prod] </td>
 					         <td> $row[descr_prod] </td>
-					         <td> $row[precio] </td>
+					         <td> $$row[precio] </td>
 					         <td> $row[cantidad] </td>
-					         <td> $row[imp_total] </td>
+					         <td> $$row[imp_total] </td>
 					     </tr>";
 }
 $deatelle = $deatelle."</table>";
@@ -122,7 +128,7 @@ $deatelle = $deatelle."</table>";
 					
 			      Nro. Factura: $nro_fact <br><br>
 				  Fecha de Vencimiento : $fecha_vencimiento<br><br>
-				  Total a abonar: $total_fact <br><br>	
+				  Total a abonar: $$total_fact <br><br>	
 
 				  Numero de cliente: $id_perfil<br><br>
 				  Nombres: $nombres <br><br> 
@@ -140,6 +146,6 @@ $deatelle = $deatelle."</table>";
  $dompdf = new DOMPDF();
  $dompdf->load_html($html);
  $dompdf->render();
- $dompdf->stream("sample.pdf");
+ $dompdf->stream("Factura Nº$nro_fact Contratacion de serv. SeguridadLandia.pdf");
 
  ?>
