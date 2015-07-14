@@ -6,9 +6,22 @@
           <!-- nav -->
           <nav ui-nav class="navi clearfix">
             <ul class="nav">
-              <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                <span>Components</span>
+             <li>
+                <!-- <a href="profile.php"> -->
+                  <a href="cliente.php"> 
+                  <i class="icon-user icon text-success-lter"></i>
+                  <span>Perfil</span>
+                </a>
               </li>
+              <li>
+                <!-- <a href="profile.php"> -->
+                  <a href="php/cerrarSesion.php"> 
+                  <i class="icon-logout icon text-success-lter"></i>
+                  <span>Cerrar Sesion</span>
+                </a>
+              </li>
+              
+              <li class="line dk"></li>
               <li>
                 <a href class="auto">      
                   <span class="pull-right text-muted">
@@ -52,21 +65,11 @@
                   <span>Historiales</span>
                 </a>
               </li> 
-              <li class="line dk hidden-folded"></li>
               <li>
-                <!-- <a href="profile.php"> -->
-                  <a href="administrador.php"> 
-                  <i class="icon-user icon text-success-lter"></i>
-                  <span>Profile</span>
+                <a href="generarFacturasMensuales.php">
+                  <i class="glyphicon glyphicon-file icon"></i>
+                  <span>Fact. Mensuales</span>
                 </a>
-              </li>
-              <li>
-                <!-- <a href="profile.php"> -->
-                  <a href="php/cerrarSesion.php"> 
-                  <i class="icon-logout icon text-success-lter"></i>
-                  <span>Cerrar Sesion</span>
-                </a>
-              </li>
             </ul>
           </nav>
           <!-- nav -->
