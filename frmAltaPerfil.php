@@ -301,11 +301,11 @@ include_once ('aside.php');
 										    		?>
 										    		</div>
 									 </div>
-									
+								<div class="line line-dashed b-b line-lg pull-in"></div>
 								<div class="form-group">
-									<div style="margin-left: 17%;">
-									<div class="col-sm-5">
-										<input id="address" name="address" type="textbox" placeholder="Pais, Provincia, Localidad, Direccion Numero" class='form-control'>
+									<label class="col-sm-2 control-label" for="domicilio">Domicilio:</label>
+									<div class="col-sm-6">
+										<input id="address" class='form-control' name="address" type="textbox" placeholder="Pais, Provincia, Localidad, Direccion Numero" class='form-control'>
 										<?php 
 										 	if (strpos($error_val,'address')){
 										 	switch ($nError) {
@@ -314,16 +314,20 @@ include_once ('aside.php');
 										 		}
 										 }
 							    		?>
-										<br>
-										<input type="button" value="Buscar"  class="btn btn-info" onclick="codeAddress()">
-									</div>	
-									
-
-									<div id="map-canvas" style="width:500px;height:380px;"></div> 
-									<input class='form-control' type="hidden" name="lat" id="lat">
-									<input class="form-control" type="hidden" name="long" id="long" style="margin-top: 1em;">
-
+							    	</div>	
+									<div class="col-sm-4">	
+										<input type="button" value="Buscar"  class="btn btn-info col-sm-4" onclick="codeAddress()">
 									</div>
+								</div>
+
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<div id="map-canvas" style="width:500px; height:380px;"></div> 
+										<input class='form-control' type="hidden" name="lat" id="lat">
+										<input class="form-control" type="hidden" name="long" id="long" style="margin-top: 1em;">
+									</div>
+								</div>
 
 								<!--</div> 
 									<br>
