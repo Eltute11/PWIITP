@@ -1,6 +1,6 @@
 <?php 
 session_start();
-session_destroy();
+//session_destroy();
 		if(!isset($_SESSION['usuario'])){
 			session_destroy();
 			header('location: index.php?nError=10');

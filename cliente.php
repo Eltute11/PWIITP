@@ -22,7 +22,6 @@
   $conexion = $base->Conectar();
 
 
-
 ?>
 
  <!-- content -->

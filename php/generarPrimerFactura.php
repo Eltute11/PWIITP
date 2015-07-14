@@ -102,6 +102,11 @@ while($row=mysql_fetch_array($result)){
 	$cant_total_productos = $row['cant_total_productos'];
 }
 
+/*								GENERACION DE PRIMER RESUMEN						  */	
+$query = "	INSERT INTO FACTURA_RES (id_cliente, fecha_vencimiento, estado_pago, total_fact)
+			VALUES	($id_perfil, DATE_ADD(CURDATE(),INTERVAL 30 DAY), 0, 200)";
+$result= mysql_query($query) or die(mysql_error());
+
 
 $sQuery="SELECT * FROM PRODUCTOS_SISTEMA";
 $result1= mysql_query($sQuery) or die(mysql_error());
@@ -135,10 +140,6 @@ $nro_subfact++;
 $i++;	
 
 }
-
-
-
-
 
 /******************************************************************************/
 /*								GENERACION DE FACTURAS						  */	
