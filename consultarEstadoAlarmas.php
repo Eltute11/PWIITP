@@ -4,7 +4,7 @@ $base = new BD;
 $conexion = $base->Conectar();
 
 
-$query = "SELECT nombres,apellidos, latitud, longitud, direccion, num_direccion, estado
+$query = "SELECT  id_perfil,nombres,apellidos, latitud, longitud, direccion, num_direccion, estado
 		  
 		  FROM PERFILES A
 		  

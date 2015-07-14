@@ -32,6 +32,7 @@ while($row = mysql_fetch_array($result_clientes)){
 
 
 ?>
+<div class="wrapper-md">
 <div id='content' class='app-content' role='main'>
     <div class='app-content-body '>
 	    <div class='bg-light lter b-b wrapper-md'>

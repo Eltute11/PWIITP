@@ -33,7 +33,7 @@ while($line = mysql_fetch_array($result)) {
 
 }
 $hoy = date("Y-m-d H:i:s");
-if ($cambiar_estado_alarma == 'B' || $cambiar_estado_alarma == 'C') {
+if ($cambiar_estado_alarma == 'M' || $cambiar_estado_alarma == 'C') {
 	$query = "	INSERT INTO HIST_ALARMA_CLIENTE (cod_alarma,id_cliente,fecha_hora,real_falsa) 
 				VALUES ($cod_alarma, $id_cliente, '$hoy', 'R')" or die(mysql_error());
 

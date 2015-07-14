@@ -79,7 +79,8 @@ include_once ('aside_monitoreador.php');
 												  $cambiar_estado = "<a class='btn btn-info' href='php/cambiarEstadoAlarmaCliente.php?cambiar_estado=E&tipo_rol=2&id_cliente=$row[id_perfil]' style='background-color: rgb(188, 188, 188);border-color: rgb(188, 188, 188);'>DESACTIVAR</a>";	 
 												  break;	
 										case 'M': $estado = 'Activada - Monitoreador';
-												  $cambiar_estado = "<a class='btn btn-info' href='php/cambiarEstadoAlarmaCliente.php?cambiar_estado=E&tipo_rol=2&id_cliente=$row[id_perfil]' style='background-color: rgb(188, 188, 188);border-color: rgb(188, 188, 188);'>DESACTIVAR</a>";
+												  $cambiar_estado = "<a class='btn btn-info' href='php/cambiarEstadoAlarmaCliente.php?cambiar_estado=E&tipo_rol=2&id_cliente=$row[id_perfil]' style='background-color: rgb(188, 188, 188);border-color: rgb(188, 188, 188);'>DESACTIVAR</a>
+												  				     <a class='btn btn-info' href='tel:911' style='background-color: rgb(17, 19, 194);border-color: rgb(17, 19, 194);'>LLAMAR 911</a>";
 												  break;	
 									}
 

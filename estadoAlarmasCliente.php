@@ -31,7 +31,7 @@ function recargar(){
 
 	var mapProp = {
 	  center:myCenter,
-	  zoom:12,
+	  zoom:10,
 	  mapTypeId:google.maps.MapTypeId.ROADMAP
 	  };
 
@@ -44,6 +44,7 @@ function recargar(){
 	    var informationString = '<div>'+
 	    						'<div><strong>Domicilio: </strong><br>'+data[i].direccion+' '+data[i].num_direccion+'</div>'+
 	    						'<div><strong>Titular: </strong><br>'+data[i].nombres+' '+data[i].apellidos+'</div>'+
+	    						'<div><strong>Numero de cliente: </strong><br>'+data[i].id_perfil+'</div>'+
 	    						'</div>';
 	    						
 	    						
@@ -179,6 +180,7 @@ $(function() {
 
 			<input id="stop" class="btn btn-primary" type="button" value="Detener"/>
 			<input id="start" class="btn btn-info" type="button" value="Continuar"/>
+			<br>
 			<br>
 			 	<div id="googleMap" style="width:1000px;height:600px;"></div> 
 			</div>
