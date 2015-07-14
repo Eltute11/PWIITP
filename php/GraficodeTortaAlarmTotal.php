@@ -21,14 +21,14 @@ mysql_select_db("Seguridadlandia");
 require_once ('../jpgraph-3.5.0b1/src/jpgraph.php');
 require_once ('../jpgraph-3.5.0b1/src/jpgraph_pie.php');
 
-$datos = array($array_cant[0]+$array_cant[1],$array_cant[0],$array_cant[1]);
+$datos = array($array_cant[0],$array_cant[1]);
 $ancho = 350; $alto = 350;
 $graph = new PieGraph($ancho,$alto);
 $graph->SetScale('intint');
 $curva = new PiePlot($datos);
 
 // Legends
-$curva->SetLegends(array('Total','Reales','Falsas'));
+$curva->SetLegends(array('Reales','Falsas'));
 $graph->legend->SetPos(0.5,0.97,'center','bottom');
 $graph->legend->SetColumns(3);
 
