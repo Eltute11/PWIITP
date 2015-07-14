@@ -49,7 +49,7 @@ else{
 
 			/* Desplegamos cada uno de los registros dentro de una tabla */  
 			?>
-			<form action="php/calcularTotal.php" class="form-horizontal" method="POST">
+			<form action="php/calcularTotal.php" class="form-horizontal col-sm-12" method="POST">
 				<div class="wrapper-md" style="width: 60%;float: left;">
 					<div class="row"></div>
 					<div class="panel panel-default">
@@ -145,6 +145,11 @@ else{
 				</div>
 			</div>
 			</form>
+			<div class="wrapper-md">
+				<div class="col-sm-2">
+					<a href="administrador.php"><button class="btn btn-primary">Volver</button></a>
+				</div>
+			</div>
 
 		</div>
 	</div>	 
