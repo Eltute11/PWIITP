@@ -1,15 +1,67 @@
+<html>
+<head>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+    // var EstadoAlarma;
+
+    <?php  
+    session_start();
+    $id_perfil = $_SESSION['alta']['id_perfil']; // Obtengo de aplicarAltaPerfil.php
+	$totalFactura = $_SESSION['producto']['totalFactura'];
+	$cant_total_sen_presencia = $_SESSION['producto']['cod_prod_5']; // Obtengo de calcularTotal.php
+	$cant_total_sen_apertura = $_SESSION['producto']['cod_prod_6']; // Obtengo de calcularTotal.php
+	if (isset($_SESSION['producto']['cod_prod_7'])){
+	
+	$cant_total_alarmas = $_SESSION['producto']['cod_prod_7'];
+	
+	}
+
+    ?>
+
+    jQuery.ajax({
+        url: "http://181.171.231.235/alarmas/alta.php",
+        type:'GET',
+        data:{
+              // q: "Cordoba,es",
+              accion : "A",
+              usuario: "grupo9",
+              password: "00e1e1504d6c920a449368343762fa3d",
+              sistema: "<?php echo $id_perfil ?>",
+              cliente: "<?php echo $id_perfil ?>",
+              camara: "<?php echo $cant_total_alarmas ?>",
+              
+          },
+         // dataType: "text", 
+          // dataType: "jsonp", 
+          
+         
+
+    })
+  .done( function (resp){
+             
+           alert(resp);
+        }
+   );
+      
+</script>
+
+
+    
+</head>
+</html>
+
+
 <?php 
-session_start();
+// exit();
+
 
 include_once('clases.php');
 
 $base = new BD;
 $conexion = $base->Conectar();
 
-$id_perfil = $_SESSION['alta']['id_perfil']; // Obtengo de aplicarAltaPerfil.php
-$totalFactura = $_SESSION['producto']['totalFactura'];
-$cant_total_sen_presencia = $_SESSION['producto']['cod_prod_5']; // Obtengo de calcularTotal.php
-$cant_total_sen_apertura = $_SESSION['producto']['cod_prod_6']; // Obtengo de calcularTotal.php
+
 
 
 //  POR MAS QUE SEA AUTONUMERICO EL CODIGO DE ALARMA, OBTENGO MAXIMO Y LE SUMO 1 PARA ASIGNARLO 
@@ -47,11 +99,11 @@ $result= mysql_query($query) or die(mysql_error());
 
 if (isset($_SESSION['producto']['cod_prod_7'])){
 	
-	$cant_total_sen_apertura = $_SESSION['producto']['cod_prod_7'];
+	$cant_total_alarmas = $_SESSION['producto']['cod_prod_7'];
 	$disp_monitor = $_SESSION['producto']['disp_monitor'];
 
 	$i=1;
-	while ($i <= $cant_total_sen_apertura ){
+	while ($i <= $cant_total_alarmas ){
 
 		$query = "INSERT INTO CAMARAS (id_cliente,	    descripcion,
 									   disponibilidad)	
@@ -144,7 +196,6 @@ $i++;
 /******************************************************************************/
 /*								GENERACION DE FACTURAS						  */	
 /******************************************************************************/
-
 
 header("location: pdfFactura.php");
 
