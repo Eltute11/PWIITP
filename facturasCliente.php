@@ -44,7 +44,7 @@ include_once ('aside_cliente.php');
    						</thead>
    						<tbody>
    							<?php 
-   								$sinPagar = '<a href="php/resumenServicioPDF.php" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text-active"></i></a>';
+   								$sinPagar = '<a href="php/resumenServicioPDF.php" class="active" ui-toggle-class=""><button class="btn btn-danger btn-xs">Pagar</button></a>';
    								$pagado = '<a href="#" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i></a>';
    								$tabla = '';
 								while($row=mysql_fetch_array($result)){
