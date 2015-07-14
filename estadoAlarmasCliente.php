@@ -17,6 +17,7 @@ include_once ('aside_monitoreador.php');
 <script	src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script>
+function recargar(){
 	jQuery.ajax({
         url:"consultarEstadoAlarmas.php",
         type:"POST",
@@ -26,11 +27,11 @@ include_once ('aside_monitoreador.php');
     .done(function(data){ // Data es el valor devuelto del ajax, en este caso tipo JSON
 
 
-	var myCenter=new google.maps.LatLng(-34.61611560244965,-58.39679718017578);
+	var myCenter=new google.maps.LatLng(-34.65975757082139,-58.67815017700195);
 
 	var mapProp = {
 	  center:myCenter,
-	  zoom:13,
+	  zoom:12,
 	  mapTypeId:google.maps.MapTypeId.ROADMAP
 	  };
 
@@ -145,14 +146,24 @@ include_once ('aside_monitoreador.php');
 
 	
 	
-	
-	
 	}
 
 	google.maps.event.addDomListener(window, 'load');
 	
 	});
-	
+}
+
+timer = setInterval("recargar()", 4000);
+
+$(function() {
+    $("#start").click(function() {
+      timer = setInterval("recargar()", 4000);
+    });
+   $("#stop").click(function() {
+      clearInterval(timer);
+      timer = null
+    });
+});
 
 </script>
 </head>
@@ -165,6 +176,10 @@ include_once ('aside_monitoreador.php');
 	    </div>
    		<div class="panel-body">
 			<div class='col-sm-7'>
+
+			<input id="stop" class="btn btn-primary" type="button" value="Detener"/>
+			<input id="start" class="btn btn-info" type="button" value="Continuar"/>
+			<br>
 			 	<div id="googleMap" style="width:1000px;height:600px;"></div> 
 			</div>
 		</div>	
