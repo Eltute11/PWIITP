@@ -42,10 +42,16 @@
               </li>
               <li>
                 <a href="Graficos.php">
-                  <i class="glyphicon glyphicon-signal"></i>
-                  <span>Historiales</span>
+                  <i class="icon-graph"></i>
+                  <span>Estadisticas</span>
                 </a>
               </li>            
+              <li>
+                <a href="historiales.php">
+                  <i class="icon-clock"></i>
+                  <span>Historiales</span>
+                </a>
+              </li> 
               <li class="line dk hidden-folded"></li>
               <li>
                 <!-- <a href="profile.php"> -->
