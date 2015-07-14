@@ -32,6 +32,14 @@
                   <span>Monitoreo</span>
                 </a>
               </li>
+
+              <li>
+                  <a href='estadoAlarmasCliente.php' class="auto">      
+                  <i class="icon-camcorder"></i>
+                  <span>Estado de alarmas</span>
+                </a>
+              </li>
+
             </ul>
           </nav>
           <!-- nav -->
